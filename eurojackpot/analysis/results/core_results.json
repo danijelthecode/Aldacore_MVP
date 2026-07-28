@@ -1,8 +1,8 @@
 {
   "window": {
     "n_draws": 200,
-    "from": "2024-07-26",
-    "to": "2026-07-24"
+    "from": "2024-07-30",
+    "to": "2026-07-28"
   },
   "odds": {
     "jackpot_one_in": 139838160,
@@ -17,7 +17,7 @@
     "4": 20,
     "5": 15,
     "6": 17,
-    "7": 19,
+    "7": 18,
     "8": 24,
     "9": 18,
     "10": 17,
@@ -32,11 +32,11 @@
     "19": 21,
     "20": 21,
     "21": 28,
-    "22": 21,
+    "22": 20,
     "23": 26,
     "24": 13,
-    "25": 16,
-    "26": 18,
+    "25": 17,
+    "26": 17,
     "27": 25,
     "28": 17,
     "29": 22,
@@ -50,20 +50,20 @@
     "37": 26,
     "38": 18,
     "39": 18,
-    "40": 18,
-    "41": 23,
+    "40": 19,
+    "41": 24,
     "42": 22,
     "43": 16,
     "44": 19,
-    "45": 19,
-    "46": 22,
+    "45": 20,
+    "46": 21,
     "47": 20,
     "48": 16,
     "49": 12,
     "50": 20
   },
   "euro_frequency": {
-    "1": 36,
+    "1": 37,
     "2": 33,
     "3": 30,
     "4": 32,
@@ -73,7 +73,7 @@
     "8": 27,
     "9": 35,
     "10": 31,
-    "11": 27,
+    "11": 26,
     "12": 37
   },
   "hot_main_top10": [
@@ -111,7 +111,7 @@
     },
     {
       "n": 41,
-      "count": 23
+      "count": 24
     },
     {
       "n": 11,
@@ -140,10 +140,6 @@
       "count": 15
     },
     {
-      "n": 25,
-      "count": 16
-    },
-    {
       "n": 43,
       "count": 16
     },
@@ -158,6 +154,10 @@
     {
       "n": 10,
       "count": 17
+    },
+    {
+      "n": 25,
+      "count": 17
     }
   ],
   "hot_euro": [
@@ -166,12 +166,12 @@
       "count": 43
     },
     {
-      "n": 12,
+      "n": 1,
       "count": 37
     },
     {
-      "n": 1,
-      "count": 36
+      "n": 12,
+      "count": 37
     },
     {
       "n": 7,
@@ -207,113 +207,113 @@
     },
     {
       "n": 11,
-      "count": 27
+      "count": 26
     }
   ],
   "overdue_main_top10": [
     {
       "n": 24,
-      "draws_since_seen": 52
-    },
-    {
-      "n": 45,
-      "draws_since_seen": 37
+      "draws_since_seen": 53
     },
     {
       "n": 14,
-      "draws_since_seen": 32
+      "draws_since_seen": 33
     },
     {
       "n": 26,
-      "draws_since_seen": 31
+      "draws_since_seen": 32
     },
     {
       "n": 12,
-      "draws_since_seen": 28
+      "draws_since_seen": 29
     },
     {
       "n": 9,
-      "draws_since_seen": 23
+      "draws_since_seen": 24
     },
     {
       "n": 29,
-      "draws_since_seen": 17
+      "draws_since_seen": 18
     },
     {
       "n": 13,
-      "draws_since_seen": 15
+      "draws_since_seen": 16
     },
     {
       "n": 16,
-      "draws_since_seen": 15
+      "draws_since_seen": 16
     },
     {
       "n": 27,
+      "draws_since_seen": 16
+    },
+    {
+      "n": 30,
       "draws_since_seen": 15
     }
   ],
   "overdue_euro_top5": [
     {
       "n": 4,
-      "draws_since_seen": 28
+      "draws_since_seen": 29
     },
     {
       "n": 12,
-      "draws_since_seen": 8
+      "draws_since_seen": 9
     },
     {
       "n": 6,
-      "draws_since_seen": 7
+      "draws_since_seen": 8
     },
     {
       "n": 8,
-      "draws_since_seen": 6
+      "draws_since_seen": 7
     },
     {
-      "n": 1,
-      "draws_since_seen": 5
+      "n": 3,
+      "draws_since_seen": 4
     }
   ],
   "recency_weighted_main_top10": [
     [
       17,
-      11.945
+      11.78
     ],
     [
       21,
-      10.857
+      10.707
     ],
     [
       37,
-      10.759
+      10.611
     ],
     [
       35,
-      10.274
+      10.133
     ],
     [
       23,
-      9.696
+      9.562
     ],
     [
       47,
-      9.323
+      9.194
     ],
     [
       8,
-      9.076
+      8.951
+    ],
+    [
+      41,
+      8.754
     ],
     [
       18,
-      8.407
+      8.292
     ],
     [
       1,
-      8.209
-    ],
-    [
-      46,
-      7.983
+      8.096
     ]
   ],
   "chi_square_main": {
@@ -323,14 +323,21 @@
     "expected_per_number": 20.0
   },
   "chi_square_euro": {
-    "chi2": 6.56,
+    "chi2": 7.16,
     "dof": 11,
-    "p_value": 0.8335151095939449,
+    "p_value": 0.7859822624498894,
     "expected_per_number": 33.333333333333336
   },
   "pairs": {
     "expected_per_pair": 1.633,
     "top_pairs": [
+      {
+        "pair": [
+          25,
+          41
+        ],
+        "count": 7
+      },
       {
         "pair": [
           23,
@@ -349,13 +356,6 @@
         "pair": [
           15,
           35
-        ],
-        "count": 6
-      },
-      {
-        "pair": [
-          25,
-          41
         ],
         "count": 6
       },
@@ -440,28 +440,28 @@
     "max_count": 7
   },
   "structure": {
-    "sum_mean": 125.52,
-    "sum_std": 29.1,
+    "sum_mean": 125.77,
+    "sum_std": 29.19,
     "sum_theoretical_mean": 127.5,
     "odd_count_dist": {
       "0": 2,
       "1": 26,
-      "2": 61,
+      "2": 60,
       "3": 69,
-      "4": 37,
+      "4": 38,
       "5": 5
     },
     "low_count_dist": {
       "0": 3,
       "1": 24,
-      "2": 69,
-      "3": 69,
+      "2": 70,
+      "3": 68,
       "4": 30,
       "5": 5
     },
     "consecutive_adjacent_dist": {
-      "0": 121,
-      "1": 68,
+      "0": 120,
+      "1": 69,
       "2": 11
     }
   },

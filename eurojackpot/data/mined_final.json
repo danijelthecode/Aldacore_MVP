@@ -1637,6 +1637,24 @@
    "sources": [
     "WebSearch snippet aggregating lotto.net/eurojackpot/results/2026 and euro-jackpot.net/results-archive-2026"
    ]
+  },
+  {
+   "date": "2026-07-28",
+   "main": [
+    11,
+    25,
+    40,
+    41,
+    45
+   ],
+   "euro": [
+    1,
+    5
+   ],
+   "status": "confirmed-user-ticket-screenshot",
+   "sources": [
+    "Svenska Spel result screen provided by user"
+   ]
   }
  ],
  "resolved": [],
