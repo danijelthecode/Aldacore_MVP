@@ -1,0 +1,1656 @@
+{
+ "accepted": [
+  {
+   "date": "2025-08-12",
+   "main": [
+    11,
+    16,
+    29,
+    37,
+    42
+   ],
+   "euro": [
+    1,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (august-12-2025); cross-verified by German sources (t-online.de / stuttgarter-zeitung.de search snippet)"
+   ]
+  },
+  {
+   "date": "2025-08-15",
+   "main": [
+    5,
+    11,
+    20,
+    33,
+    43
+   ],
+   "euro": [
+    6,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (15-08-2025); cross-verified by German sources (lottohelden.de / stuttgarter-zeitung.de snippet)"
+   ]
+  },
+  {
+   "date": "2025-08-19",
+   "main": [
+    3,
+    4,
+    11,
+    33,
+    47
+   ],
+   "euro": [
+    6,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (august-19-2025); cross-verified by German sources (t-online.de / euro-jackpot.net 66. Ausspielung snippet)"
+   ]
+  },
+  {
+   "date": "2025-08-22",
+   "main": [
+    3,
+    14,
+    16,
+    22,
+    34
+   ],
+   "euro": [
+    7,
+    10
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (22-08-2025, Draw 67); cross-verified by German sources (t-online.de / stuttgarter-zeitung.de snippet)"
+   ]
+  },
+  {
+   "date": "2025-08-26",
+   "main": [
+    8,
+    14,
+    21,
+    26,
+    35
+   ],
+   "euro": [
+    4,
+    8
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (26-08-2025, Draw 68); cross-verified by German sources (stuttgarter-zeitung.de / web.de snippet)"
+   ]
+  },
+  {
+   "date": "2025-08-29",
+   "main": [
+    3,
+    5,
+    19,
+    23,
+    48
+   ],
+   "euro": [
+    1,
+    5
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (29-08-2025, Draw 69); cross-verified by German sources (ruhrnachrichten.de / web.de / lotto-brain.de snippet)"
+   ]
+  },
+  {
+   "date": "2025-09-02",
+   "main": [
+    1,
+    5,
+    12,
+    38,
+    47
+   ],
+   "euro": [
+    7,
+    8
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/02-09-2025; cross-checked ruhrnachrichten.de / t-online.de"
+   ]
+  },
+  {
+   "date": "2025-09-05",
+   "main": [
+    6,
+    14,
+    25,
+    29,
+    46
+   ],
+   "euro": [
+    7,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net/eurojackpot/results/september-05-2025; cross-checked euro-jackpot.net/results/05-09-2025"
+   ]
+  },
+  {
+   "date": "2025-09-09",
+   "main": [
+    14,
+    18,
+    24,
+    27,
+    50
+   ],
+   "euro": [
+    8,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/09-09-2025; cross-checked stuttgarter-zeitung.de / t-online.de"
+   ]
+  },
+  {
+   "date": "2025-09-12",
+   "main": [
+    7,
+    22,
+    24,
+    33,
+    45
+   ],
+   "euro": [
+    4,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net/eurojackpot/results/september-12-2025; cross-checked ruhrnachrichten.de / lottohelden.de"
+   ]
+  },
+  {
+   "date": "2025-09-16",
+   "main": [
+    8,
+    9,
+    14,
+    37,
+    39
+   ],
+   "euro": [
+    1,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net/eurojackpot/results/september-16-2025; cross-checked stuttgarter-zeitung.de / euro-jackpot.net/de/gewinnzahlen/16-09-2025"
+   ]
+  },
+  {
+   "date": "2025-09-19",
+   "main": [
+    9,
+    37,
+    40,
+    41,
+    46
+   ],
+   "euro": [
+    1,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/19-09-2025; cross-checked stuttgarter-zeitung.de / tagesspiegel.de"
+   ]
+  },
+  {
+   "date": "2025-09-23",
+   "main": [
+    7,
+    18,
+    31,
+    32,
+    33
+   ],
+   "euro": [
+    10,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/23-09-2025; cross-checked stuttgarter-zeitung.de / ruhrnachrichten.de"
+   ]
+  },
+  {
+   "date": "2025-09-26",
+   "main": [
+    12,
+    24,
+    26,
+    35,
+    48
+   ],
+   "euro": [
+    1,
+    2
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/26-09-2025; cross-checked ruhrnachrichten.de"
+   ]
+  },
+  {
+   "date": "2025-09-30",
+   "main": [
+    8,
+    11,
+    13,
+    24,
+    27
+   ],
+   "euro": [
+    3,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net/eurojackpot/results/september-30-2025; cross-checked euro-jackpot.net/results/30-09-2025"
+   ]
+  },
+  {
+   "date": "2025-10-03",
+   "main": [
+    1,
+    2,
+    7,
+    21,
+    27
+   ],
+   "euro": [
+    8,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "stuttgarter-zeitung.de / t-online.de (search snippet); partial cross-check lotto.net"
+   ]
+  },
+  {
+   "date": "2025-10-07",
+   "main": [
+    10,
+    22,
+    38,
+    42,
+    48
+   ],
+   "euro": [
+    2,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lottohelden.de / web.de / stuttgarter-nachrichten.de (search snippet); partial cross-check lotto.net"
+   ]
+  },
+  {
+   "date": "2025-10-10",
+   "main": [
+    4,
+    5,
+    24,
+    31,
+    41
+   ],
+   "euro": [
+    3,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "stuttgarter-zeitung.de / lottohelden.de / ruhrnachrichten.de (search snippet)"
+   ]
+  },
+  {
+   "date": "2025-10-14",
+   "main": [
+    8,
+    12,
+    13,
+    49,
+    50
+   ],
+   "euro": [
+    2,
+    4
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "schwarzwaelder-bote.de / stuttgarter-zeitung.de / tippland.de (search snippet)"
+   ]
+  },
+  {
+   "date": "2025-10-17",
+   "main": [
+    18,
+    21,
+    34,
+    35,
+    46
+   ],
+   "euro": [
+    2,
+    3
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "t-online.de / stuttgarter-zeitung.de / tippland.de (search snippet)"
+   ]
+  },
+  {
+   "date": "2025-10-21",
+   "main": [
+    6,
+    21,
+    30,
+    40,
+    46
+   ],
+   "euro": [
+    3,
+    4
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "news.de / insidebw.de / lottohelden.de (search snippet)"
+   ]
+  },
+  {
+   "date": "2025-10-24",
+   "main": [
+    12,
+    13,
+    27,
+    42,
+    43
+   ],
+   "euro": [
+    3,
+    4
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "ruhrnachrichten.de / oldenburger-onlinezeitung.de (search snippet)"
+   ]
+  },
+  {
+   "date": "2025-10-28",
+   "main": [
+    3,
+    4,
+    22,
+    45,
+    50
+   ],
+   "euro": [
+    9,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "stuttgarter-zeitung.de / ruhrnachrichten.de / lottoscanner.de (search snippet)"
+   ]
+  },
+  {
+   "date": "2025-10-31",
+   "main": [
+    5,
+    11,
+    40,
+    41,
+    47
+   ],
+   "euro": [
+    1,
+    5
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotteryexplorer.com; cross-checked stuttgarter-zeitung.de / lottohelden.de (search snippet)"
+   ]
+  },
+  {
+   "date": "2025-11-04",
+   "main": [
+    3,
+    21,
+    22,
+    33,
+    39
+   ],
+   "euro": [
+    1,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/04-11-2025; confirmed by oldenburger-onlinezeitung.de / web.de (German Gewinnzahlen search)"
+   ]
+  },
+  {
+   "date": "2025-11-07",
+   "main": [
+    13,
+    19,
+    22,
+    35,
+    40
+   ],
+   "euro": [
+    2,
+    8
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net/eurojackpot/results/november-07-2025; confirmed by lotto24 Facebook post and lottohelden.de (German search)"
+   ]
+  },
+  {
+   "date": "2025-11-11",
+   "main": [
+    8,
+    24,
+    25,
+    41,
+    50
+   ],
+   "euro": [
+    8,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/11-11-2025 (Draw 90); confirmed by ruhrnachrichten.de / t-online.de / web.de (German search)"
+   ]
+  },
+  {
+   "date": "2025-11-14",
+   "main": [
+    3,
+    5,
+    20,
+    30,
+    37
+   ],
+   "euro": [
+    6,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/14-11-2025 (Draw 91); confirmed by lottohelden.de / ruhrnachrichten.de (German search)"
+   ]
+  },
+  {
+   "date": "2025-11-18",
+   "main": [
+    19,
+    25,
+    27,
+    41,
+    49
+   ],
+   "euro": [
+    3,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/de/gewinnzahlen/18-11-2025 (92. Ausspielung); confirmed by t-online.de / news.de (German search)"
+   ]
+  },
+  {
+   "date": "2025-11-21",
+   "main": [
+    15,
+    24,
+    30,
+    45,
+    50
+   ],
+   "euro": [
+    5,
+    6
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/21-11-2025 (Draw 93); confirmed by lottohelden.de / ruhrnachrichten.de (German search)"
+   ]
+  },
+  {
+   "date": "2025-11-25",
+   "main": [
+    1,
+    23,
+    30,
+    35,
+    46
+   ],
+   "euro": [
+    4,
+    8
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/results/25-11-2025 (Draw 94); confirmed by ruhrnachrichten.de / lottohelden.de / t-online.de (German search)"
+   ]
+  },
+  {
+   "date": "2025-11-28",
+   "main": [
+    12,
+    16,
+    35,
+    46,
+    50
+   ],
+   "euro": [
+    3,
+    5
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net/de/gewinnzahlen/28-11-2025 (95. Ausspielung); confirmed by lotto.net and ruhrnachrichten.de / web.de (German search)"
+   ]
+  },
+  {
+   "date": "2025-12-02",
+   "main": [
+    14,
+    30,
+    34,
+    35,
+    40
+   ],
+   "euro": [
+    4,
+    6
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "stuttgarter-zeitung.de / news.de (cross-check: lotto.net)"
+   ]
+  },
+  {
+   "date": "2025-12-05",
+   "main": [
+    1,
+    4,
+    18,
+    22,
+    24
+   ],
+   "euro": [
+    6,
+    10
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lottohelden.de / euro-jackpot.net/de/gewinnzahlen/05-12-2025 (cross-check: lotto.net)"
+   ]
+  },
+  {
+   "date": "2025-12-09",
+   "main": [
+    2,
+    30,
+    32,
+    33,
+    37
+   ],
+   "euro": [
+    2,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lottohelden.de / t-online.de (cross-check: euro-jackpot.net/results/09-12-2025)"
+   ]
+  },
+  {
+   "date": "2025-12-12",
+   "main": [
+    2,
+    25,
+    27,
+    37,
+    50
+   ],
+   "euro": [
+    2,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "facebook.com/lotto24 post + stuttgarter-zeitung.de"
+   ]
+  },
+  {
+   "date": "2025-12-16",
+   "main": [
+    12,
+    22,
+    28,
+    30,
+    31
+   ],
+   "euro": [
+    4,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lottoscanner.de (cross-check: euro-jackpot.net/results/16-12-2025)"
+   ]
+  },
+  {
+   "date": "2025-12-19",
+   "main": [
+    8,
+    9,
+    15,
+    35,
+    45
+   ],
+   "euro": [
+    2,
+    5
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net 2025 archive (cross-check: schwarzwaelder-bote.de / lottohelden.de)"
+   ]
+  },
+  {
+   "date": "2025-12-23",
+   "main": [
+    24,
+    29,
+    35,
+    40,
+    41
+   ],
+   "euro": [
+    6,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net 2025 archive (cross-check: facebook.com/lotto24 post URL)"
+   ]
+  },
+  {
+   "date": "2025-12-26",
+   "main": [
+    15,
+    21,
+    26,
+    29,
+    42
+   ],
+   "euro": [
+    4,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net 2025 archive (cross-check: finanznachrichten.de / lottohelden.de)"
+   ]
+  },
+  {
+   "date": "2025-12-30",
+   "main": [
+    10,
+    18,
+    20,
+    23,
+    27
+   ],
+   "euro": [
+    1,
+    6
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net 2025 archive (cross-check: lottoscanner.de / cleverlotto.de)"
+   ]
+  },
+  {
+   "date": "2026-01-02",
+   "main": [
+    10,
+    15,
+    29,
+    34,
+    38
+   ],
+   "euro": [
+    2,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (confirmed by web.de / ruhrnachrichten.de)"
+   ]
+  },
+  {
+   "date": "2026-01-06",
+   "main": [
+    21,
+    23,
+    30,
+    33,
+    38
+   ],
+   "euro": [
+    8,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "facebook.com/lotto24 post + t-online.de / ruhrnachrichten.de"
+   ]
+  },
+  {
+   "date": "2026-01-09",
+   "main": [
+    1,
+    17,
+    19,
+    25,
+    41
+   ],
+   "euro": [
+    6,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "ruhrnachrichten.de / web.de / gmx.net (main numbers); lotto.net / svenska-lotto.com / powerball.us.org search context (euro numbers)"
+   ]
+  },
+  {
+   "date": "2026-01-13",
+   "main": [
+    2,
+    16,
+    27,
+    33,
+    47
+   ],
+   "euro": [
+    6,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "t-online.de (confirmed by lotto.net / euro-jackpot.net search context)"
+   ]
+  },
+  {
+   "date": "2026-01-16",
+   "main": [
+    8,
+    16,
+    37,
+    39,
+    48
+   ],
+   "euro": [
+    5,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "finanznachrichten.de / t-online.de / stuttgarter-zeitung.de"
+   ]
+  },
+  {
+   "date": "2026-01-20",
+   "main": [
+    16,
+    26,
+    32,
+    37,
+    45
+   ],
+   "euro": [
+    2,
+    3
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (confirmed by ruhrnachrichten.de / stuttgarter-zeitung.de)"
+   ]
+  },
+  {
+   "date": "2026-01-23",
+   "main": [
+    18,
+    36,
+    39,
+    45,
+    50
+   ],
+   "euro": [
+    6,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "t-online.de / web.de"
+   ]
+  },
+  {
+   "date": "2026-01-27",
+   "main": [
+    13,
+    18,
+    19,
+    29,
+    32
+   ],
+   "euro": [
+    8,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "stuttgarter-zeitung.de / tippland.de / t-online.de / ruhrnachrichten.de"
+   ]
+  },
+  {
+   "date": "2026-01-30",
+   "main": [
+    8,
+    13,
+    15,
+    17,
+    37
+   ],
+   "euro": [
+    3,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "ruhrnachrichten.de / t-online.de / lottohelden.de"
+   ]
+  },
+  {
+   "date": "2026-02-03",
+   "main": [
+    3,
+    20,
+    27,
+    37,
+    44
+   ],
+   "euro": [
+    1,
+    2
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "svenska-lotto.com + stuttgarter-zeitung.de/finanznachrichten.de (per-date search snippets)"
+   ]
+  },
+  {
+   "date": "2026-02-06",
+   "main": [
+    8,
+    14,
+    38,
+    41,
+    48
+   ],
+   "euro": [
+    1,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net/eurojackpot/results/february-06-2026 + stuttgarter-zeitung.de/web.de snippets"
+   ]
+  },
+  {
+   "date": "2026-02-10",
+   "main": [
+    12,
+    19,
+    34,
+    39,
+    47
+   ],
+   "euro": [
+    4,
+    5
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net + svenska-lotto.com + ruhrnachrichten.de/t-online.de snippets"
+   ]
+  },
+  {
+   "date": "2026-02-13",
+   "main": [
+    1,
+    21,
+    44,
+    45,
+    46
+   ],
+   "euro": [
+    2,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net/euro-jackpot.net + ruhrnachrichten.de/t-online.de snippets"
+   ]
+  },
+  {
+   "date": "2026-02-17",
+   "main": [
+    8,
+    23,
+    39,
+    40,
+    44
+   ],
+   "euro": [
+    6,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "finanznachrichten.de/t-online.de + facebook.com/lotto24 post URL slug"
+   ]
+  },
+  {
+   "date": "2026-02-20",
+   "main": [
+    11,
+    17,
+    23,
+    36,
+    40
+   ],
+   "euro": [
+    5,
+    6
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net/euro-jackpot.net + ruhrnachrichten.de/web.de/stuttgarter-nachrichten.de snippets"
+   ]
+  },
+  {
+   "date": "2026-02-24",
+   "main": [
+    4,
+    5,
+    26,
+    38,
+    48
+   ],
+   "euro": [
+    2,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net + finanznachrichten.de/t-online.de/regionalheute.de snippets"
+   ]
+  },
+  {
+   "date": "2026-02-27",
+   "main": [
+    7,
+    17,
+    19,
+    28,
+    47
+   ],
+   "euro": [
+    2,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net + klamm.de/stuttgarter-zeitung.de/t-online.de snippets"
+   ]
+  },
+  {
+   "date": "2026-03-03",
+   "main": [
+    1,
+    9,
+    14,
+    35,
+    49
+   ],
+   "euro": [
+    2,
+    10
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (march-03-2026) / euro-jackpot.net (03-03-2026)"
+   ]
+  },
+  {
+   "date": "2026-03-06",
+   "main": [
+    8,
+    17,
+    26,
+    31,
+    47
+   ],
+   "euro": [
+    1,
+    6
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (march-06-2026); facebook.com/lotto24 post; stuttgarter-zeitung.de"
+   ]
+  },
+  {
+   "date": "2026-03-10",
+   "main": [
+    2,
+    3,
+    17,
+    18,
+    28
+   ],
+   "euro": [
+    4,
+    10
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net (10-03-2026) / web.de Gewinnzahlen 10. Maerz 2026"
+   ]
+  },
+  {
+   "date": "2026-03-13",
+   "main": [
+    7,
+    23,
+    37,
+    44,
+    47
+   ],
+   "euro": [
+    2,
+    6
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (march-13-2026); finanznachrichten.de; facebook.com/lotto24 post"
+   ]
+  },
+  {
+   "date": "2026-03-17",
+   "main": [
+    12,
+    13,
+    16,
+    17,
+    37
+   ],
+   "euro": [
+    4,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net (17-03-2026) / lotto.net (march-17-2026) / estrazionedellotto.it"
+   ]
+  },
+  {
+   "date": "2026-03-20",
+   "main": [
+    2,
+    17,
+    21,
+    25,
+    30
+   ],
+   "euro": [
+    2,
+    6
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (march-20-2026); euro-jackpot.net (20-03-2026); facebook.com/lotto24 post"
+   ]
+  },
+  {
+   "date": "2026-03-24",
+   "main": [
+    9,
+    15,
+    23,
+    43,
+    48
+   ],
+   "euro": [
+    3,
+    5
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net (24-03-2026); facebook.com/lotto24 post; ruhrnachrichten.de"
+   ]
+  },
+  {
+   "date": "2026-03-27",
+   "main": [
+    21,
+    23,
+    25,
+    38,
+    40
+   ],
+   "euro": [
+    7,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (march-27-2026) / euro-jackpot.net (27-03-2026) / madeinbocholt.de"
+   ]
+  },
+  {
+   "date": "2026-03-31",
+   "main": [
+    5,
+    15,
+    18,
+    20,
+    35
+   ],
+   "euro": [
+    7,
+    8
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (march-31-2026) / euro-jackpot.net (31-03-2026)"
+   ]
+  },
+  {
+   "date": "2026-04-03",
+   "main": [
+    9,
+    10,
+    18,
+    22,
+    37
+   ],
+   "euro": [
+    1,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "mmnews.de / euro-jackpot.net (de) \u2014 'Gewinnzahlen Eurojackpot vom Freitag (03.04.2026)'"
+   ]
+  },
+  {
+   "date": "2026-04-07",
+   "main": [
+    2,
+    4,
+    16,
+    23,
+    27
+   ],
+   "euro": [
+    5,
+    8
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "facebook.com/lotto24 post + ruhrnachrichten.de (Eurojackpot am Dienstag, 7. April 2026)"
+   ]
+  },
+  {
+   "date": "2026-04-10",
+   "main": [
+    1,
+    6,
+    11,
+    18,
+    48
+   ],
+   "euro": [
+    10,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "ruhrnachrichten.de / web.de / tippland.de (Eurojackpot am Freitag, 10. April 2026)"
+   ]
+  },
+  {
+   "date": "2026-04-14",
+   "main": [
+    13,
+    22,
+    32,
+    46,
+    47
+   ],
+   "euro": [
+    6,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "finanznachrichten.de / t-online.de / web.de (Gewinnzahlen Eurojackpot vom Dienstag 14.04.2026)"
+   ]
+  },
+  {
+   "date": "2026-04-17",
+   "main": [
+    16,
+    31,
+    35,
+    43,
+    44
+   ],
+   "euro": [
+    2,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "web.de / ruhrnachrichten.de / stuttgarter-zeitung.de (Eurojackpot am Freitag, 17. April 2026)"
+   ]
+  },
+  {
+   "date": "2026-04-21",
+   "main": [
+    31,
+    32,
+    36,
+    39,
+    47
+   ],
+   "euro": [
+    7,
+    8
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "klamm.de / t-online.de / ruhrnachrichten.de (Gewinnzahlen Eurojackpot vom Dienstag 21.04.2026)"
+   ]
+  },
+  {
+   "date": "2026-04-24",
+   "main": [
+    6,
+    21,
+    29,
+    39,
+    44
+   ],
+   "euro": [
+    1,
+    5
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "oldenburger-onlinezeitung.de / web.de / stuttgarter-zeitung.de (Gewinnzahlen Eurojackpot vom Freitag 24.04.2026)"
+   ]
+  },
+  {
+   "date": "2026-04-28",
+   "main": [
+    19,
+    20,
+    41,
+    43,
+    46
+   ],
+   "euro": [
+    5,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "facebook.com/lotto24 post + web.de / ruhrnachrichten.de / t-online.de (28.04.2026)"
+   ]
+  },
+  {
+   "date": "2026-05-01",
+   "main": [
+    10,
+    11,
+    13,
+    16,
+    27
+   ],
+   "euro": [
+    5,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (Eurojackpot Results Friday 1st May 2026 - Draw 35)"
+   ]
+  },
+  {
+   "date": "2026-05-05",
+   "main": [
+    1,
+    30,
+    33,
+    34,
+    43
+   ],
+   "euro": [
+    5,
+    10
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (Eurojackpot Results Tuesday 5th May 2026 - Draw 36)"
+   ]
+  },
+  {
+   "date": "2026-05-08",
+   "main": [
+    3,
+    17,
+    18,
+    31,
+    41
+   ],
+   "euro": [
+    6,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net; confirmed by German sources (stuttgarter-zeitung.de, tippland.de)"
+   ]
+  },
+  {
+   "date": "2026-05-12",
+   "main": [
+    7,
+    15,
+    19,
+    28,
+    35
+   ],
+   "euro": [
+    3,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (Eurojackpot Results Tuesday 12th May 2026 - Draw 38)"
+   ]
+  },
+  {
+   "date": "2026-05-15",
+   "main": [
+    1,
+    32,
+    33,
+    36,
+    37
+   ],
+   "euro": [
+    7,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (Eurojackpot Results Friday 15th May 2026 - Draw 39)"
+   ]
+  },
+  {
+   "date": "2026-05-19",
+   "main": [
+    10,
+    36,
+    37,
+    39,
+    47
+   ],
+   "euro": [
+    5,
+    6
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net; confirmed by German sources (lottobay.de, stuttgarter-zeitung.de)"
+   ]
+  },
+  {
+   "date": "2026-05-22",
+   "main": [
+    5,
+    34,
+    35,
+    42,
+    46
+   ],
+   "euro": [
+    3,
+    5
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "euro-jackpot.net / lotto.net (Eurojackpot Results Friday 22nd May 2026 - Draw 41)"
+   ]
+  },
+  {
+   "date": "2026-05-26",
+   "main": [
+    5,
+    11,
+    23,
+    33,
+    42
+   ],
+   "euro": [
+    10,
+    12
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net (Eurojackpot Results Tuesday 26th May 2026 - Draw 42)"
+   ]
+  },
+  {
+   "date": "2026-05-29",
+   "main": [
+    3,
+    20,
+    21,
+    42,
+    49
+   ],
+   "euro": [
+    5,
+    6
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net / euro-jackpot.net; confirmed by German sources (ruhrnachrichten.de, web.de, tippland.de)"
+   ]
+  },
+  {
+   "date": "2026-06-02",
+   "main": [
+    2,
+    36,
+    38,
+    40,
+    46
+   ],
+   "euro": [
+    7,
+    8
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (Eurojackpot Results from 2026 | Numbers Archive, via WebSearch result text)"
+   ]
+  },
+  {
+   "date": "2026-06-05",
+   "main": [
+    21,
+    23,
+    44,
+    47,
+    50
+   ],
+   "euro": [
+    1,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net (Eurojackpot Results from 2026 | Numbers Archive, via WebSearch result text)"
+   ]
+  },
+  {
+   "date": "2026-06-26",
+   "main": [
+    17,
+    25,
+    35,
+    39,
+    41
+   ],
+   "euro": [
+    5,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "lotto.net/eurojackpot/results/june-26-2026 (corroborated by a second independent WebSearch)"
+   ]
+  },
+  {
+   "date": "2026-07-14",
+   "main": [
+    5,
+    6,
+    17,
+    34,
+    36
+   ],
+   "euro": [
+    3,
+    11
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "WebSearch snippet aggregating lotto.net/eurojackpot/results/2026 and euro-jackpot.net/results-archive-2026"
+   ]
+  },
+  {
+   "date": "2026-07-17",
+   "main": [
+    6,
+    21,
+    31,
+    47,
+    48
+   ],
+   "euro": [
+    2,
+    9
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "WebSearch snippet aggregating lotto.net/eurojackpot/results/2026 and euro-jackpot.net/results-archive-2026"
+   ]
+  },
+  {
+   "date": "2026-07-21",
+   "main": [
+    4,
+    8,
+    10,
+    17,
+    37
+   ],
+   "euro": [
+    5,
+    7
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "WebSearch snippet aggregating lotto.net/eurojackpot/results/2026 and euro-jackpot.net/results-archive-2026 (also lotteryextreme.com result title 'Eurojackpot 21.07.2026')"
+   ]
+  },
+  {
+   "date": "2026-07-24",
+   "main": [
+    4,
+    6,
+    8,
+    17,
+    22
+   ],
+   "euro": [
+    7,
+    10
+   ],
+   "status": "single-pass-miner",
+   "sources": [
+    "WebSearch snippet aggregating lotto.net/eurojackpot/results/2026 and euro-jackpot.net/results-archive-2026"
+   ]
+  }
+ ],
+ "resolved": [],
+ "excluded_mismatches": [],
+ "still_missing": [
+  "2026-06-09",
+  "2026-06-12",
+  "2026-06-16",
+  "2026-06-19",
+  "2026-06-23",
+  "2026-06-30",
+  "2026-07-03",
+  "2026-07-07",
+  "2026-07-10"
+ ],
+ "note": "Independent verification session did not report within the 2h window; 4/4 spot-check matched. Single-pass status flagged for sensitivity analysis."
+}

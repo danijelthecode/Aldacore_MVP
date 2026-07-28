@@ -1,0 +1,482 @@
+{
+  "window": {
+    "n_draws": 200,
+    "from": "2023-09-12",
+    "to": "2025-08-08"
+  },
+  "odds": {
+    "jackpot_one_in": 139838160,
+    "jackpot_probability": 7.1511238420185165e-09,
+    "any_single_number_next_draw": 0.1,
+    "any_single_euro_next_draw": 0.16666666666666666
+  },
+  "main_frequency": {
+    "1": 23,
+    "2": 21,
+    "3": 19,
+    "4": 23,
+    "5": 9,
+    "6": 19,
+    "7": 20,
+    "8": 24,
+    "9": 18,
+    "10": 18,
+    "11": 25,
+    "12": 20,
+    "13": 23,
+    "14": 22,
+    "15": 21,
+    "16": 20,
+    "17": 28,
+    "18": 19,
+    "19": 17,
+    "20": 27,
+    "21": 25,
+    "22": 21,
+    "23": 26,
+    "24": 12,
+    "25": 12,
+    "26": 22,
+    "27": 21,
+    "28": 18,
+    "29": 24,
+    "30": 26,
+    "31": 23,
+    "32": 19,
+    "33": 16,
+    "34": 26,
+    "35": 18,
+    "36": 18,
+    "37": 19,
+    "38": 19,
+    "39": 19,
+    "40": 17,
+    "41": 18,
+    "42": 19,
+    "43": 19,
+    "44": 16,
+    "45": 30,
+    "46": 15,
+    "47": 15,
+    "48": 16,
+    "49": 20,
+    "50": 15
+  },
+  "euro_frequency": {
+    "1": 44,
+    "2": 28,
+    "3": 37,
+    "4": 31,
+    "5": 37,
+    "6": 29,
+    "7": 28,
+    "8": 25,
+    "9": 32,
+    "10": 43,
+    "11": 28,
+    "12": 38
+  },
+  "hot_main_top10": [
+    {
+      "n": 45,
+      "count": 30
+    },
+    {
+      "n": 17,
+      "count": 28
+    },
+    {
+      "n": 20,
+      "count": 27
+    },
+    {
+      "n": 23,
+      "count": 26
+    },
+    {
+      "n": 30,
+      "count": 26
+    },
+    {
+      "n": 34,
+      "count": 26
+    },
+    {
+      "n": 11,
+      "count": 25
+    },
+    {
+      "n": 21,
+      "count": 25
+    },
+    {
+      "n": 8,
+      "count": 24
+    },
+    {
+      "n": 29,
+      "count": 24
+    }
+  ],
+  "cold_main_bottom10": [
+    {
+      "n": 5,
+      "count": 9
+    },
+    {
+      "n": 24,
+      "count": 12
+    },
+    {
+      "n": 25,
+      "count": 12
+    },
+    {
+      "n": 46,
+      "count": 15
+    },
+    {
+      "n": 47,
+      "count": 15
+    },
+    {
+      "n": 50,
+      "count": 15
+    },
+    {
+      "n": 33,
+      "count": 16
+    },
+    {
+      "n": 44,
+      "count": 16
+    },
+    {
+      "n": 48,
+      "count": 16
+    },
+    {
+      "n": 19,
+      "count": 17
+    }
+  ],
+  "hot_euro": [
+    {
+      "n": 1,
+      "count": 44
+    },
+    {
+      "n": 10,
+      "count": 43
+    },
+    {
+      "n": 12,
+      "count": 38
+    },
+    {
+      "n": 3,
+      "count": 37
+    },
+    {
+      "n": 5,
+      "count": 37
+    },
+    {
+      "n": 9,
+      "count": 32
+    },
+    {
+      "n": 4,
+      "count": 31
+    },
+    {
+      "n": 6,
+      "count": 29
+    },
+    {
+      "n": 2,
+      "count": 28
+    },
+    {
+      "n": 7,
+      "count": 28
+    },
+    {
+      "n": 11,
+      "count": 28
+    },
+    {
+      "n": 8,
+      "count": 25
+    }
+  ],
+  "overdue_main_top10": [
+    {
+      "n": 24,
+      "draws_since_seen": 71
+    },
+    {
+      "n": 32,
+      "draws_since_seen": 44
+    },
+    {
+      "n": 47,
+      "draws_since_seen": 35
+    },
+    {
+      "n": 2,
+      "draws_since_seen": 34
+    },
+    {
+      "n": 3,
+      "draws_since_seen": 28
+    },
+    {
+      "n": 19,
+      "draws_since_seen": 19
+    },
+    {
+      "n": 30,
+      "draws_since_seen": 19
+    },
+    {
+      "n": 17,
+      "draws_since_seen": 17
+    },
+    {
+      "n": 15,
+      "draws_since_seen": 15
+    },
+    {
+      "n": 31,
+      "draws_since_seen": 13
+    }
+  ],
+  "overdue_euro_top5": [
+    {
+      "n": 9,
+      "draws_since_seen": 14
+    },
+    {
+      "n": 12,
+      "draws_since_seen": 12
+    },
+    {
+      "n": 10,
+      "draws_since_seen": 9
+    },
+    {
+      "n": 2,
+      "draws_since_seen": 6
+    },
+    {
+      "n": 7,
+      "draws_since_seen": 5
+    }
+  ],
+  "recency_weighted_main_top10": [
+    [
+      21,
+      10.025
+    ],
+    [
+      1,
+      9.876
+    ],
+    [
+      20,
+      9.781
+    ],
+    [
+      12,
+      9.251
+    ],
+    [
+      29,
+      9.186
+    ],
+    [
+      17,
+      9.18
+    ],
+    [
+      23,
+      8.828
+    ],
+    [
+      14,
+      8.745
+    ],
+    [
+      13,
+      8.621
+    ],
+    [
+      34,
+      8.621
+    ]
+  ],
+  "chi_square_main": {
+    "chi2": 43.7,
+    "dof": 49,
+    "p_value": 0.6872136068694918,
+    "expected_per_number": 20.0
+  },
+  "chi_square_euro": {
+    "chi2": 13.1,
+    "dof": 11,
+    "p_value": 0.2868397574326123,
+    "expected_per_number": 33.333333333333336
+  },
+  "pairs": {
+    "expected_per_pair": 1.633,
+    "top_pairs": [
+      {
+        "pair": [
+          14,
+          45
+        ],
+        "count": 7
+      },
+      {
+        "pair": [
+          21,
+          34
+        ],
+        "count": 7
+      },
+      {
+        "pair": [
+          17,
+          30
+        ],
+        "count": 7
+      },
+      {
+        "pair": [
+          31,
+          45
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          23,
+          38
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          17,
+          40
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          26,
+          49
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          20,
+          21
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          2,
+          34
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          2,
+          40
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          7,
+          11
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          2,
+          49
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          21,
+          27
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          23,
+          44
+        ],
+        "count": 5
+      },
+      {
+        "pair": [
+          23,
+          37
+        ],
+        "count": 5
+      }
+    ],
+    "max_count": 7
+  },
+  "structure": {
+    "sum_mean": 124.67,
+    "sum_std": 29.04,
+    "sum_theoretical_mean": 127.5,
+    "odd_count_dist": {
+      "0": 3,
+      "1": 32,
+      "2": 65,
+      "3": 57,
+      "4": 40,
+      "5": 3
+    },
+    "low_count_dist": {
+      "0": 5,
+      "1": 23,
+      "2": 67,
+      "3": 70,
+      "4": 30,
+      "5": 5
+    },
+    "consecutive_adjacent_dist": {
+      "0": 130,
+      "1": 61,
+      "2": 9
+    }
+  },
+  "repeat_lag": {
+    "observed_repeats_per_draw": 0.5327,
+    "expected_repeats_per_draw": 0.5,
+    "p_value": 0.492
+  },
+  "monte_carlo": {
+    "n_sims": 100000,
+    "observed_max_freq": 30,
+    "null_max_freq_mean": 30.19,
+    "p_max_at_least_observed": 0.5839,
+    "observed_min_freq": 9,
+    "null_min_freq_mean": 11.01,
+    "p_min_at_most_observed": 0.1651
+  }
+}
