@@ -1655,6 +1655,24 @@
    "sources": [
     "Svenska Spel result screen provided by user"
    ]
+  },
+  {
+   "date": "2026-07-31",
+   "main": [
+    4,
+    10,
+    20,
+    40,
+    41
+   ],
+   "euro": [
+    4,
+    6
+   ],
+   "status": "confirmed-user-ticket-screenshot",
+   "sources": [
+    "Svenska Spel result screen provided by user"
+   ]
   }
  ],
  "resolved": [],
