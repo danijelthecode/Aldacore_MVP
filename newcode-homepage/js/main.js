@@ -415,7 +415,7 @@
     steps.forEach(function (step) { var plate = $('.plate', step); if (plate) stepIO.observe(plate); });
   }
 
-  /* ---------- Count-up, once, on confirmed numbers only ---------- */
+  /* ---------- Count-up, once, on confirmed numbers only. Only the digits run; a prefix or suffix ($, M, +) sits outside the counted element. ---------- */
   var counters = $$('[data-count]');
   if (counters.length && hasIO && !reduceMotion) {
     var cio = new IntersectionObserver(function (entries) {
@@ -425,12 +425,15 @@
         var el = entry.target;
         var target = parseFloat(el.getAttribute('data-count'));
         var startTime = null, duration = 1400;
+        /* Hold the final width while the digits run, so the suffix does not slide. */
+        var size = parseFloat(window.getComputedStyle(el).fontSize);
+        if (size) el.style.minWidth = (el.getBoundingClientRect().width / size).toFixed(3) + 'em';
         function frame(t) {
           if (startTime === null) startTime = t;
           var k = Math.min(1, (t - startTime) / duration);
           var eased = 1 - Math.pow(1 - k, 3);
           el.textContent = String(Math.round(target * eased));
-          if (k < 1) window.requestAnimationFrame(frame);
+          if (k < 1) window.requestAnimationFrame(frame); else el.style.minWidth = '';
         }
         el.textContent = '0';
         window.requestAnimationFrame(frame);
@@ -438,6 +441,40 @@
     }, { threshold: 0.6 });
     counters.forEach(function (el) { cio.observe(el); });
   }
+
+  /* ---------- Customer film: the still becomes a player on request. Nothing loads or plays before the click. ---------- */
+  $$('[data-film]').forEach(function (frame) {
+    var play = $('[data-film-play]', frame);
+    var link = $('[data-film-link]', frame);
+    var still = $('img', frame);
+    var probe = doc.createElement('video');
+    /* No player for this file in this browser: the link to newcode.ai stays. */
+    if (!play || !probe.canPlayType || !probe.canPlayType('video/mp4')) return;
+    if (link) link.hidden = true;
+    play.hidden = false;
+    play.addEventListener('click', function () {
+      var video = doc.createElement('video');
+      video.controls = true;
+      video.preload = 'none';
+      video.setAttribute('playsinline', '');
+      video.setAttribute('aria-label', frame.getAttribute('data-film-label') || 'Customer film');
+      video.tabIndex = 0;
+      if (still) video.poster = still.currentSrc || still.src;
+      video.addEventListener('error', function () {
+        /* The file could not be played here: put the still back and offer the film on newcode.ai. */
+        if (!video.parentNode) return;
+        if (still) frame.insertBefore(still, video);
+        frame.removeChild(video);
+        if (link) { link.hidden = false; link.focus(); }
+      });
+      video.src = frame.getAttribute('data-film');
+      frame.replaceChild(video, play);
+      if (still && still.parentNode === frame) frame.removeChild(still);
+      video.focus();
+      var started = video.play();
+      if (started && started.catch) started.catch(function () { /* play refused: the controls remain */ });
+    });
+  });
 
   /* ---------- Prototype notes: list every labeled placeholder and open point ---------- */
   var noteItems = $$('[data-note]');

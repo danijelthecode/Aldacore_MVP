@@ -870,56 +870,89 @@ html:not(.js) #product-aurora .pview { background-image: url("../assets/plates/w
 @media (max-width: 359px) { .pcard__tags { gap: 6px; } .pcard__tags .tag { padding-inline: 8px; } }
 
 /* ---------- 5. Proof numbers ---------- */
+/* The three figures share three rows (numeral, label, source), so the source lines sit on one line whatever the label length. */
 .proof__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--col-gap); margin-top: clamp(40px, 5vw, 72px); }
-.stat { display: grid; gap: 12px; align-content: start; padding: 26px 0 30px; border-top: 1px solid var(--ink); min-width: 0; }
+.stat { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 12px; align-content: start; padding: 26px 0 30px; border-top: 1px solid var(--ink); min-width: 0; }
 .stat__num { font-size: clamp(3.25rem, 1.6rem + 5vw, 6rem); line-height: 0.92; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: var(--purple-deep); }
-.stat__label { font-size: var(--t-lead); line-height: 1.3; letter-spacing: -0.012em; max-width: 22rem; }
+.stat__num [data-count] { display: inline-block; text-align: right; }
+.stat__label { font-size: var(--t-lead); line-height: 1.3; letter-spacing: -0.012em; max-width: 22rem; text-wrap: balance; }
+.stat__label .flag { margin-left: 4px; letter-spacing: 0.08em; }
 .stat__src { font-size: var(--t-label); color: var(--grey); }
-.stat__src a { text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 3px; }
-.proof__pending { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--col-gap); margin-top: 8px; }
-.stat--ph { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 6px 22px; padding: 20px 24px; border: 1.5px dashed rgba(87, 6, 140, 0.4); border-radius: var(--radius-l); }
-.stat--ph .stat__num { grid-row: span 2; font-size: clamp(2.5rem, 1.5rem + 3vw, 4rem); color: transparent; -webkit-text-stroke: 1.5px rgba(87, 6, 140, 0.4); }
-.stat--ph .stat__label { font-size: var(--t-body); color: var(--ink); }
-.stat--ph .note-line { grid-column: 2; }
+.stat__src a { padding-block: 14px; text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 3px; } /* the padding widens the tap area only; an inline box does not move the line */
+/* Figures still to come: one slim row of labeled placeholders, no digits. */
+.proof__pending { display: flex; flex-wrap: wrap; gap: 10px 40px; padding-top: 18px; border-top: 1px solid var(--hairline); }
+.proof__pending li { flex-wrap: nowrap; align-items: flex-start; }
+.proof__pending .ph__tag { flex: none; }
+.proof__pending b { font-weight: var(--w-medium); color: var(--ink); }
 @media (max-width: 899px) {
-  .proof__grid, .proof__pending { grid-template-columns: minmax(0, 1fr); }
+  .proof__grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* ---------- 6. Customer voices ---------- */
 .voices__stage { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); row-gap: 24px; align-items: stretch; margin: clamp(40px, 5vw, 72px) 0 0; scroll-margin-top: 110px; }
-.vq__portrait { grid-column: 1 / span 4; border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 4 / 4.6; background: var(--hairline); }
+.vq__portrait { grid-column: 1 / span 4; justify-self: stretch; border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 4 / 4.6; background: var(--hairline); }
 .vq__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
 .vq__body { grid-column: 6 / -1; display: flex; flex-direction: column; justify-content: center; gap: clamp(28px, 3vw, 44px); }
-.voices__stage blockquote p { font-size: clamp(1.5rem, 1rem + 1.7vw, 2.5rem); line-height: 1.18; letter-spacing: -0.03em; }
+.voices__stage blockquote p { font-size: clamp(1.5rem, 1rem + 1.7vw, 2.5rem); line-height: 1.18; letter-spacing: -0.03em; text-wrap: pretty; }
 .attrib { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; font-size: var(--t-small); line-height: 1.4; color: var(--grey); }
 .attrib b { display: block; font-weight: var(--w-medium); font-size: var(--t-body); color: var(--ink); }
 .attrib img { height: var(--lh, 26px); width: auto; filter: brightness(0); opacity: 0.6; }
-.voices__more { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--col-gap); margin-top: clamp(32px, 4vw, 56px); }
-.vcard { display: flex; flex-direction: column; gap: 22px; margin: 0; padding: clamp(20px, 2vw, 28px); border-radius: var(--radius-xl); background: var(--white); box-shadow: 0 0 0 1px var(--ink-faint); min-width: 0; scroll-margin-top: 110px; }
-.vcard blockquote p { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); line-height: 1.45; letter-spacing: -0.012em; }
-.vcard figcaption { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; align-items: center; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: var(--t-small); line-height: 1.4; color: var(--grey); }
-.vcard figcaption > img { width: 64px; height: 76px; border-radius: 12px; object-fit: cover; object-position: 50% 15%; background: var(--hairline); }
-.vcard figcaption b { display: block; font-weight: var(--w-medium); color: var(--ink); }
-.vcard .attrib-logo { height: var(--lh, 20px); width: auto; margin-top: 8px; filter: brightness(0); opacity: 0.6; }
+/* Three supporting voices. The person comes first; the cards share two rows (person, quote), so the three rules sit on one line. */
+.voices__more { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto 1fr; gap: 0 var(--col-gap); margin-top: clamp(32px, 4vw, 56px); }
+.vcard { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; align-content: start; margin: 0; padding: clamp(20px, 2vw, 28px); border-radius: var(--radius-xl); background: var(--white); box-shadow: 0 0 0 1px var(--ink-faint); min-width: 0; scroll-margin-top: 110px; }
+.vcard blockquote { padding-top: 20px; }
+.vcard blockquote p { font-size: clamp(1.0625rem, 0.6rem + 0.75vw, 1.1875rem); line-height: 1.45; letter-spacing: -0.012em; }
+.vcard figcaption { display: grid; grid-template-columns: clamp(104px, 9.2vw, 132px) minmax(0, 1fr); gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--hairline); font-size: var(--t-small); line-height: 1.4; color: var(--grey); }
+.vcard__portrait { position: relative; display: block; align-self: start; aspect-ratio: 4 / 5; border-radius: var(--radius-m); overflow: hidden; background: var(--hairline); }
+.vcard__portrait img { position: absolute; left: var(--x, 0%); top: var(--y, 0%); width: var(--w, 100%); max-width: none; height: auto; }
+.vcard__who { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.vcard__who b { font-weight: var(--w-medium); font-size: var(--t-body); color: var(--ink); }
+.vcard__who b + span { margin-bottom: 12px; }
+.vcard .attrib-logo { height: var(--lh, 20px); width: auto; max-width: 100%; margin-top: auto; object-fit: contain; object-position: 0 100%; filter: brightness(0); opacity: 0.6; }
 .voices__stories { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--col-gap); margin-top: var(--col-gap); }
 .story { display: flex; flex-direction: column; gap: 14px; padding: clamp(18px, 1.8vw, 24px); border-radius: var(--radius-xl); background: var(--white); box-shadow: 0 0 0 1px var(--ink-faint); min-width: 0; scroll-margin-top: 110px; }
 .story h3 { font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.022em; }
 .story > p:not(.tag):not(.note-line) { color: var(--grey); font-size: var(--t-small); line-height: 1.5; max-width: 40rem; }
 .story > .link-arrow { margin-top: auto; }
-.story__film { position: relative; display: block; overflow: hidden; border-radius: var(--radius-l); aspect-ratio: 16 / 8.4; margin-bottom: 8px; background: var(--hairline); }
-.story__film img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transition: transform 0.8s var(--ease); }
+/* The film: a still with a play button; on request the button gives way to the player, in the same 16:9 frame. */
+.story__film { position: relative; display: block; overflow: hidden; border-radius: var(--radius-l); aspect-ratio: 16 / 9; margin-bottom: 8px; background: var(--ink); }
+.story__film img, .story__film video { width: 100%; height: 100%; object-fit: cover; }
+.story__film img { transition: transform 0.8s var(--ease); }
 .story__film:hover img { transform: scale(1.03); }
-.story__badge { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 16px; border-radius: 999px; background: var(--white); color: var(--ink); box-shadow: var(--shadow-pill); font-size: var(--t-label); font-weight: var(--w-medium); }
+.story__film video:focus-visible { outline-offset: -4px; outline-color: var(--white); border-radius: var(--radius-l); }
+.story__cover { position: absolute; inset: 0; display: block; width: 100%; border-radius: inherit; }
+.story__cover[hidden] { display: none; }
+.story__cover:focus-visible { outline: 2px solid var(--white); outline-offset: -6px; border-radius: var(--radius-l); box-shadow: inset 0 0 0 4px var(--purple-deep); }
+.story__playmark { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: clamp(64px, 6vw, 84px); aspect-ratio: 1; border-radius: 50%; background: var(--white); color: var(--purple-deep); box-shadow: var(--shadow-pill); transform: translate(-50%, -50%); transition: transform 0.3s var(--ease); }
+.story__playmark svg { width: 42%; height: 42%; margin-left: 4%; }
+.story__cover:hover .story__playmark, .story__cover:focus-visible .story__playmark { transform: translate(-50%, -50%) scale(1.06); }
+.story__badge { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; max-width: calc(100% - 32px); padding: 0 18px; border-radius: 999px; background: var(--white); color: var(--ink); box-shadow: var(--shadow-pill); font-size: var(--t-label); font-weight: var(--w-medium); line-height: 1.2; text-align: left; }
 .story dl { display: grid; gap: 14px; margin: 6px 0 0; }
-.story dl div { display: grid; gap: 4px; padding-top: 14px; border-top: 1px solid var(--hairline); }
+.story dl div { display: grid; gap: 4px; align-content: start; padding-top: 14px; border-top: 1px solid var(--hairline); }
 .story dt { font-size: var(--t-label); font-weight: var(--w-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); }
 .story dd { font-size: var(--t-small); line-height: 1.5; }
-@media (max-width: 1023px) { .voices__more { grid-template-columns: minmax(0, 1fr); } }
+/* Beside the film card the written story is the shorter one: its three rows share the spare height instead of leaving one gap above the link. */
+@media (min-width: 900px) { .story dl { flex: 1; grid-auto-rows: 1fr; } }
+@media (max-width: 1023px) {
+  .voices__more { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; gap: var(--col-gap); }
+  .vcard { grid-row: auto; grid-template-rows: none; }
+  .vcard figcaption { grid-template-columns: clamp(104px, 30vw, 120px) minmax(0, 1fr); }
+}
+/* Tablet: the lead portrait stays beside the quote at a capped size and no longer fills the screen. */
 @media (max-width: 899px) {
-  .vq__portrait { grid-column: 1 / -1; aspect-ratio: 4 / 3.4; }
-  .vq__body { grid-column: 1 / -1; }
+  .voices__stage { align-items: start; }
+  .vq__portrait { grid-column: 1 / span 5; }
+  .vq__body { grid-column: 6 / -1; }
   .voices__stories { grid-template-columns: minmax(0, 1fr); }
 }
+@media (max-width: 599px) {
+  .vq__portrait { grid-column: 1 / -1; aspect-ratio: 4 / 3.4; max-width: 440px; }
+  .vq__body { grid-column: 1 / -1; }
+  .story__playmark { left: 40%; top: 40%; width: 56px; }
+  /* On a phone the whole still is the tap target, so the label inside it can be slimmer. */
+  .story__badge { left: 10px; bottom: 10px; min-height: 32px; max-width: calc(100% - 20px); padding: 0 12px; font-size: 0.75rem; }
+}
+@media (max-width: 359px) { .story__playmark { top: 36%; width: 48px; } }
 
 /* ---------- 7. Solutions by audience ---------- */
 .solutions__body { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); margin-top: clamp(40px, 5vw, 72px); align-items: start; scroll-margin-top: 110px; }
