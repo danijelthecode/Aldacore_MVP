@@ -484,21 +484,24 @@
       <article class="pcard pcard--large" id="product-nova" data-reveal data-tabs>
         <div class="plate">
           <img class="plate__photo" src="assets/plates/meeting-room.webp" alt="" width="1344" height="752" loading="lazy">
+          <p class="pview__label" role="heading" aria-level="4">Matrix Review</p>
           <div class="pview" role="tabpanel" id="nova-view-matrix" aria-labelledby="nova-tab-matrix">
-            <div class="ui ui-card vig vig-matrix" role="img" aria-label="A matrix review of a lease portfolio in Nova: one row per agreement, with columns for the parties and their role, the effective date and the lease term.">
+            <div class="ui ui-card vig vig-matrix" role="img" aria-label="A matrix review of a lease portfolio in Nova: one row per agreement, with columns for the parties and their role and the effective date.">
               <table class="ui-table" aria-hidden="true">
-                <thead><tr><th></th><th>Name</th><th>Parties and Role</th><th>Effective Date</th><th>Lease Term</th></tr></thead>
+                <thead><tr><th></th><th>Name</th><th>Parties and Role</th><th>Effective Date</th></tr></thead>
                 <tbody>
-                  <tr><td>1</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...Holdings.docx</td><td>Landlord: Fjordbyen Cent...</td><td>10/05/2026</td><td>Term start date</td></tr>
-                  <tr><td>2</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...ty Trust.docx</td><td>Landlord/Lessor: Østerpo...</td><td>15/04/2026</td><td>Term start date</td></tr>
-                  <tr><td>3</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...ty Trust.docx</td><td>Nordhavn Properties ApS...</td><td>01/03/2026</td><td>Term start date</td></tr>
-                  <tr><td>4</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...Partners.docx</td><td>Landlord: Sterling Gatewa...</td><td>01/03/2026</td><td>Term start date</td></tr>
-                  <tr><td>5</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...Holdings.docx</td><td>Landlord: Meridian ...</td><td>15/01/2026</td><td>Term start date</td></tr>
-                  <tr><td>6</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...Partners.docx</td><td>Elm City Development ...</td><td>05/05/2026</td><td>Term start date</td></tr>
+                  <tr><td>1</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...Holdings.docx</td><td>Landlord: Fjordbyen Cent...</td><td>10/05/2026</td></tr>
+                  <tr><td>2</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...ty Trust.docx</td><td>Landlord/Lessor: Østerpo...</td><td>15/04/2026</td></tr>
+                  <tr><td>3</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...ty Trust.docx</td><td>Nordhavn Properties ApS...</td><td>01/03/2026</td></tr>
+                  <tr><td>4</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...Partners.docx</td><td>Landlord: Sterling Gatewa...</td><td>01/03/2026</td></tr>
+                  <tr><td>5</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...Holdings.docx</td><td>Landlord: Meridian ...</td><td>15/01/2026</td></tr>
+                  <tr><td>6</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...Partners.docx</td><td>Elm City Development ...</td><td>05/05/2026</td></tr>
+                  <tr><td>7</td><td><svg><use href="#u-file"/></svg>Lease Agreemen...ty Trust.docx</td><td>Landlord: Harborview ...</td><td>10/02/2026</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
+          <p class="pview__label" role="heading" aria-level="4">Legal Research</p>
           <div class="pview" role="tabpanel" id="nova-view-research" aria-labelledby="nova-tab-research">
             <div class="ui ui-card vig vig-research" role="img" aria-label="A Legal Research prompt in the Nova composer, asking for recent personal-injury judgments under the Civil Liability Act 1961.">
               <p aria-hidden="true">Conduct a search for recent personal-injury judgments where the court applied the Civil Liability Act 1961, focusing particularly on Section 34 (contributory negligence) or other liability-apportionment provisions.</p>
@@ -512,6 +515,7 @@
               </div>
             </div>
           </div>
+          <p class="pview__label" role="heading" aria-level="4">Knowledge Base</p>
           <div class="pview" role="tabpanel" id="nova-view-kb" aria-labelledby="nova-tab-kb">
             <div class="ui ui-card vig vig-kb" role="img" aria-label="The Ask Newcode composer with a saved Tax Expert Persona attached to it from the knowledge base.">
               <div class="ui-file" aria-hidden="true"><i><svg><use href="#u-books"/></svg></i><span><b>Tax Expert Persona</b><small>Knowledge Base</small></span></div>
@@ -547,35 +551,40 @@
       <article class="pcard pcard--large" id="product-aurora" data-reveal style="--d:90ms" data-tabs>
         <div class="plate">
           <img class="plate__photo" src="assets/plates/window-desk.webp" alt="" width="1344" height="752" loading="lazy">
+          <p class="pview__label" role="heading" aria-level="4">Drag and Drop</p>
           <div class="pview" role="tabpanel" id="aurora-view-build" aria-labelledby="aurora-tab-build">
-            <div class="ui canvas canvas-aurora" role="img" aria-label="An Aurora flow: a Nova Chat Input block wired to a Prompt Template block and an Agent block.">
-              <svg class="wires" preserveAspectRatio="none" data-wires aria-hidden="true">
-                <path class="is-live" data-from="fa-msg" data-to="fa-template"/>
-                <path data-from="fa-out" data-to="fa-agent"/>
-              </svg>
-              <div class="node" style="left:1.3em;top:1.5em;width:13.5em" aria-hidden="true">
-                <header><i><svg><use href="#u-chat"/></svg></i>Nova Chat Input</header>
-                <p>Chat entry point for Nova</p>
-                <span class="port" id="fa-msg">Message</span>
-                <span class="port">Files</span>
+            <div class="ui canvas canvas-aurora" role="img" aria-label="Aurora blocks being dragged onto the canvas, with Drag and Drop marked against them: a Type Convert block lifted from its place and a Prompt Template block over its drop target.">
+              <div class="held held--a" aria-hidden="true">
+                <i class="held__slot"></i>
+                <div class="held__body">
+                  <div class="node">
+                    <header><i><svg><use href="#u-swap"/></svg></i>Type Convert</header>
+                    <p>Convert between different types (Message, JSON, Table)</p>
+                    <span class="lbl">Output Type</span>
+                    <div class="seg seg--3"><span class="is-on">Message</span><span>JSON</span><span>Table</span></div>
+                    <span class="port">Message Output</span>
+                  </div>
+                  <span class="dtag dtag--drag"><svg class="cur" viewBox="0 0 24 24"><path d="M4.5 3.2 20 9.6l-6.6 2.4-2.4 6.8z"/></svg><b>Drag</b></span>
+                </div>
               </div>
-              <div class="node" id="fa-template" style="left:17.5em;top:9em;width:15em" aria-hidden="true">
-                <header><i><svg><use href="#u-braces"/></svg></i>Prompt Template</header>
-                <p>Create a prompt template with dynamic variables</p>
-                <span class="lbl">Template</span>
-                <span class="field">This is the user input: {user_input}</span>
-                <span class="port" id="fa-out">Message Output</span>
-              </div>
-              <div class="node" id="fa-agent" style="left:35em;top:1.5em;width:14em" aria-hidden="true">
-                <header><i><svg><use href="#u-spark"/></svg></i>Agent</header>
-                <p>Define the agent’s instructions, then enter a task to complete using tools.</p>
-                <span class="lbl">Agent Instructions</span>
-                <span class="field">You are a contract review agent..</span>
+              <div class="held held--b" aria-hidden="true">
+                <i class="held__slot"></i>
+                <div class="held__body">
+                  <div class="node">
+                    <header><i><svg><use href="#u-braces"/></svg></i>Prompt Template</header>
+                    <p>Create a prompt template with dynamic variables</p>
+                    <span class="lbl">Template</span>
+                    <span class="field">This is the user input: {user_input}</span>
+                    <span class="port">Message Output</span>
+                  </div>
+                  <span class="dtag dtag--drop"><b>Drop</b><svg class="cur" viewBox="0 0 24 24"><path d="M4.5 3.2 20 9.6l-6.6 2.4-2.4 6.8z"/></svg></span>
+                </div>
               </div>
             </div>
           </div>
+          <p class="pview__label" role="heading" aria-level="4">Configure Agent</p>
           <div class="pview" role="tabpanel" id="aurora-view-agent" aria-labelledby="aurora-tab-agent">
-            <div class="ui ui-card vig vig-agentcfg" role="img" aria-label="The Configure Agent panel in Aurora, with agent name, instructions and capabilities, beside the list of available agents.">
+            <div class="ui ui-card vig vig-agentcfg" role="img" aria-label="The Configure Agent panel in Aurora, with agent name, instructions and capabilities, beside the list of available agents being placed on a flow.">
               <h5 aria-hidden="true">Configure Agent</h5>
               <p class="ui-muted" aria-hidden="true">Set up your automation agent settings</p>
               <span class="lbl" aria-hidden="true">Agent Name</span>
@@ -595,15 +604,30 @@
                 <li class="ui-muted"><svg><use href="#u-plus"/></svg>Add Agent</li>
               </ul>
             </div>
+            <div class="ui vig vig-agentdrag" aria-hidden="true">
+              <svg class="cur" viewBox="0 0 24 24"><path d="M4.5 3.2 20 9.6l-6.6 2.4-2.4 6.8z"/></svg>
+              <span class="ui-card"><i><svg><use href="#u-spark"/></svg></i>Process Agent</span>
+            </div>
           </div>
+          <p class="pview__label" role="heading" aria-level="4">Publish</p>
           <div class="pview" role="tabpanel" id="aurora-view-publish" aria-labelledby="aurora-tab-publish">
-            <div class="ui ui-card vig vig-pubbar" aria-hidden="true"><span class="ui-btn ui-btn--ghost">Playground</span><span class="ui-btn">Publish</span></div>
-            <ul class="ui ui-card vig vig-publish" role="img" aria-label="The Publish menu in Aurora, offering Nova, API access, Export and MCP Server.">
-              <li aria-hidden="true"><svg><use href="#u-spark"/></svg>Nova</li>
-              <li aria-hidden="true"><svg><use href="#u-code"/></svg>API access</li>
-              <li aria-hidden="true"><svg><use href="#u-export"/></svg>Export</li>
-              <li aria-hidden="true"><svg><use href="#u-swap"/></svg>MCP Server</li>
+            <div class="ui canvas canvas-publish" role="img" aria-label="The Publish menu open over a finished flow in Aurora, offering Nova, API access, Export and MCP Server.">
+              <div class="canvas__top" aria-hidden="true"><span class="ui-btn ui-btn--ghost"><svg viewBox="0 0 16 16"><path d="M5.5 3.8v8.4L12 8z"/></svg>Playground</span><span class="ui-btn">Publish<svg viewBox="0 0 16 16"><path d="M4.5 6.5 8 10l3.5-3.5"/></svg></span></div>
+              <div class="node node--loan" aria-hidden="true">
+                <header><i><svg><use href="#u-spark"/></svg></i>Loan Agreement Agent</header>
+                <span class="field">Produces loan reviews.</span>
+              </div>
+              <div class="node node--review" aria-hidden="true">
+                <header><i><svg><use href="#u-user"/></svg></i>Human Review</header>
+              </div>
+            </div>
+            <ul class="ui ui-card vig vig-publish" aria-hidden="true">
+              <li><svg><use href="#u-spark"/></svg>Nova</li>
+              <li><svg><use href="#u-code"/></svg>API access</li>
+              <li><svg><use href="#u-export"/></svg>Export</li>
+              <li><svg><use href="#u-swap"/></svg>MCP Server</li>
             </ul>
+            <svg class="ui cur vig vig-pubcur" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 3.2 20 9.6l-6.6 2.4-2.4 6.8z"/></svg>
           </div>
         </div>
         <div class="pcard__body">
@@ -631,15 +655,16 @@
       <article class="pcard" id="product-voyager" data-reveal>
         <figure class="plate plate--flat" role="img" aria-label="Three Voyager filters from the launch graphic: a judge, a service line and a document type.">
           <ul class="ui vig vig-voyager" aria-hidden="true">
-            <li><i class="ui-toggle is-off"></i><span><b>Hon. E. Eriksen</b><small>Judge</small></span><em>49 999 000</em></li>
-            <li><i class="ui-toggle is-off"></i><span><b>Litigation</b><small>Service line</small></span><em>600 000 000</em></li>
-            <li><i class="ui-toggle is-off"></i><span><b>Motion to Dismiss</b><small>Document type</small></span><em>350 000 000</em></li>
+            <li><i class="ui-toggle is-off"></i><span><b>Hon. E. Eriksen</b><small>Judge</small></span></li>
+            <li><i class="ui-toggle is-off"></i><span><b>Litigation</b><small>Service line</small></span></li>
+            <li><i class="ui-toggle is-off"></i><span><b>Motion to Dismiss</b><small>Document type</small></span></li>
           </ul>
-          <span class="ph__tag on-plate-flag" data-note="Voyager: the visual is drawn from the Voyager launch graphic. A real product screenshot is still needed.">Placeholder: real screenshot needed</span>
+          <p class="plate__note"><span class="ph__tag" data-note="Voyager: the visual is drawn from the Voyager launch graphic. A real product screenshot is still needed.">Placeholder</span> Real screenshot needed</p>
         </figure>
-        <p class="pcard__tags"><span class="tag">Workspace</span><span class="tag">New</span><a href="https://www.newcode.ai/news/introducing-voyager-from-a-billion-documents-to-the-one-that-matters" target="_blank" rel="noopener">Introduced November 3, 2026</a></p>
+        <p class="pcard__tags"><span class="tag">Workspace</span><span class="tag">Opt-in from Q1 2027</span></p>
         <h3>Voyager</h3>
-        <p>Search semantically across your DMS with contextual retrieval that understands what you’re actually looking for.</p>
+        <p class="pcard__desc">Search semantically across your DMS with contextual retrieval that understands what you’re actually looking for.</p>
+        <p class="pcard__meta"><a href="https://www.newcode.ai/news/introducing-voyager-from-a-billion-documents-to-the-one-that-matters" target="_blank" rel="noopener">Introduced November 3, 2026</a></p>
         <a class="link-arrow" href="https://www.newcode.ai/products/search" target="_blank" rel="noopener"><span>Learn more<span class="visually-hidden"> about Voyager</span></span> <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
 
@@ -658,12 +683,12 @@
         </figure>
         <p class="tag">Workspace</p>
         <h3>Cowork</h3>
-        <p>Execute tasks end-to-end, from trigger to completion, with Cowork coordinating the steps, systems, and decisions behind the scenes.</p>
+        <p class="pcard__desc">Execute tasks end-to-end, from trigger to completion, with Cowork coordinating the steps, systems, and decisions behind the scenes.</p>
         <a class="link-arrow" href="https://www.newcode.ai/products/cowork" target="_blank" rel="noopener"><span>Learn more<span class="visually-hidden"> about Cowork</span></span> <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
 
       <article class="pcard" id="product-overview" data-reveal style="--d:140ms">
-        <figure class="plate plate--flat" role="img" aria-label="Newcode at the center, ringed by the systems it connects: Outlook, SharePoint, Teams, Excel, PowerPoint, OneDrive and iManage.">
+        <figure class="plate plate--flat plate--hub" role="img" aria-label="Newcode at the center, ringed by the systems it connects: Outlook, SharePoint, Teams, Excel, PowerPoint, OneDrive and iManage." data-note="Platform overview visual: a redrawn hub with the Newcode wordmark at its center, based on the hub diagram on newcode.ai. Replace with a real visual.">
           <div class="ui vig vig-hub" aria-hidden="true">
             <span class="ui-card hub__app" style="left:9%;top:14%"><img src="assets/icons/sharepoint.webp" alt=""></span>
             <span class="ui-card hub__app" style="left:44%;top:6%"><img src="assets/icons/onedrive.svg" alt=""></span>
@@ -677,31 +702,31 @@
         </figure>
         <p class="tag">Platform</p>
         <h3>Platform overview</h3>
-        <p>Newcode brings knowledge, systems and intelligent workflows together into one connected ecosystem designed for legal teams.</p>
+        <p class="pcard__desc">Newcode brings knowledge, systems and intelligent workflows together into one connected ecosystem designed for legal teams.</p>
         <a class="link-arrow" href="https://www.newcode.ai/overview" target="_blank" rel="noopener"><span>Learn more<span class="visually-hidden"> about the platform</span></span> <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
 
       <article class="pcard" id="product-word" data-reveal>
-        <figure class="plate plate--flat" role="img" aria-label="A playbook run over a document in the Word Add In: two rules passed and three flagged, each with Rerun and Expand controls.">
+        <figure class="plate plate--flat plate--bleed" role="img" aria-label="A playbook run over a document in the Word Add In: two rules passed and three flagged, each with Rerun and Expand controls.">
           <div class="ui ui-card vig vig-playbook" aria-hidden="true">
-            <div class="pb-bar"><span>2</span><span>3</span></div>
+            <div class="pb-bar"><span>2 passed</span><span>3 flagged</span></div>
             <div class="ui-search"><svg><use href="#u-search"/></svg>Search playbooks</div>
             <ul>
-              <li class="is-pass">Consistency of Defined Terms<em>Rerun · Expand</em></li>
-              <li class="is-pass">Outdated Service Reference Correction<em>Rerun · Expand</em></li>
-              <li>Outdated Date Reference Update<em>Rerun · Expand</em></li>
-              <li>Country<em>Rerun · Expand</em></li>
-              <li>Incorrect Affiliate Definition<em>Rerun · Expand</em></li>
+              <li class="is-pass"><span>Consistency of Defined Terms</span><em><i>Rerun</i><i>Expand</i></em></li>
+              <li class="is-pass"><span>Outdated Service Reference Correction</span><em><i>Rerun</i><i>Expand</i></em></li>
+              <li><span>Outdated Date Reference Update</span><em><i>Rerun</i><i>Expand</i></em></li>
+              <li><span>Country</span><em><i>Rerun</i><i>Expand</i></em></li>
+              <li><span>Incorrect Affiliate Definition</span><em><i>Rerun</i><i>Expand</i></em></li>
             </ul>
           </div>
         </figure>
         <p class="tag">Where you work</p>
         <h3>Word Add In</h3>
-        <p>Apply firm playbooks, checklists, and policy rules directly as you draft in Word.</p>
+        <p class="pcard__desc">Apply firm playbooks, checklists, and policy rules directly as you draft in Word.</p>
         <a class="link-arrow" href="https://www.newcode.ai/products/word-add-in" target="_blank" rel="noopener"><span>Learn more<span class="visually-hidden"> about the Word Add In</span></span> <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
 
-      <article class="pcard" id="product-outlook" data-reveal style="--d:70ms">
+      <article class="pcard pcard--slot" id="product-outlook" data-reveal style="--d:70ms">
         <div class="ph" data-note="Outlook Add In: real product screenshot needed (none on the live product page).">
           <span class="ph__tag">Placeholder</span>
           <span class="ph__what">Outlook Add In screenshot</span>
@@ -709,11 +734,11 @@
         </div>
         <p class="tag">Where you work</p>
         <h3>Outlook Add In</h3>
-        <p>Summarize long threads, extract what matters, and draft precise, client-ready replies, all without leaving your inbox.</p>
+        <p class="pcard__desc">Summarize long threads, extract what matters, and draft precise, client-ready replies, all without leaving your inbox.</p>
         <a class="link-arrow" href="https://www.newcode.ai/products/outlook-add-in" target="_blank" rel="noopener"><span>Learn more<span class="visually-hidden"> about the Outlook Add In</span></span> <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
 
-      <article class="pcard" id="product-mobile" data-reveal style="--d:140ms">
+      <article class="pcard pcard--slot" id="product-mobile" data-reveal style="--d:140ms">
         <div class="ph" data-note="Mobile App: real product screenshot needed (none on the live product page).">
           <span class="ph__tag">Placeholder</span>
           <span class="ph__what">Mobile App screenshot</span>
@@ -721,7 +746,7 @@
         </div>
         <p class="tag">Where you work</p>
         <h3>Mobile App</h3>
-        <p>Review documents, transcribe meetings and drive matters forward with continuous, cross-device context that keeps your workflow intact.</p>
+        <p class="pcard__desc">Review documents, transcribe meetings and drive matters forward with continuous, cross-device context that keeps your workflow intact.</p>
         <a class="link-arrow" href="https://www.newcode.ai/products/mobile-app" target="_blank" rel="noopener"><span>Learn more<span class="visually-hidden"> about the Mobile App</span></span> <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
     </div>

@@ -418,50 +418,7 @@ body.menu-open { overflow: hidden; }
 .canvas-control { left: 5%; top: 8%; width: 60em; height: 33.5em; }
 .canvas-aurora { left: 5%; top: 9%; width: 45em; height: 23.5em; }
 
-.vig-matrix { left: 6%; top: 10%; width: 47em; overflow: hidden; }
-.vig-matrix .ui-table td { white-space: nowrap; }
-.vig-matrix .ui-table td:first-child { width: 2.4em; }
-.vig-matrix .ui-table td:nth-child(2) { color: var(--ink); }
-.vig-research { left: 7%; top: 11%; width: 38em; padding: 1.3em; display: grid; gap: 1em; border-radius: 1.3em; }
-.vig-research p + p { margin-top: -0.3em; }
-.vig-kb { left: 10%; top: 16%; width: 30em; padding: 1.2em; display: grid; gap: 1.1em; border-radius: 1.3em; }
-.vig-kb .ui-file { padding-right: 2.4em; }
-.vig-kb > p { color: var(--ink-soft); font-size: 1.1em; }
-.vig-agentcfg { left: 7%; top: 9%; width: 23em; padding: 1.2em; display: grid; gap: 0.7em; }
-.vig-agentcfg h5 { font-size: 1.1em; font-weight: 500; }
-.vig-agentcfg .lbl { font-size: 0.86em; font-weight: 500; margin-top: 0.3em; }
-.vig-agentcfg .field { padding: 0.55em 0.7em; border-radius: 0.6em; box-shadow: inset 0 0 0 1px var(--ui-line); color: var(--ink-soft); font-size: 0.9em; }
-.vig-agentcfg .cap { display: flex; align-items: center; gap: 0.6em; padding: 0.55em 0.7em; border-radius: 0.6em; background: var(--ui-app); font-size: 0.92em; font-weight: 500; }
-.vig-agents { right: 5%; top: 18%; width: 13em; padding: 0.7em; display: grid; gap: 0.2em; }
-.vig-agents p { font-size: 0.8em; color: var(--grey); padding: 0.2em 0.5em 0.4em; }
-.vig-agents li { display: flex; align-items: center; gap: 0.6em; height: 2.3em; padding: 0 0.6em; border-radius: 0.6em; font-size: 0.92em; font-weight: 500; color: var(--purple-deep); }
-.vig-agents li:nth-child(3) { background: var(--lavender); }
-.vig-pubbar { right: 26%; top: 12%; display: flex; gap: 0.5em; padding: 0.6em; border-radius: 1em; }
-.vig-publish { right: 12%; top: 31%; width: 15em; padding: 0.6em; display: grid; gap: 0.1em; }
-.vig-publish li { display: flex; align-items: center; gap: 0.7em; height: 2.6em; padding: 0 0.7em; border-radius: 0.6em; font-weight: 500; }
-.vig-publish li svg { color: var(--purple-deep); }
-.vig-publish li:first-child { background: var(--lavender); }
-
 /* Small isolated fragments on a flat panel */
-.vig-plan { left: 7%; top: 9%; width: 27.5em; padding: 1em; display: grid; gap: 0.7em; }
-.vig-plan header { font-weight: 500; }
-.vig-plan ol { display: grid; gap: 0.55em; }
-.vig-plan ol li { display: grid; grid-template-columns: 1.7em 1fr; gap: 0.6em; font-size: 0.9em; line-height: 1.32; }
-.vig-plan ol b { display: grid; place-items: center; width: 1.7em; height: 1.7em; border-radius: 50%; background: var(--lavender); color: var(--purple-deep); font-size: 0.86em; }
-.vig-playbook { left: 7%; top: 7%; width: 28em; padding: 0.9em; display: grid; gap: 0.6em; }
-.pb-bar { display: grid; grid-template-columns: 2fr 3fr; height: 1.5em; border-radius: 999px; overflow: hidden; font-size: 0.8em; font-weight: 500; text-align: center; line-height: 1.9; }
-.pb-bar span:first-child { background: var(--purple-light); }
-.pb-bar span:last-child { background: var(--ink); color: var(--white); }
-.vig-playbook ul li { display: flex; align-items: center; gap: 0.6em; padding: 0.5em 0.2em; border-top: 1px solid var(--ui-line); font-size: 0.9em; white-space: nowrap; }
-.vig-playbook ul li::before { content: ""; width: 0.5em; height: 0.5em; border-radius: 50%; background: var(--ink); flex: none; }
-.vig-playbook ul li.is-pass::before { background: var(--purple-light); }
-.vig-playbook ul li em { margin-left: auto; font-style: normal; font-size: 0.82em; color: var(--grey); }
-.vig-voyager { left: 8%; top: 12%; width: 27.5em; display: grid; gap: 0.6em; }
-.vig-voyager li { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75em; padding: 0.65em 0.9em; border-radius: 0.9em; background: var(--white); box-shadow: var(--ui-shadow); }
-.vig-voyager li:nth-child(2) { margin-left: 2.4em; margin-right: -2.4em; }
-.vig-voyager li span { display: grid; line-height: 1.3; }
-.vig-voyager li small { color: var(--grey); font-size: 0.84em; }
-.vig-voyager li em { font-style: normal; font-size: 0.86em; color: var(--grey); font-variant-numeric: tabular-nums; }
 .vig-hub { inset: 0; }
 .vig-hub .hub__core { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 11em; height: 5em; border-radius: 1.2em; }
 .vig-hub .hub__core svg { width: 7em; height: auto; color: var(--purple-deep); }
@@ -664,37 +621,253 @@ body.menu-open { overflow: hidden; }
 /* ---------- 4. Product suite ---------- */
 .suite__lead { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--col-gap); margin-top: clamp(40px, 5vw, 72px); }
 .suite__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--col-gap); margin-top: var(--col-gap); }
-.pcard { display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: clamp(18px, 1.8vw, 24px); border-radius: var(--radius-xl); background: var(--white); box-shadow: 0 0 0 1px var(--ink-faint); scroll-margin-top: 110px; }
+.pcard { position: relative; display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: clamp(18px, 1.8vw, 24px); border-radius: var(--radius-xl); background: var(--white); box-shadow: 0 0 0 1px var(--ink-faint); scroll-margin-top: 110px; }
 .pcard h3 { font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.022em; }
 .pcard > p:not(.tag):not(.note-line) { color: var(--grey); font-size: var(--t-small); line-height: 1.5; }
 .pcard > .link-arrow { margin-top: auto; }
-.pcard .plate { border-radius: var(--radius-l); aspect-ratio: 16 / 10.5; margin-bottom: 8px; --ui-k: 3.05; --ui-min: 9px; }
-.pcard .ph { aspect-ratio: 16 / 10.5; min-height: 0; margin-bottom: 8px; }
+/* A small card is one link target: its text link is stretched over the card and carries the hover ring. */
+.pcard > .link-arrow::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-xl); box-shadow: 0 0 0 1px rgba(87, 6, 140, 0); transition: box-shadow 0.3s var(--ease); }
+.pcard > .link-arrow:hover::after, .pcard > .link-arrow:focus-visible::after { box-shadow: 0 0 0 1px rgba(87, 6, 140, 0.36); }
 .pcard__tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.pcard__tags a { font-size: var(--t-label); color: var(--grey); text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 3px; }
-.pcard--large { gap: 18px; }
-.pcard--large .plate { aspect-ratio: 16 / 11.4; --ui-k: 2.25; --ui-min: 9.5px; margin-bottom: 0; }
-.pviews { display: flex; flex-wrap: wrap; gap: 6px; padding: 5px; border-radius: 999px; background: var(--cream); width: fit-content; max-width: 100%; }
-.pview-tab { min-height: 36px; padding: 0 14px; border-radius: 999px; font-size: var(--t-label); font-weight: var(--w-medium); color: var(--grey); transition: background-color 0.25s var(--ease), color 0.25s var(--ease); }
+.pcard__meta { margin-top: -6px; }
+.pcard__meta a { position: relative; z-index: 1; font-size: var(--t-label); color: var(--grey); text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 3px; transition: color 0.2s var(--ease); }
+.pcard__meta a::after { content: ""; position: absolute; inset: -15px -8px; }
+.pcard__meta a:hover, .pcard__meta a:focus-visible { color: var(--purple-deep); }
+
+/* Small cards: one UI fragment on a flat panel. The fragment sits in the flow, so the panel grows before it would cut a line. */
+.pcard .plate { border-radius: var(--radius-l); aspect-ratio: 16 / 10.5; margin-bottom: 8px; --ui-k: 3.45; --ui-min: 10px; }
+.pcard .plate--flat { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4% 6%; overflow: clip; }
+.pcard .plate--flat > .vig:not(.vig-hub) { position: relative; }
+.vig-voyager { --ui-k: 4.2; display: grid; justify-items: start; gap: 0.55em; margin: auto 0; }
+.vig-voyager li { display: flex; align-items: center; gap: 0.75em; padding: 0.55em 1.4em 0.55em 0.8em; border-radius: 0.9em; background: var(--white); box-shadow: var(--ui-shadow); white-space: nowrap; }
+.vig-voyager li:nth-child(2) { margin-left: 4em; }
+.vig-voyager li:nth-child(3) { margin-left: 1.6em; }
+.vig-voyager li span { display: grid; line-height: 1.3; }
+.vig-voyager li small { color: var(--grey); font-size: max(10px, 0.9em); }
+.plate__note { align-self: flex-start; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 8px; font-size: 0.75rem; line-height: 1.3; color: var(--grey); }
+.vig-plan { width: 100%; max-width: 31em; padding: 0.9em 1em 1em; display: grid; gap: 0.6em; }
+.vig-plan header { font-weight: 500; }
+.vig-plan ol { display: grid; gap: 0.45em; }
+.vig-plan ol li { display: grid; grid-template-columns: 1.7em minmax(0, 1fr); gap: 0.6em; line-height: 1.32; }
+.vig-plan ol b { display: grid; place-items: center; width: 1.7em; height: 1.7em; margin-top: -0.14em; border-radius: 50%; background: var(--lavender); color: var(--purple-deep); font-size: max(10px, 0.94em); }
+/* The playbook card runs off the foot of its panel below the last row shown, as the live screenshot does. */
+.pcard .plate--bleed { justify-content: flex-end; padding-bottom: 0; }
+.vig-playbook { width: 100%; max-width: 31em; margin-bottom: -1.2em; padding: 0.9em 0.9em 2.2em; display: grid; gap: 0.55em; }
+.pb-bar { display: grid; grid-template-columns: 2fr 3fr; border-radius: 999px; overflow: hidden; font-weight: 500; text-align: center; line-height: 1.9; white-space: nowrap; }
+.pb-bar span:first-child { background: var(--purple-light); }
+.pb-bar span:last-child { background: var(--ink); color: var(--white); }
+.vig-playbook .ui-search { height: 2.3em; }
+.vig-playbook ul li { display: flex; align-items: center; gap: 0.6em; padding: 0.58em 0.1em; border-top: 1px solid var(--ui-line); line-height: 1.35; }
+.vig-playbook ul li::before { content: ""; width: 0.55em; height: 0.55em; border-radius: 50%; background: var(--ink); flex: none; }
+.vig-playbook ul li.is-pass::before { background: var(--purple-light); }
+.vig-playbook ul li > span { flex: 1; min-width: 0; }
+.vig-playbook ul li em { display: flex; gap: 0.35em; flex: none; font-style: normal; color: var(--grey); }
+.vig-playbook ul li em i { padding: 0.1em 0.5em; border-radius: 0.5em; box-shadow: inset 0 0 0 1px var(--ui-line); font-style: normal; }
+.vig-playbook ul li:nth-child(n+5) { display: none; }
+@container (width < 300px) { .vig-playbook ul li:nth-child(n+4) { display: none; } }
+@container (width < 290px) { .vig-playbook .ui-search { display: none; } }
+/* Outlook Add In and Mobile App have no real screen yet: a short labeled slot instead of an empty frame. */
+.pcard .ph { min-height: 0; margin-bottom: 8px; padding: 16px 18px; place-content: center start; justify-items: start; gap: 3px; text-align: left; border: 1px dashed rgba(87, 6, 140, 0.3); }
+.pcard .ph__tag { margin-bottom: 5px; }
+.pcard .ph__note { max-width: none; }
+
+/* Lead cards: three feature views on one photographed plate, switched by the tabs under it. */
+.pcard--large { --plate-ar: 16 / 11.4; gap: 18px; }
+.pcard--large .plate { aspect-ratio: var(--plate-ar); --ui-k: 2.27; margin-bottom: 0; }
+.pcard--large .ui { font-size: calc(var(--ui-s, 1) * clamp(10px, var(--ui-k) * 1cqw, 14.5px)); }
+.pcard--large .ui-chip, .pcard--large .ui-btn { font-size: max(10px, 0.92em); }
+.pviews { display: flex; gap: 6px; padding: 5px; border-radius: 999px; background: var(--cream); width: fit-content; max-width: 100%; }
+.pview-tab { min-height: 36px; padding: 0 14px; border-radius: 999px; font-size: var(--t-label); font-weight: var(--w-medium); line-height: 1.15; color: var(--grey); transition: background-color 0.25s var(--ease), color 0.25s var(--ease); }
 .pview-tab:hover { color: var(--ink); }
 .pview-tab[aria-selected="true"] { background: var(--white); color: var(--purple-deep); box-shadow: 0 0 0 1px var(--ink-faint); }
 .pview { position: absolute; inset: 0; }
 .js .pview[data-off] { display: none; }
-html:not(.js) .pview + .pview { display: none; }
 .js .pview:not([data-off]) { animation: panel-in 0.45s var(--ease) both; }
+.pview__label { display: none; }
+/* Without JavaScript the three views stack, each under its tab label, and the tab buttons are not shown. */
+html:not(.js) .pviews { display: none; }
+html:not(.js) .pcard--large .plate { display: grid; gap: 10px; aspect-ratio: auto; overflow: visible; border-radius: 0; background: none; }
+html:not(.js) .pcard--large .plate__photo { display: none; }
+html:not(.js) .pview__label { display: block; font-size: var(--t-label); font-weight: var(--w-medium); color: var(--grey); }
+html:not(.js) .pview { position: relative; inset: auto; aspect-ratio: var(--plate-ar); overflow: hidden; border-radius: var(--radius-l); background: var(--hairline) center / cover no-repeat; }
+html:not(.js) .pview:not(:last-child) { margin-bottom: 10px; }
+html:not(.js) #product-nova .pview { background-image: url("../assets/plates/meeting-room.webp"); }
+html:not(.js) #product-aurora .pview { background-image: url("../assets/plates/window-desk.webp"); }
 .pcard__body { display: grid; gap: 20px; padding: 4px clamp(4px, 1vw, 12px) 4px; }
 .pcard__head { display: grid; gap: 12px; }
 .pcard--large h3 { font-size: var(--t-h3); letter-spacing: -0.028em; }
 .pcard__head p:not(.tag) { color: var(--grey); max-width: 34rem; }
 .pcard__bullets li { padding: 13px 0; border-top: 1px solid var(--hairline); font-size: var(--t-small); }
 .pcard__bullets li:last-child { border-bottom: 1px solid var(--hairline); }
-@media (max-width: 1023px) { .suite__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 719px) {
-  .suite__lead, .suite__grid { grid-template-columns: minmax(0, 1fr); }
-  .pcard--large .plate { aspect-ratio: 4 / 3.5; --ui-k: 2.9; }
-  .canvas-aurora { transform: scale(0.72); transform-origin: 0 0; }
-  .vig-agents { display: none; }
+
+/* Feature views. Type never drops below 10px: a narrower plate shows less of the screen instead of shrinking it.
+   Four layouts by plate width. This one is for 440px and up; the type scales with the plate. */
+.pcard--large .ui svg.cur, .pcard--large svg.ui.cur { width: 2.5em; height: 2.5em; overflow: visible; fill: var(--purple-deep); stroke: var(--white); stroke-width: 1.7; stroke-linejoin: round; filter: drop-shadow(0.08em 0.14em 0.16em rgba(36, 28, 59, 0.35)); }
+.vig-matrix { left: 5%; right: 5%; top: 7.5%; overflow: hidden; }
+.vig-matrix .ui-table { font-size: max(10px, 0.92em); }
+.vig-matrix .ui-table th, .vig-matrix .ui-table td { padding: 0.8em 0.5em; white-space: nowrap; }
+.vig-matrix .ui-table th:first-child, .vig-matrix .ui-table td:first-child { width: 2.3em; padding-left: 1em; padding-right: 0.2em; }
+.vig-matrix .ui-table th:last-child, .vig-matrix .ui-table td:last-child { padding-right: 1em; }
+.vig-matrix .ui-table td:nth-child(2) { color: var(--ink); }
+.vig-research { --ui-s: 1.1; left: 6%; right: 6%; top: 8%; padding: 1.4em 1.5em; display: grid; gap: 0.95em; border-radius: 1.3em; }
+.vig-research p + p { margin-top: -0.25em; }
+.vig-research .composer__row { flex-wrap: wrap; row-gap: 0.45em; }
+/* The composer runs off the right edge through its empty area, as the live crop does. */
+.vig-kb { --ui-s: 1.55; left: 8%; right: -8%; top: 16.5%; padding: 1.4em 1.5em 1.5em; display: grid; gap: 1.15em; justify-items: start; border-radius: 1.3em; }
+.vig-kb .ui-file { padding: 0.6em 3.2em 0.6em 0.6em; border-radius: 0.9em; }
+.vig-kb .ui-file small { font-size: 0.9em; }
+.vig-kb > p { color: var(--ink-soft); font-size: 1.1em; }
+
+.suite .canvas-aurora { left: 5%; right: 5%; top: 7.5%; width: auto; height: 76.5%; overflow: hidden; isolation: isolate; }
+.canvas-aurora .node, .canvas-publish .node { font-size: 1em; }
+.canvas-aurora .node p, .canvas-aurora .node .field, .canvas-aurora .node .lbl, .canvas-aurora .node .port, .canvas-aurora .node .seg, .canvas-publish .node .field { font-size: 1em; }
+.canvas-aurora .node .seg--3 { grid-template-columns: 1.5fr 1fr 1fr; }
+.held { position: absolute; }
+.held--a { left: 4%; top: 11%; width: 14em; }
+.held--b { left: 46%; top: 20%; width: 14.6em; }
+.held__slot { position: absolute; inset: 0; border-radius: 0.9em; background: color-mix(in srgb, var(--lavender) 80%, var(--white)); box-shadow: inset 0 0 0 1px rgba(87, 6, 140, 0.1); }
+.held--a .held__slot { transform: translate(1.5em, 1.4em); }
+.held--b .held__slot { transform: translate(1.5em, -1.9em); }
+.held__body { position: relative; }
+.held__body::before { content: ""; position: absolute; inset: -0.55em; border: 1px solid var(--purple-light); border-radius: 0.2em; pointer-events: none; }
+.held__body::after { --dot: radial-gradient(circle closest-side, var(--purple-deep) 60%, var(--white) 64% 96%, transparent 100%); content: ""; position: absolute; inset: -0.85em; pointer-events: none; background: var(--dot) 0 0 / 0.6em 0.6em no-repeat, var(--dot) 100% 0 / 0.6em 0.6em no-repeat, var(--dot) 0 100% / 0.6em 0.6em no-repeat, var(--dot) 100% 100% / 0.6em 0.6em no-repeat; }
+.held .node { position: relative; box-shadow: 0 0 0 1px var(--ui-line), 0.9em 1.5em 2.2em -1em rgba(36, 28, 59, 0.45); }
+.dtag { position: absolute; z-index: 2; display: grid; justify-items: start; gap: 0.15em; white-space: nowrap; }
+.dtag b { padding: 0.42em 0.95em; border-radius: 999px; background: var(--ink); color: var(--white); font-weight: 500; line-height: 1.3; box-shadow: 0.3em 0.5em 0.9em -0.4em rgba(36, 28, 59, 0.5); }
+.dtag--drag { left: -0.7em; top: calc(100% - 1.2em); }
+.dtag--drag .cur { margin-left: 1.3em; transform: scaleX(-1); }
+.dtag--drop { left: calc(100% - 1.1em); top: 26%; }
+.dtag--drop b { margin-left: 1.7em; }
+/* One quiet move each time the view opens: the lifted block leaves its place, the other nears its target. */
+@keyframes held-a { from { transform: translate(1.5em, 1.4em); } to { transform: none; } }
+@keyframes held-b { from { transform: translate(-1em, 1.2em); } to { transform: none; } }
+.js .pview:not([data-off]) .held--a .held__body { animation: held-a 0.9s var(--ease) 0.25s both; }
+.js .pview:not([data-off]) .held--b .held__body { animation: held-b 0.9s var(--ease) 0.4s both; }
+
+.vig-agentcfg { left: 5%; top: 7%; width: 21.4em; padding: 1.25em 1.3em; display: grid; gap: 0.6em; }
+.vig-agentcfg h5 { font-size: 1.15em; font-weight: 500; }
+.vig-agentcfg .lbl { font-weight: 500; margin-top: 0.3em; }
+.vig-agentcfg .field { padding: 0.6em 0.75em; border-radius: 0.6em; box-shadow: inset 0 0 0 1px var(--ui-line); color: var(--ink-soft); }
+.vig-agentcfg .cap { display: flex; align-items: center; gap: 0.6em; padding: 0.6em 0.75em; border-radius: 0.6em; background: var(--ui-app); font-weight: 500; }
+.vig-agents { left: calc(5% + 22.9em); top: 13%; width: 13.4em; padding: 0.7em; display: grid; gap: 0.3em; }
+.vig-agents p { color: var(--grey); padding: 0.1em 0.5em 0.3em; }
+.vig-agents ul { display: grid; gap: 0.3em; }
+.vig-agents li { display: flex; align-items: center; gap: 0.6em; height: 2.5em; padding: 0 0.7em; border-radius: 0.6em; background: var(--ui-app); font-weight: 500; color: var(--purple-deep); white-space: nowrap; }
+.vig-agents li.ui-muted { background: none; box-shadow: inset 0 0 0 1px var(--ui-line); color: var(--grey); }
+.vig-agentdrag { left: calc(5% + 24.6em); top: 63%; display: grid; justify-items: start; }
+.vig-agentdrag .cur { margin: 0 0 -0.5em -0.9em; position: relative; z-index: 1; }
+.vig-agentdrag .ui-card { display: flex; align-items: center; gap: 0.7em; padding: 0.65em 2em 0.65em 0.7em; border-radius: 0.9em; font-weight: 500; white-space: nowrap; }
+.vig-agentdrag .ui-card i { display: grid; place-items: center; width: 2.2em; height: 2.2em; border-radius: 0.55em; background: var(--lavender); color: var(--purple-deep); }
+
+.canvas-publish { left: 5%; right: 9%; top: 7.5%; height: 78%; }
+.canvas__top { position: absolute; inset: 0 0 auto 0; display: flex; justify-content: flex-end; gap: 0.5em; padding: 0.65em 0.8em; border-bottom: 1px solid var(--ui-line); border-radius: 1.1em 1.1em 0 0; background: var(--white); }
+.canvas__top .ui-btn svg { width: 1em; height: 1em; }
+.canvas-publish .node--loan { left: 4.5%; top: 25%; width: 14.8em; }
+.canvas-publish .node--review { left: 15%; top: 61.5%; padding-right: 1.6em; }
+.vig-publish { right: 4%; top: calc(7.5% + 3.9em); width: 15em; padding: 0.6em; display: grid; gap: 0.1em; }
+.vig-publish li { display: flex; align-items: center; gap: 0.7em; height: 2.7em; padding: 0 0.7em; border-radius: 0.6em; font-weight: 500; white-space: nowrap; }
+.vig-publish li svg { color: var(--purple-deep); }
+.vig-pubcur { right: calc(9% + 1.5em); top: calc(7.5% + 2.3em); }
+
+/* The fourth table column needs a 490px plate at the 10px type floor. */
+@container (width < 490px) { .vig-matrix .ui-table th:nth-child(4), .vig-matrix .ui-table td:nth-child(4) { display: none; } }
+/* Plate 400 to 439px wide: six table rows, one capability, the rest as above. */
+@container (width < 440px) {
+  .pcard--large .pview { --ui-k: 2.5; }
+  .vig-matrix .ui-table { font-size: 1em; }
+  .vig-matrix .ui-table th, .vig-matrix .ui-table td { padding-block: 0.62em; }
+  .vig-matrix .ui-table tr:nth-child(n+7) { display: none; }
+  .vig-research { --ui-s: 1; left: 5%; right: 5%; top: 7%; }
+  .vig-kb { --ui-s: 1.5; top: 15.5%; }
+  .held--a { top: 6%; width: 13.2em; }
+  .held--b { left: 46.5%; top: 15%; width: 13.4em; }
+  .vig-agentcfg { width: 20.2em; }
+  .vig-agentcfg .cap:last-child { display: none; }
+  .vig-agents { left: calc(5% + 21.4em); width: 13.2em; }
+  .vig-agentdrag { left: calc(5% + 22.6em); top: 62%; }
 }
+/* Plate 304 to 399px wide (most phones): one block being dragged to a marked target, a shorter prompt, a single panel. */
+@container (width < 400px) {
+  .pcard--large .pview { --ui-k: 3.29; }
+  .vig-matrix { left: 4%; right: 4%; top: 6.5%; }
+  .vig-matrix .ui-table th:nth-child(3), .vig-matrix .ui-table td:nth-child(3) { display: none; }
+  .vig-matrix .ui-table th:nth-child(4), .vig-matrix .ui-table td:nth-child(4) { display: table-cell; }
+  .vig-research { --ui-s: 1.1; left: 4.5%; right: 4.5%; padding: 1.2em; }
+  .vig-research p + p { display: none; }
+  .vig-kb { --ui-s: 1.3; top: 17%; }
+  .suite .canvas-aurora { left: 4%; right: 4%; top: 6.5%; height: 80%; }
+  .held--a { left: 5%; top: 8%; width: 13.6em; }
+  .held--b { left: 60%; top: 22%; width: 9.6em; height: 11.5em; }
+  .held--b .node, .held--b .held__body::before, .held--b .held__body::after { display: none; }
+  .held--b .held__slot { transform: none; background: none; box-shadow: none; border: 1px dashed rgba(87, 6, 140, 0.45); }
+  .held--b .held__body { position: absolute; inset: 0; display: grid; place-items: center; }
+  .dtag--drop { position: static; }
+  .dtag--drop b { margin-left: 0.6em; }
+  .vig-agentcfg { left: 4.5%; right: 4.5%; top: 6%; width: auto; }
+  .vig-agentcfg > p, .vig-agents, .vig-agentdrag { display: none; }
+  .canvas-publish { left: 4%; right: 7%; top: 6.5%; height: 80%; }
+  .canvas-publish .node .field { display: none; }
+  .canvas-publish .node--review { left: 3.5%; top: 28%; }
+  .canvas-publish .node--loan { left: 9%; top: 78%; width: auto; padding-right: 1.6em; }
+  .vig-publish { right: 3%; top: calc(6.5% + 3.8em); width: 13.2em; }
+  .vig-publish li { height: 2.5em; }
+  .vig-pubcur { right: calc(7% + 1.5em); top: calc(6.5% + 2.3em); }
+}
+/* Plate under 304px wide (the narrowest phones). */
+@container (width < 304px) {
+  .pcard--large .pview { --ui-k: 4.1; }
+  .vig-matrix .ui-table th:nth-child(4), .vig-matrix .ui-table td:nth-child(4), .vig-matrix .ui-table tr:nth-child(n+5) { display: none; }
+  .vig-research { --ui-s: 1; left: 4%; right: 4%; padding: 1.1em; }
+  .vig-kb { --ui-s: 1.12; left: 7%; top: 15.5%; }
+  .held--a { left: 6.5%; top: 9%; width: 12em; }
+  .held--a .node p { display: none; }
+  .held--a .held__slot { transform: translate(0.9em, 0.9em); }
+  .held--b { left: 67%; top: 20%; width: 6.6em; height: 9.4em; }
+  .dtag--drop b { margin-left: 0; }
+  .vig-agentcfg span:nth-of-type(n+5) { display: none; }
+  .canvas-publish { right: 6%; }
+  .canvas-publish .node { display: none; }
+  .vig-publish { right: 2.5%; width: 12.6em; }
+  .vig-pubcur { right: calc(6% + 1.5em); }
+}
+
+@media (max-width: 1149px) { .suite__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1023px), (pointer: coarse) {
+  .pviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; width: 100%; }
+  .pview-tab { min-height: 44px; padding: 4px 6px; text-wrap: balance; }
+}
+@media (max-width: 971px) { .pcard--large { --plate-ar: 4 / 3.5; } }
+/* Desktop: the Word card keeps its panel and stands beside the two cards that still wait for a screenshot. */
+@media (min-width: 1150px) {
+  .suite__grid { grid-template-rows: auto 1fr 1fr; }
+  #product-word { grid-row: span 2; }
+  .pcard--slot { grid-column: span 2; display: grid; grid-template-columns: auto minmax(0, 1fr) clamp(200px, 31%, 250px); grid-template-rows: auto 1fr auto; gap: 12px; align-items: start; }
+  .pcard--slot > h3 { grid-area: 1 / 1; }
+  .pcard--slot > .tag { grid-area: 1 / 2; align-self: center; }
+  .pcard--slot > .pcard__desc { grid-area: 2 / 1 / 3 / 3; max-width: 34rem; }
+  .pcard--slot > .link-arrow { grid-area: 3 / 1 / 4 / 3; justify-self: start; align-self: end; }
+  .pcard--slot > .ph { grid-area: 1 / 3 / 4 / 4; align-self: stretch; margin: 0 0 0 16px; }
+}
+@media (max-width: 759px) {
+  .suite__lead, .suite__grid { grid-template-columns: minmax(0, 1fr); }
+  .pcard--large { --plate-ar: 16 / 11.4; }
+  .pcard .plate--flat { aspect-ratio: auto; padding-block: 16px; }
+  .pcard .plate--bleed { padding-bottom: 0; }
+  .pcard .plate--hub { aspect-ratio: 16 / 8; }
+}
+/* Phones: the section is long, so the lead cards drop their bullets and the small cards tighten. */
+@media (max-width: 599px) {
+  .pcard__bullets { display: none; }
+  .pcard__body { gap: 16px; }
+  .pcard:not(.pcard--large) { gap: 10px; }
+  .pcard:not(.pcard--large) h3 { font-size: 1.375rem; }
+  .pcard__desc { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+  .pcard__meta { margin-top: -4px; }
+}
+@media (max-width: 475px) { .pcard--large { --plate-ar: 4 / 3.5; } }
+@media (max-width: 479px) { .pcard .plate--hub { aspect-ratio: 16 / 9.5; } }
+@media (max-width: 439px) { .pviews { gap: 2px; padding: 4px; } .pview-tab { padding-inline: 2px; font-size: 0.71875rem; } }
+@media (max-width: 359px) { .pcard__tags { gap: 6px; } .pcard__tags .tag { padding-inline: 8px; } }
 
 /* ---------- 5. Proof numbers ---------- */
 .proof__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--col-gap); margin-top: clamp(40px, 5vw, 72px); }
