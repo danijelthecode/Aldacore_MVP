@@ -48,6 +48,7 @@
     <p><a href="#review-notes"><span data-ph-count>Placeholders</span> are labeled on the page and listed at the end</a></p>
   </div>
 </aside>
+<script>document.documentElement.style.setProperty('--ribbon-h', document.querySelector('.proto-ribbon').offsetHeight + 'px');</script>
 
 <header class="site-header">
   <div class="wrap">
@@ -196,6 +197,7 @@
 <section class="hero on-dark" id="top" aria-labelledby="hero-title">
   <div class="hero__bg" aria-hidden="true">
     <div class="hero__bg-flip"><img src="assets/hero/gradient.webp" alt="" width="1920" height="1080" fetchpriority="high"></div>
+    <div class="hero__flow" data-flow></div>
     <div class="hero__grain"></div>
   </div>
   <div class="hero__spacer" aria-hidden="true"></div>
@@ -222,7 +224,7 @@
       <li><img src="assets/logos/robinson-cole.webp" alt="Robinson+Cole" width="572" height="67" style="--u:1.12"></li>
     </ul>
   </div>
-  <button class="shape-toggle" type="button" aria-pressed="false" data-shape-toggle hidden>
+  <button class="shape-toggle" type="button" data-shape-toggle hidden>
     <svg class="i-pause" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 2v8M8.5 2v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <svg class="i-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg>
     <span class="visually-hidden" data-shape-toggle-label>Pause the background animation</span>
@@ -234,9 +236,9 @@
   <div class="wrap">
     <div class="plate showcase__plate" data-reveal data-note="Product preview under the hero: a rebuild of the Nova exchange shown on newcode.ai, beside the real Project Meridian document image from the site. Swap in a 2x export of the real screen before production.">
       <img class="plate__photo" src="assets/plates/wall-morning.webp" alt="" width="2400" height="1357">
-      <div class="ui nova" role="img" aria-label="Nova at work. Asked to draft an engagement letter for Project Meridian from Outlook and historical SharePoint letters, it returns the drafted document. The Project Meridian information request list is open beside the chat." data-play>
-        <div class="nova__bar"><svg class="wm" viewBox="0 0 1340 246.4"><use href="#wordmark"/></svg><i class="sep"></i><span>Project Meridian</span><span class="ui-chip"><svg><use href="#u-shield"/></svg>Auto</span></div>
-        <div class="nova__body">
+      <div class="ui nova" role="img" aria-label="Nova at work. Asked to draft an engagement letter for Project Meridian from Outlook and historical SharePoint letters, it returns the drafted document." data-play>
+        <div class="nova__bar" aria-hidden="true"><svg class="wm" viewBox="0 0 1340 246.4"><use href="#wordmark"/></svg><i class="sep"></i><span>Project Meridian</span><span class="ui-chip"><svg><use href="#u-shield"/></svg>Auto</span></div>
+        <div class="nova__body" aria-hidden="true">
           <div class="nova__chat">
             <div class="chat">
               <p class="chat__user seq-1">Based on Project Meridian in Outlook, draft an engagement letter using historical SharePoint letters as fee benchmarks.</p>
@@ -260,7 +262,7 @@
           </div>
         </div>
       </div>
-      <button class="plate__ctrl" type="button" aria-pressed="false" data-pause>
+      <button class="plate__ctrl" type="button" data-pause>
         <svg class="i-pause" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 2v8M8.5 2v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <svg class="i-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg>
         <span data-pause-label>Pause</span><span class="visually-hidden"> the product animation</span>
@@ -1151,7 +1153,7 @@
     <p>Not part of the homepage. Every placeholder and open point labeled above, in page order. Select one to jump to it.</p>
     <ol data-note-list></ol>
     <ul class="proto-notes__more">
-      <li>Hero: the live newcode.ai hero, kept as it is today (purple gradient, grain and the faceted shape). The headline wording and the single Book a demo button follow the brief. The logo stays wordmark only.</li>
+      <li>Hero: rebuilt from the live newcode.ai hero (flowing purple gradient, grain overlay, the faceted shape, type sizes and the logo row). Deliberate differences: the headline wording and the single Book a demo button from the brief, this page’s navigation pill with the wordmark only, Inter in place of Grain, a still shown before the film and when motion is reduced, the shape set above the copy on tablets, and a pause control for the moving background.</li>
       <li>Product UI: the interface cards are HTML rebuilds of product UI shown on newcode.ai, with the same demo content. Three documents inside them (the Project Meridian request list, the calendar entry and the non-disclosure agreement) are real images from the site. Swap in 2x exports from the Nova Figma file before production.</li>
       <li>Plates: the wall, desk, stone, paper and room photographs behind the UI are generated plates made with the Newcode image plates method, with no people, text or screens in them. Replace with commissioned photography if preferred.</li>
       <li>Photos: real photos of offices, customers and the team are still needed. The page uses the photos already on newcode.ai, plus a still from the Ræder Bing film.</li>

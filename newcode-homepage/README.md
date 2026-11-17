@@ -1,6 +1,6 @@
 # Newcode homepage: coded prototype
 
-A working prototype of a new newcode.ai homepage. It started from `website-refresh-build-brief.md` (17 Nov 2026) and then took a newer direction from design: keep the Newcode colors, build a clearly better page, and show the product on photographic imagery instead of purple gradient backgrounds. The hero is the one part kept as it is on the live site: the purple gradient with grain and the large faceted shape. It is a design artifact to agree direction. It is not the production site.
+A working prototype of a new newcode.ai homepage. It started from `website-refresh-build-brief.md` (Nov 17, 2026) and then took a newer direction from design: keep the Newcode colors, build a clearly better page, and show the product on photographic imagery instead of purple gradient backgrounds. The hero is the one part kept as it is on the live site: the purple gradient with grain and the large faceted shape. It is a design artifact to agree direction. It is not the production site.
 
 ## Stack
 
@@ -28,7 +28,7 @@ Any static host works as is (Vercel, Netlify, GitHub Pages, S3): publish this fo
 
 ## Where the content comes from
 
-- Copy, customer names, quotes and product descriptions are taken from the live newcode.ai pages as captured on 17 Nov 2026. Copy was changed only where the brief marks it as duplicated or broken (typos, em dashes, UK spellings, the harness story told more than once).
+- Copy, customer names, quotes and product descriptions are taken from the live newcode.ai pages as captured on Nov 17, 2026. Copy was changed only where the brief marks it as duplicated or broken (typos, em dashes, UK spellings, the harness story told more than once).
 - Customer logos, portraits, office photos, the film still and the three document images are Newcode's own files from the live site.
 - Anything missing or unconfirmed is a labeled placeholder on the page. The full list is generated at the bottom of the page under "Prototype notes".
 
@@ -51,4 +51,4 @@ All colors are the eight tokens from the brief, defined once in `:root` in `css/
 
 ## Hero
 
-The hero follows the live newcode.ai hero value for value: section height, gradient placement, grain overlay, the position and size of the faceted shape, type sizes and the logo row. Two things differ on purpose, both from the brief: the headline reads "AI for forward-thinking law firms" and there is a single Book a demo button.
+The hero is rebuilt from the live newcode.ai hero: section height, the flowing gradient (the live site's own shader, ported to plain JavaScript), the grain overlay, the faceted shape, type sizes and the logo row. Deliberate differences: the headline wording and the single Book a demo button (from the brief), the prototype's navigation pill with the wordmark only, Inter in place of Grain with tighter tracking, white text, the shape kept above the copy between 640px and 1023px, a still shown before the film and under reduced motion, and a pause control for the moving background.

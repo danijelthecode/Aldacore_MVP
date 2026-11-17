@@ -368,8 +368,8 @@ body.menu-open { overflow: hidden; }
 .is-paused * { animation-play-state: paused !important; }
 .plate__ctrl { position: absolute; left: 14px; bottom: 14px; z-index: 3; display: none; align-items: center; gap: 8px; min-height: 36px; padding: 0 14px 0 12px; border-radius: 999px; background: var(--white); color: var(--ink); box-shadow: var(--shadow-pill); font-size: var(--t-label); font-weight: var(--w-medium); }
 .plate__ctrl svg { width: 12px; height: 12px; }
-.plate__ctrl .i-play, .plate__ctrl[aria-pressed="true"] .i-pause { display: none; }
-.plate__ctrl[aria-pressed="true"] .i-play { display: block; }
+.plate__ctrl .i-play, .plate__ctrl[data-paused="true"] .i-pause { display: none; }
+.plate__ctrl[data-paused="true"] .i-play { display: block; }
 .js .plate__ctrl { display: inline-flex; }
 
 /* One-shot build inside the step plates, played the first time a step becomes active */
@@ -480,6 +480,9 @@ body.menu-open { overflow: hidden; }
 .hero__bg { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
 .hero__bg-flip { position: absolute; top: -15.75%; left: 0; width: 114.31%; min-width: 100%; height: 115.75%; transform: scaleY(-1); }
 .hero__bg img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 63% 100%; }
+.hero__flow { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease-out; }
+.hero__flow.is-on { opacity: 1; }
+.hero__flow canvas { display: block; width: 100%; height: 100%; }
 .hero__grain { position: absolute; inset: 0; mix-blend-mode: overlay; opacity: 0.55; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.4' intercept='-1.2'/%3E%3CfeFuncG type='linear' slope='3.4' intercept='-1.2'/%3E%3CfeFuncB type='linear' slope='3.4' intercept='-1.2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); background-size: 240px 240px; }
 .hero__spacer { flex: none; height: 84px; }
 .hero__stage { flex: 1 1 auto; display: flex; align-items: center; justify-content: flex-end; pointer-events: none; }
@@ -488,7 +491,7 @@ body.menu-open { overflow: hidden; }
 .hero__copy, .hero__logos { position: relative; z-index: 1; padding-inline: max(var(--hero-gutter), env(safe-area-inset-left, 0px)) max(var(--hero-gutter), env(safe-area-inset-right, 0px)); }
 .hero__copy { margin-top: auto; display: grid; justify-items: start; }
 /* Tracking is tighter than the live -0.02em because the fallback face (Inter) sets wider than Grain. */
-.hero h1 { font-size: clamp(32px, 5.903vw, 106.25px); line-height: 0.94; letter-spacing: -0.05em; }
+.hero h1 { font-size: clamp(32px, 5.903vw, 106.25px); line-height: 1.06; margin-bottom: -0.06em; letter-spacing: -0.05em; }
 .hero__lead { margin-top: 32px; max-width: 24.6em; font-size: clamp(17px, 1.667vw, 30px); line-height: 1.375; letter-spacing: -0.04em; color: var(--on-dark); }
 .hero__copy .btn { margin-top: 28px; }
 .hero__logos { --logo-unit: min(3.6vw, 16px); padding-top: 40px; padding-bottom: 9vh; }
@@ -499,10 +502,18 @@ body.menu-open { overflow: hidden; }
 .hero__logos img { width: auto; max-width: none; height: calc(var(--u, 1.2) * var(--logo-unit)); transform: translateY(calc(var(--dy, 0) * var(--logo-unit))); filter: brightness(0) invert(1); opacity: 0.7; }
 /* A quiet control to pause the looping shape film (it moves for longer than five seconds beside other content). */
 .shape-toggle { position: absolute; right: max(var(--hero-gutter, 20px), env(safe-area-inset-right, 0px)); bottom: 20px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; color: var(--on-dark); background: rgba(255, 255, 255, 0.12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.26); opacity: 0.72; transition: opacity 0.25s var(--ease), background-color 0.25s var(--ease); }
+.shape-toggle[hidden] { display: none; }
 .shape-toggle:hover, .shape-toggle:focus-visible { opacity: 1; background: rgba(255, 255, 255, 0.2); }
 .shape-toggle svg { width: 12px; height: 12px; }
-.shape-toggle .i-play, .shape-toggle[aria-pressed="true"] .i-pause { display: none; }
-.shape-toggle[aria-pressed="true"] .i-play { display: block; }
+.shape-toggle .i-play, .shape-toggle[data-paused="true"] .i-pause { display: none; }
+.shape-toggle[data-paused="true"] .i-play { display: block; }
+/* Phone: the button's 74px comes out of the spacing, and the pause control joins the button row so the logos keep the bottom edge. */
+@media (max-width: 639px) {
+  .hero__lead { margin-top: 24px; }
+  .hero__copy .btn { margin-top: 20px; }
+  .hero__logos { order: 1; padding-top: 28px; padding-bottom: max(20px, calc(9vh - 46px)); }
+  .shape-toggle { position: relative; right: auto; bottom: auto; flex: none; align-self: flex-end; margin: -45px max(var(--hero-gutter, 20px), env(safe-area-inset-right, 0px)) 1px 0; }
+}
 /* Tablet: the shape stays in the flow above the copy. The live site floats it here, which lets it run under
    the text on short screens; with the longer headline and the button that would happen on an upright tablet. */
 @media (min-width: 640px) {
@@ -514,7 +525,7 @@ body.menu-open { overflow: hidden; }
   .hero__spacer { height: 96px; }
   .hero__stage { position: absolute; inset: 0; display: block; }
   .hero__shape { position: absolute; top: 6%; right: -3.7%; margin-right: 0; width: min(50.2%, var(--hero-cap)); }
-  .hero__lead { margin-top: 60px; }
+  .hero__lead { margin-top: 60px; font-size: clamp(21.25px, 1.667vw, 30px); }
   .hero__copy .btn { margin-top: 36px; }
   .hero__logos { --logo-unit: min(1.6667vw, 30px); padding-top: 80px; padding-bottom: 135px; }
   .hero__logos ul { gap: 0 80px; }
@@ -538,6 +549,10 @@ body.menu-open { overflow: hidden; }
   .nova__chat { padding: 1.3em; }
   .plate__ctrl { min-height: 44px; }
   .showcase__caption span.wide-only { display: none; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .showcase__plate { aspect-ratio: 16 / 11.7; }
+  .showcase__plate .plate__ctrl { left: auto; right: 14px; }
 }
 @media (max-width: 639px) {
   .showcase__plate { aspect-ratio: 4 / 4.9; --ui-k: 2.95; --ui-max: 14.5px; }

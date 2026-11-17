@@ -14,9 +14,9 @@
   var hero = $('.hero');
   var heroAction = hero ? $('.btn', hero) : null;
   function updateHeader() {
-    /* The pill's button takes over the moment the hero's own button slides under the pill, so one is always in reach. */
+    /* The pill's button takes over once the hero's own button has left the screen, so one is always in reach and never two. */
     var mark = heroAction || hero;
-    if (header && mark) header.classList.toggle('is-past-hero', mark.getBoundingClientRect().bottom < 76);
+    if (header && mark) header.classList.toggle('is-past-hero', mark.getBoundingClientRect().bottom < 0);
   }
   /* The review ribbon sits above the hero. Subtract it so the first screen holds what the live hero holds. */
   var ribbon = $('.proto-ribbon');
@@ -129,11 +129,145 @@
     });
   });
 
+  /* ---------- The band's pause control: offered as soon as anything in the band moves (the flow or the film) ---------- */
+  function offerPause(band) {
+    var toggle = band ? $('[data-shape-toggle]', band) : null;
+    if (!toggle || !toggle.hidden) return;
+    toggle.hidden = false;
+    toggle.addEventListener('click', function () {
+      var pause = toggle.getAttribute('data-paused') !== 'true';
+      toggle.setAttribute('data-paused', String(pause));
+      var label = $('[data-shape-toggle-label]', toggle);
+      if (label) label.textContent = pause ? 'Play the background animation' : 'Pause the background animation';
+      $$('[data-shape] video', band).forEach(function (film) {
+        if (pause) { film.pause(); } else { var again = film.play(); if (again && again.catch) again.catch(function () {}); }
+      });
+      var flowEl = $('[data-flow]', band);
+      if (flowEl) flowEl.toggleAttribute('data-paused', pause);
+    });
+  }
+
+  /* ---------- Hero background: the live site's flowing gradient (WebGL2) over the still image ---------- */
+  /* Same shader and settings as newcode.ai's HeroGradient. Without WebGL2, or with reduced motion, the still image stays. */
+  function startFlow(host) {
+    var canvas = doc.createElement('canvas');
+    var gl = canvas.getContext('webgl2', { antialias: false, alpha: false, powerPreference: 'low-power' });
+    if (!gl) return;
+    host.appendChild(canvas);
+    var RAMP = [[.199,.02,.293],[.199,.02,.293],[.199,.02,.293],[.188,.02,.306],[.235,.012,.38],[.235,.016,.38],[.259,.031,.404],[.298,.035,.447],
+      [.325,.098,.529],[.408,.173,.557],[.451,.255,.651],[.565,.424,.784],[.647,.624,.886],[.749,.804,.969],[.76,.895,.98],[.76,.895,.98]];
+    var vert = '#version 300 es\nprecision mediump float;\nin vec2 aPosition;\nout vec2 vUv;\nvoid main(){vUv=aPosition*0.5+0.5;gl_Position=vec4(aPosition,0.0,1.0);}';
+    var frag = [
+      '#version 300 es', 'precision highp float;', 'in vec2 vUv;', 'out vec4 fragColor;', 'uniform float uTime;', 'uniform vec2 uResolution;',
+      'const float PI = 3.14159265;',
+      RAMP.map(function (c, i) { return 'const vec3 C' + i + ' = vec3(' + c[0].toFixed(4) + ', ' + c[1].toFixed(4) + ', ' + c[2].toFixed(4) + ');'; }).join('\n'),
+      'vec3 getColor(int index) {', RAMP.map(function (c, i) { return '  if (index == ' + i + ') return C' + i + ';'; }).join('\n'), '  return vec3(0.0);', '}',
+      'mat2 rot2(float a) { return mat2(cos(a), -sin(a), sin(a), cos(a)); }',
+      'float rand(vec2 co) { return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453); }',
+      'vec3 linear_from_srgb(vec3 rgb) { return pow(rgb, vec3(2.2)); }',
+      'vec3 srgb_from_linear(vec3 lin) { return pow(lin, vec3(1.0 / 2.2)); }',
+      'vec3 oklab_mix(vec3 lin1, vec3 lin2, float a) {',
+      '  const mat3 kCONEtoLMS = mat3(0.4121656120, 0.2118591070, 0.0883097947, 0.5362752080, 0.6807189584, 0.2818474174, 0.0514575653, 0.1074065790, 0.6302613616);',
+      '  const mat3 kLMStoCONE = mat3(4.0767245293, -1.2681437731, -0.0041119885, -3.3072168827, 2.6093323231, -0.7034763098, 0.2307590544, -0.3411344290, 1.7068625689);',
+      '  vec3 lms1 = pow(kCONEtoLMS * lin1, vec3(1.0 / 3.0));',
+      '  vec3 lms2 = pow(kCONEtoLMS * lin2, vec3(1.0 / 3.0));',
+      '  vec3 lms = mix(lms1, lms2, a);',
+      '  lms *= 1.0 + 0.025 * a * (1.0 - a);',
+      '  return kLMStoCONE * (lms * lms * lms);',
+      '}',
+      'vec3 getGradientColor(float position) {',
+      '  position = clamp(position, 0.0, 1.0);',
+      '  for (int i = 0; i < 15; i++) {',
+      '    float colorPosition = float(i) / 15.0;',
+      '    float nextColorPosition = float(i + 1) / 15.0;',
+      '    if (position <= nextColorPosition) {',
+      '      float mixFactor = (position - colorPosition) / (nextColorPosition - colorPosition);',
+      '      return srgb_from_linear(oklab_mix(linear_from_srgb(getColor(i)), linear_from_srgb(getColor(i + 1)), mixFactor));',
+      '    }',
+      '  }',
+      '  return getColor(15);',
+      '}',
+      'vec3 gradientAt(vec2 uv) {',
+      '  uv -= vec2(0.62, 0.52);',
+      '  uv /= (0.7200 * 2.0);',
+      '  uv = rot2(0.643500) * uv;',
+      '  float position = uv.x + 0.5;',
+      '  position += 0.040 * sin(uTime * 0.100);',
+      '  vec3 color = getGradientColor(position);',
+      '  color += rand(gl_FragCoord.xy) * 0.005;',
+      '  return color;',
+      '}',
+      'vec2 liquify(vec2 st) {',
+      '  float aspectRatio = uResolution.x / uResolution.y;',
+      '  vec2 pos = vec2(0.5);',
+      '  st -= pos;',
+      '  st.x *= aspectRatio;',
+      '  st = rot2(0.0945 * 2.0 * PI) * st;',
+      '  float amplitude = 0.075 * mix(0.2, 0.2 / (0.08 + 0.05), 0.25);',
+      '  float t = uTime * 0.4500;',
+      '  for (float i = 1.0; i <= 5.0; i++) {',
+      '    st = rot2(i / 5.0 * PI * 2.0) * st;',
+      '    st.x += amplitude * cos(i * (5.0 * (0.08 + 0.1)) * st.y + t);',
+      '    st.y += amplitude * sin(i * (5.0 * (0.08 + 0.1)) * st.x + t);',
+      '  }',
+      '  st = rot2(0.0945 * -2.0 * PI) * st;',
+      '  st.x /= aspectRatio;',
+      '  st += pos;',
+      '  return st;',
+      '}',
+      'void main() {',
+      '  vec2 uv = vUv;',
+      '  vec2 lq = liquify(uv);',
+      '  vec2 dir = normalize(lq - uv + 1e-6);',
+      '  float dist = length(lq - uv);',
+      '  vec2 offR = lq + 0.0600 * dir * dist;',
+      '  vec2 offB = lq - 0.0600 * dir * dist;',
+      '  fragColor = vec4(gradientAt(offR).r, gradientAt(lq).g, gradientAt(offB).b, 1.0);',
+      '}'
+    ].join('\n');
+    function compile(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+    var prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, vert));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, frag));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { canvas.remove(); return; }
+    gl.useProgram(prog);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'aPosition');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var uTime = gl.getUniformLocation(prog, 'uTime');
+    var uRes = gl.getUniformLocation(prog, 'uResolution');
+    /* On a software renderer (no GPU) the full-size shader takes the whole page to about one frame a second: draw it at a quarter size there. */
+    var info = gl.getExtension('WEBGL_debug_renderer_info');
+    var soft = !!info && /swiftshader|llvmpipe|software/i.test(String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)));
+    var ratio = soft ? 0.25 : Math.min(window.devicePixelRatio || 1, 2);
+    function fit() {
+      var w = Math.round(canvas.clientWidth * ratio), h = Math.round(canvas.clientHeight * ratio);
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
+    }
+    function draw(t) { gl.uniform1f(uTime, t); gl.uniform2f(uRes, canvas.width, canvas.height); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+    fit(); draw(0);
+    host.classList.add('is-on');
+    offerPause(host.closest('section'));
+    var start = performance.now(), last = 0, onScreen = true;
+    if (hasIO) new IntersectionObserver(function (e) { onScreen = e[0].isIntersecting; }).observe(host);
+    (function loop(now) {
+      window.requestAnimationFrame(loop);
+      if (!onScreen || host.hasAttribute('data-paused') || now - last < 33) return;
+      last = now; fit(); draw((now - start) / 1000);
+    })(start);
+  }
+  var flow = $('[data-flow]');
+  if (flow && !reduceMotion) startFlow(flow);
+
   /* ---------- Faceted shape (hero and closing band): upgrade the still to the looping film when it comes near ---------- */
   function startShape(shape) {
-    var ua = navigator.userAgent;
-    var isSafari = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(ua);
-    var src = isSafari ? shape.getAttribute('data-mov') : shape.getAttribute('data-webm');
+    /* Same test as the live site: browsers that play HEVC with alpha get the .mov, the rest get the WebM. */
+    var probe = doc.createElement('video');
+    var useMov = probe.canPlayType('video/quicktime') !== '' && probe.canPlayType('video/mp4; codecs="hvc1"') !== '';
+    var src = shape.getAttribute(useMov ? 'data-mov' : 'data-webm') || shape.getAttribute('data-webm');
     if (!src) return; /* no film for this browser on this host: the still stays */
     var video = doc.createElement('video');
     video.muted = true; video.loop = true; video.autoplay = true;
@@ -141,27 +275,28 @@
     video.preload = 'auto';
     video.src = src;
     video.style.opacity = '0';
-    video.style.transition = 'opacity 0.6s ease';
     video.addEventListener('playing', function () {
+      /* The still is the film's first frame: show the film in one step, then drop the still two frames later. No fade, no gap. */
       video.style.opacity = '1';
       var still = $('img', shape);
-      if (still) still.style.opacity = '0';
-      /* Once the film runs, offer the control that pauses it. */
+      if (still) window.requestAnimationFrame(function () { window.requestAnimationFrame(function () { still.style.opacity = '0'; }); });
+      /* Once the film runs, offer the control that pauses it. If the band was paused before the film arrived, it stays still. */
       var band = shape.closest('section');
       var toggle = band ? $('[data-shape-toggle]', band) : null;
-      if (toggle && toggle.hidden) {
-        toggle.hidden = false;
-        toggle.addEventListener('click', function () {
-          var pause = toggle.getAttribute('aria-pressed') !== 'true';
-          toggle.setAttribute('aria-pressed', String(pause));
-          var label = $('[data-shape-toggle-label]', toggle);
-          if (label) label.textContent = pause ? 'Play the background animation' : 'Pause the background animation';
-          if (pause) { video.pause(); } else { var again = video.play(); if (again && again.catch) again.catch(function () {}); }
-        });
-      }
+      if (toggle && toggle.getAttribute('data-paused') === 'true') video.pause();
+      offerPause(band);
     }, { once: true });
     video.addEventListener('error', function () { video.style.display = 'none'; });
     shape.appendChild(video);
+    /* Like the live site, stop decoding while the film is off screen. A film the visitor paused stays paused. */
+    new IntersectionObserver(function (entries) {
+      if (!entries[entries.length - 1].isIntersecting) { video.pause(); return; }
+      var band = shape.closest('section');
+      var toggle = band ? $('[data-shape-toggle]', band) : null;
+      if (toggle && toggle.getAttribute('data-paused') === 'true') return;
+      var again = video.play();
+      if (again && again.catch) again.catch(function () {});
+    }, { rootMargin: '200px 0px' }).observe(shape);
     var p = video.play();
     if (p && p.catch) p.catch(function () { /* autoplay refused: the still stays */ });
   }
@@ -187,8 +322,8 @@
   }
   $$('[data-pause]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var paused = btn.getAttribute('aria-pressed') !== 'true';
-      btn.setAttribute('aria-pressed', String(paused));
+      var paused = btn.getAttribute('data-paused') !== 'true';
+      btn.setAttribute('data-paused', String(paused));
       btn.parentElement.classList.toggle('is-paused', paused);
       var label = $('[data-pause-label]', btn);
       if (label) label.textContent = paused ? 'Play' : 'Pause';
