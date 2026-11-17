@@ -191,19 +191,43 @@
 
 <main id="main">
 
-<!-- 1. Hero: the product at work in the first screen -->
-<section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="wrap">
-    <div class="hero__copy">
-      <h1 id="hero-title">AI for forward-thinking law firms</h1>
-      <div class="hero__side">
-        <p class="hero__lead">Connect your firm’s knowledge, workflows and systems in one intelligent, centralized legal workspace.</p>
-        <a class="btn btn--primary" href="https://www.newcode.ai/contact" target="_blank" rel="noopener">Book a demo <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
+<!-- 1. Hero: the newcode.ai hero as it is live today (purple gradient, grain, the faceted shape), with the single Book a demo action -->
+<section class="hero on-dark" id="top" aria-labelledby="hero-title">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__bg-flip"><img src="assets/hero/gradient.webp" alt="" width="1920" height="1080" fetchpriority="high"></div>
+    <div class="hero__grain"></div>
+  </div>
+  <div class="hero__spacer" aria-hidden="true"></div>
+  <div class="hero__stage" aria-hidden="true">
+    <div class="hero__shape" data-shape data-webm="assets/hero/brandmark.webm" data-mov="assets/hero/brandmark.mov">
+      <img src="assets/hero/brandmark-poster.webp" alt="" width="900" height="900" fetchpriority="high">
     </div>
+  </div>
+  <div class="hero__copy">
+    <h1 id="hero-title">AI for forward-<br>thinking law firms</h1>
+    <p class="hero__lead">Connect your firm’s knowledge, workflows and systems in one intelligent, centralized legal workspace.</p>
+    <a class="btn btn--light" href="https://www.newcode.ai/contact" target="_blank" rel="noopener">Book a demo <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+  <div class="hero__logos">
+    <ul aria-label="Customers include">
+      <li><img src="assets/logos/kirkland-ellis.webp" alt="Kirkland &amp; Ellis" width="875" height="61" style="--u:1.02"></li>
+      <li><img src="assets/logos/dla-piper.webp" alt="DLA Piper" width="273" height="159" style="--u:2.65"></li>
+      <li class="brk brk--narrow" aria-hidden="true"></li>
+      <li><img src="assets/logos/reed-smith.webp" alt="Reed Smith" width="412" height="75" style="--u:1.25"></li>
+      <li class="brk brk--wide" aria-hidden="true"></li>
+      <li><img src="assets/logos/dickinson-wright.webp" alt="Dickinson Wright" width="931" height="204" style="--u:3.4;--dy:0.17"></li>
+      <li class="brk brk--narrow" aria-hidden="true"></li>
+      <li><img src="assets/logos/wolters-kluwer.webp" alt="Wolters Kluwer" width="599" height="97" style="--u:1.62;--dy:-0.08"></li>
+      <li><img src="assets/logos/robinson-cole.webp" alt="Robinson+Cole" width="572" height="67" style="--u:1.12"></li>
+    </ul>
+  </div>
+</section>
 
-    <div class="plate hero__plate" data-note="Hero UI: a rebuild of the Nova exchange shown on newcode.ai, beside the real Project Meridian document image from the site. Swap in a 2x export of the real screen before production.">
-      <img class="plate__photo" src="assets/plates/wall-morning.webp" alt="" width="2400" height="1357" fetchpriority="high">
+<!-- Product preview: Nova at work on a photographed plate, directly under the hero and never on the purple -->
+<div class="showcase" id="product-preview">
+  <div class="wrap">
+    <div class="plate showcase__plate" data-reveal data-note="Product preview under the hero: a rebuild of the Nova exchange shown on newcode.ai, beside the real Project Meridian document image from the site. Swap in a 2x export of the real screen before production.">
+      <img class="plate__photo" src="assets/plates/wall-morning.webp" alt="" width="2400" height="1357">
       <div class="ui nova" role="img" aria-label="Nova at work. Asked to draft an engagement letter for Project Meridian from Outlook and historical SharePoint letters, it returns the drafted document. The Project Meridian information request list is open beside the chat." data-play>
         <div class="nova__bar"><svg class="wm" viewBox="0 0 1340 246.4"><use href="#wordmark"/></svg><i class="sep"></i><span>Project Meridian</span><span class="ui-chip"><svg><use href="#u-shield"/></svg>Auto</span></div>
         <div class="nova__body">
@@ -236,17 +260,8 @@
         <span data-pause-label>Pause</span><span class="visually-hidden"> the product animation</span>
       </button>
     </div>
-
-    <ul class="hero__logos" aria-label="Customers include">
-      <li><img src="assets/logos/kirkland-ellis.webp" alt="Kirkland &amp; Ellis" width="875" height="61" style="--u:1.02"></li>
-      <li><img src="assets/logos/dla-piper.webp" alt="DLA Piper" width="273" height="159" style="--u:2.65"></li>
-      <li><img src="assets/logos/reed-smith.webp" alt="Reed Smith" width="412" height="75" style="--u:1.25"></li>
-      <li><img src="assets/logos/dickinson-wright.webp" alt="Dickinson Wright" width="931" height="204" style="--u:3.4;--dy:0.17"></li>
-      <li><img src="assets/logos/wolters-kluwer.webp" alt="Wolters Kluwer" width="599" height="97" style="--u:1.62;--dy:-0.08"></li>
-      <li><img src="assets/logos/robinson-cole.webp" alt="Robinson+Cole" width="572" height="67" style="--u:1.12"></li>
-    </ul>
   </div>
-</section>
+</div>
 
 <!-- 2. Trusted by: the full customer list from the live site -->
 <section class="band band--cream trusted" id="trusted" aria-labelledby="trusted-title">
@@ -1129,6 +1144,7 @@
     <p>Not part of the homepage. Every placeholder and open point labeled above, in page order. Select one to jump to it.</p>
     <ol data-note-list></ol>
     <ul class="proto-notes__more">
+      <li>Hero: the live newcode.ai hero, kept as it is today (purple gradient, grain and the faceted shape). The headline wording and the single Book a demo button follow the brief. The logo stays wordmark only.</li>
       <li>Product UI: the interface cards are HTML rebuilds of product UI shown on newcode.ai, with the same demo content. Three documents inside them (the Project Meridian request list, the calendar entry and the non-disclosure agreement) are real images from the site. Swap in 2x exports from the Nova Figma file before production.</li>
       <li>Plates: the wall, desk, stone, paper and room photographs behind the UI are generated plates made with the Newcode image plates method, with no people, text or screens in them. Replace with commissioned photography if preferred.</li>
       <li>Photos: real photos of offices, customers and the team are still needed. The page uses the photos already on newcode.ai, plus a still from the Ræder Bing film.</li>

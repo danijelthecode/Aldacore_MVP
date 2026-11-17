@@ -33,7 +33,7 @@
 /* ---------- Tokens ---------- */
 :root {
   /* Brand tokens, exactly as given in the build brief */
-  --purple-deep: #57068C;   /* accent: buttons, links, numerals; fills the closing CTA band */
+  --purple-deep: #57068C;   /* accent: buttons, links, numerals; fills the hero and the closing CTA band */
   --purple-light: #D596FE;  /* accents, highlights */
   --cream: #F7F5F0;         /* page background */
   --white: #FFFFFF;         /* alternate sections, cards */
@@ -205,9 +205,12 @@ p { text-wrap: pretty; }
 
 /* ---------- Header: one floating pill holds wordmark, links and the demo button ---------- */
 .site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; height: 0; }
+/* The offset is padding on the wrapper, not a margin on the pill: a margin would collapse through the zero-height header. */
+.site-header > .wrap { padding-top: 14px; }
 .navbar {
-  position: relative; display: flex; align-items: center; gap: clamp(14px, 2vw, 28px);
-  width: fit-content; max-width: 100%; margin: 14px auto 0; height: 58px; padding: 0 9px 0 26px;
+  --nb-gap: clamp(14px, 2vw, 28px);
+  position: relative; display: flex; align-items: center; gap: var(--nb-gap);
+  width: fit-content; max-width: 100%; margin: 0 auto; height: 58px; padding: 0 9px 0 26px;
   background: var(--white); color: var(--ink); border-radius: 999px; box-shadow: var(--shadow-pill);
 }
 .navbar__logo { display: inline-flex; color: var(--purple-deep); padding: 8px 0; }
@@ -217,9 +220,9 @@ p { text-wrap: pretty; }
 .nav-links > li > a:hover, .nav-links > li > button:hover { opacity: 0.55; }
 .nav-links .caret { width: 8px; height: 8px; transition: transform 0.3s var(--ease); }
 .nav-links [aria-expanded="true"] .caret { transform: rotate(180deg); }
-.navbar__cta { max-width: 0; padding-inline: 0; opacity: 0; overflow: hidden; visibility: hidden; transition: max-width 0.45s var(--ease), padding 0.45s var(--ease), opacity 0.3s var(--ease), visibility 0.45s; }
-.site-header.is-past-hero .navbar__cta { max-width: 190px; padding: 0 16px 0 18px; opacity: 1; visibility: visible; }
-.navbar__end { width: 17px; flex: none; transition: width 0.45s var(--ease); }
+.navbar__cta { max-width: 0; margin-left: calc(var(--nb-gap) * -1); padding-inline: 0; opacity: 0; overflow: hidden; visibility: hidden; transition: max-width 0.45s var(--ease), margin 0.45s var(--ease), padding 0.45s var(--ease), opacity 0.3s var(--ease), visibility 0.45s; }
+.site-header.is-past-hero .navbar__cta { max-width: 190px; margin-left: 0; padding: 0 16px 0 18px; opacity: 1; visibility: visible; }
+.navbar__end { width: 17px; flex: none; margin-left: calc(var(--nb-gap) * -1); transition: width 0.45s var(--ease); }
 .site-header.is-past-hero .navbar__end { width: 0; }
 
 .nav-menu { position: absolute; top: 100%; left: 50%; z-index: 2; width: max-content; max-width: calc(100vw - 32px); padding-top: 12px; opacity: 0; visibility: hidden; transform: translate(-50%, -6px); transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s; }
@@ -266,7 +269,8 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 1023px) {
   .site-header__nav, .navbar__cta, .navbar__end { display: none; }
   .menu-toggle { display: inline-flex; }
-  .navbar { width: 100%; justify-content: space-between; margin-top: 10px; height: 56px; padding: 0 6px 0 20px; }
+  .site-header > .wrap { padding-top: 10px; }
+  .navbar { width: 100%; justify-content: space-between; height: 56px; padding: 0 6px 0 20px; }
 }
 
 /* ---------- Plates: a photograph with an empty area, UI composited on top ---------- */
@@ -326,7 +330,7 @@ body.menu-open { overflow: hidden; }
 .chat__thought i svg { position: absolute; inset: 0; color: var(--purple-deep); }
 .chat__thought .spin { opacity: 0; }
 
-/* Nova window (hero) */
+/* Nova window (product preview under the hero) */
 .nova { display: flex; flex-direction: column; width: 68em; border-radius: 1.3em; overflow: hidden; background: var(--white); box-shadow: var(--ui-shadow); }
 .nova__bar { display: flex; align-items: center; gap: 1em; height: 3.5em; padding: 0 1.2em; border-bottom: 1px solid var(--ui-line); white-space: nowrap; }
 .nova__bar .wm { width: 6em; height: auto; color: var(--purple-deep); }
@@ -343,7 +347,7 @@ body.menu-open { overflow: hidden; }
 .doc__sheet { flex: 1; overflow: hidden; background: var(--white); border-radius: 0.3em 0 0 0; box-shadow: 0 0 0 1px var(--ui-line), 0 0.8em 1.8em -1em rgba(36, 28, 59, 0.25); padding: 1.4em 0 0 1.4em; }
 .doc__sheet img { width: 62em; max-width: none; }
 
-/* Hero sequence: the default state is the finished frame. The loop only runs in view and can be paused. */
+/* Product preview sequence: the default state is the finished frame. The loop only runs in view and can be paused. */
 @keyframes ui-in-1 { 0%, 2% { opacity: 0; transform: translateY(0.7em); } 5%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 @keyframes ui-in-2 { 0%, 7% { opacity: 0; transform: translateY(0.7em); } 10%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 @keyframes ui-in-3 { 0%, 16% { opacity: 0; transform: translateY(0.7em); } 19%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; } }
@@ -463,27 +467,63 @@ body.menu-open { overflow: hidden; }
 .vig-toolmenu li svg { color: var(--purple-deep); }
 .vig-toolmenu li.is-on { background: var(--lavender); font-weight: 500; }
 
-/* ---------- 1. Hero ---------- */
-.hero { padding-top: clamp(112px, 10.5vw, 152px); padding-bottom: clamp(32px, 4vw, 56px); background: var(--cream); }
-.hero__copy { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); row-gap: 24px; align-items: end; }
-.hero h1 { grid-column: 1 / span 8; font-size: var(--t-display); line-height: 0.96; letter-spacing: -0.042em; }
-.hero__side { grid-column: 9 / -1; display: grid; gap: 22px; justify-items: start; padding-bottom: 8px; }
-.hero__lead { font-size: var(--t-lead); line-height: 1.38; letter-spacing: -0.015em; color: var(--grey); }
-.hero__plate { margin-top: clamp(32px, 4vw, 56px); aspect-ratio: 16 / 8.1; --ui-k: 1.02; }
-.hero__plate .nova { position: absolute; right: -4%; top: 9.5%; }
-.hero__logos { --logo-unit: 13px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px clamp(24px, 4vw, 56px); margin-top: clamp(32px, 4vw, 52px); }
-.hero__logos li { display: flex; align-items: center; }
-.hero__logos img { width: auto; height: calc(var(--u, 1.2) * var(--logo-unit)); transform: translateY(calc(var(--dy, 0) * var(--logo-unit))); filter: brightness(0); opacity: 0.62; }
+/* ---------- 1. Hero: the live newcode.ai hero. Purple gradient, grain, the faceted shape. ---------- */
+/* Sizes, offsets and the grain are the live site's own values (its rem is 20px from 1024px up, 16px below). */
+.hero {
+  --hero-gutter: clamp(20px, 3.3333vw, 60px);
+  position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column;
+  min-height: 100vh; min-height: 100svh; background: var(--purple-deep); color: var(--on-dark);
+}
+.hero__bg { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+.hero__bg-flip { position: absolute; top: -15.75%; left: 0; width: 114.31%; min-width: 100%; height: 115.75%; transform: scaleY(-1); }
+.hero__bg img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 63% 100%; }
+.hero__grain { position: absolute; inset: 0; mix-blend-mode: overlay; opacity: 0.55; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.4' intercept='-1.2'/%3E%3CfeFuncG type='linear' slope='3.4' intercept='-1.2'/%3E%3CfeFuncB type='linear' slope='3.4' intercept='-1.2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); background-size: 240px 240px; }
+.hero__spacer { flex: none; height: 84px; }
+.hero__stage { flex: 1 1 auto; display: flex; align-items: center; justify-content: flex-end; pointer-events: none; }
+.hero__shape { position: relative; flex: none; width: min(72%, 33svh); aspect-ratio: 1; margin-right: -6%; }
+.hero__shape img, .hero__shape video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.hero__copy, .hero__logos { position: relative; z-index: 1; padding-inline: max(var(--hero-gutter), env(safe-area-inset-left, 0px)) max(var(--hero-gutter), env(safe-area-inset-right, 0px)); }
+.hero__copy { margin-top: auto; display: grid; justify-items: start; }
+/* Tracking is tighter than the live -0.02em because the fallback face (Inter) sets wider than Grain. */
+.hero h1 { font-size: clamp(32px, 5.903vw, 106.25px); line-height: 0.94; letter-spacing: -0.05em; }
+.hero__lead { margin-top: 32px; max-width: 24.6em; font-size: clamp(17px, 1.667vw, 30px); line-height: 1.375; letter-spacing: -0.04em; color: var(--on-dark); }
+.hero__copy .btn { margin-top: 28px; }
+.hero__logos { --logo-unit: min(3.6vw, 16px); padding-top: 40px; padding-bottom: 9vh; }
+.hero__logos ul { display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px; }
+.hero__logos li { flex: none; display: flex; align-items: center; }
+.hero__logos .brk { flex-basis: 100%; height: 28px; }
+.hero__logos .brk--wide { display: none; }
+.hero__logos img { width: auto; max-width: none; height: calc(var(--u, 1.2) * var(--logo-unit)); transform: translateY(calc(var(--dy, 0) * var(--logo-unit))); filter: brightness(0) invert(1); opacity: 0.7; }
+/* Tablet: the shape stays in the flow above the copy. The live site floats it here, which lets it run under
+   the text on short screens; with the longer headline and the button that would happen on an upright tablet. */
+@media (min-width: 640px) {
+  .hero__shape { width: min(56%, 40svh); margin-right: -3.7%; }
+  .hero__logos { padding-bottom: 14vh; }
+}
+@media (min-width: 1024px) {
+  .hero { min-height: max(1000px, 100vh); min-height: max(1000px, 100svh); --hero-cap: calc(0.9 * max(1000px, 100svh) - 200px); }
+  .hero__spacer { height: 96px; }
+  .hero__stage { position: absolute; inset: 0; display: block; }
+  .hero__shape { position: absolute; top: 6%; right: -3.7%; margin-right: 0; width: min(50.2%, var(--hero-cap)); }
+  .hero__lead { margin-top: 60px; }
+  .hero__copy .btn { margin-top: 36px; }
+  .hero__logos { --logo-unit: min(1.6667vw, 30px); padding-top: 80px; padding-bottom: 135px; }
+  .hero__logos ul { gap: 0 80px; }
+  .hero__logos .brk--narrow { display: none; }
+  .hero__logos .brk--wide { display: block; height: 50px; }
+}
+
+/* ---------- Product preview under the hero: Nova at work on a plate, never on the purple ---------- */
+.showcase { background: var(--cream); padding-top: clamp(40px, 5vw, 72px); }
+.showcase__plate { aspect-ratio: 16 / 8.1; --ui-k: 1.02; }
+.showcase__plate .nova { position: absolute; right: -4%; top: 9.5%; }
 @media (max-width: 899px) {
-  .hero h1, .hero__side { grid-column: 1 / -1; }
-  .hero__plate { aspect-ratio: 4 / 4.9; --ui-k: 2.95; --ui-min: 10px; }
-  .hero__plate .nova { width: 32em; right: auto; left: 5%; top: 6%; }
+  .showcase__plate { aspect-ratio: 4 / 4.9; --ui-k: 2.95; --ui-min: 10px; }
+  .showcase__plate .nova { width: 32em; right: auto; left: 5%; top: 6%; }
   .nova__body { grid-template-columns: minmax(0, 1fr); min-height: 0; }
   .nova__doc { display: none; }
   .nova__chat { padding: 1.3em; }
   .plate__ctrl { min-height: 44px; }
-  .hero__logos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); --logo-unit: 11px; gap: 26px 20px; }
-  .hero__logos img { max-width: 100%; object-fit: contain; object-position: left center; }
 }
 
 /* ---------- 2. Trusted by ---------- */
@@ -795,10 +835,12 @@ a.itile:hover, a.itile:focus-visible { transform: translateY(-2px); box-shadow: 
 .reveal-on [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); transition-delay: var(--d, 0ms); }
 .reveal-on [data-reveal].is-in { opacity: 1; transform: none; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-.js .hero h1, .js .hero__side, .js .hero__plate, .js .hero__logos { animation: rise 0.9s var(--ease) both; }
-.js .hero__side { animation-delay: 0.08s; }
-.js .hero__plate { animation-delay: 0.18s; }
-.js .hero__logos { animation-delay: 0.3s; }
+.js .hero h1, .js .hero__lead, .js .hero__copy .btn, .js .hero__logos ul { animation: rise 0.9s var(--ease) both; }
+.js .hero__lead { animation-delay: 0.12s; }
+.js .hero__copy .btn { animation-delay: 0.2s; }
+.js .hero__logos ul { animation-delay: 0.32s; }
+@keyframes shape-in { from { opacity: 0; } to { opacity: 1; } }
+.js .hero__shape { animation: shape-in 1.2s var(--ease) both; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

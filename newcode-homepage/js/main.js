@@ -121,9 +121,8 @@
     });
   });
 
-  /* ---------- Closing CTA shape: upgrade the still to the looping film when it comes near ---------- */
-  var shape = $('[data-shape]');
-  function startShape() {
+  /* ---------- Faceted shape (hero and closing band): upgrade the still to the looping film when it comes near ---------- */
+  function startShape(shape) {
     var ua = navigator.userAgent;
     var isSafari = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(ua);
     var src = isSafari ? shape.getAttribute('data-mov') : shape.getAttribute('data-webm');
@@ -145,16 +144,19 @@
     var p = video.play();
     if (p && p.catch) p.catch(function () { /* autoplay refused: the still stays */ });
   }
-  if (shape && !reduceMotion && hasIO) {
+  var shapes = $$('[data-shape]');
+  if (shapes.length && !reduceMotion && hasIO) {
     var sio = new IntersectionObserver(function (entries) {
-      if (!entries[0].isIntersecting) return;
-      sio.disconnect();
-      startShape();
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        sio.unobserve(entry.target);
+        startShape(entry.target);
+      });
     }, { rootMargin: '600px 0px' });
-    sio.observe(shape);
+    shapes.forEach(function (el) { sio.observe(el); });
   }
 
-  /* ---------- Hero product loop: plays only while on screen, with a pause control ---------- */
+  /* ---------- Product preview loop: plays only while on screen, with a pause control ---------- */
   var players = $$('[data-play]');
   if (players.length && !reduceMotion && hasIO) {
     var pio = new IntersectionObserver(function (entries) {

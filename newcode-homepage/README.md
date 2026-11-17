@@ -1,6 +1,6 @@
 # Newcode homepage: coded prototype
 
-A working prototype of a new newcode.ai homepage. It started from `website-refresh-build-brief.md` (17 Nov 2026) and then took a newer direction from design: keep the Newcode colors, build a clearly better page, and show the product on photographic imagery instead of purple gradient backgrounds. It is a design artifact to agree direction. It is not the production site.
+A working prototype of a new newcode.ai homepage. It started from `website-refresh-build-brief.md` (17 Nov 2026) and then took a newer direction from design: keep the Newcode colors, build a clearly better page, and show the product on photographic imagery instead of purple gradient backgrounds. The hero is the one part kept as it is on the live site: the purple gradient with grain and the large faceted shape. It is a design artifact to agree direction. It is not the production site.
 
 ## Stack
 
@@ -47,4 +47,8 @@ Grain is the website typeface and is licensed, so the font file is not in this r
 
 ## Brand tokens
 
-All colors are the eight tokens from the brief, defined once in `:root` in `css/styles.css`. Deep purple is used on buttons, links, small accents and the closing band. Ink is used for text and the security band. Product UI never sits on a purple background.
+All colors are the eight tokens from the brief, defined once in `:root` in `css/styles.css`. Deep purple is used on buttons, links, small accents, the hero and the closing band. Ink is used for text and the security band. Product UI never sits on a purple background.
+
+## Hero
+
+The hero follows the live newcode.ai hero value for value: section height, gradient placement, grain overlay, the position and size of the faceted shape, type sizes and the logo row. Two things differ on purpose, both from the brief: the headline reads "AI for forward-thinking law firms" and there is a single Book a demo button.
