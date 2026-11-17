@@ -87,16 +87,18 @@
     window.addEventListener('resize', function () { if (window.innerWidth > 1023) setMobileMenu(false); });
   }
 
-  /* ---------- Hero shape: upgrade the still to the looping film ---------- */
-  var shape = $('[data-hero-shape]');
-  if (shape && !reduceMotion) {
+  /* ---------- Closing CTA shape: upgrade the still to the looping film when it comes near ---------- */
+  var shape = $('[data-shape]');
+  function startShape() {
     var ua = navigator.userAgent;
     var isSafari = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(ua);
+    var src = isSafari ? shape.getAttribute('data-mov') : shape.getAttribute('data-webm');
+    if (!src) return; /* no film for this browser on this host: the still stays */
     var video = doc.createElement('video');
     video.muted = true; video.loop = true; video.autoplay = true;
     video.setAttribute('muted', ''); video.setAttribute('playsinline', ''); video.setAttribute('aria-hidden', 'true');
     video.preload = 'auto';
-    video.src = isSafari ? shape.getAttribute('data-mov') : shape.getAttribute('data-webm');
+    video.src = src;
     video.style.opacity = '0';
     video.style.transition = 'opacity 0.6s ease';
     video.addEventListener('playing', function () {
@@ -104,11 +106,57 @@
       var still = $('img', shape);
       if (still) still.style.opacity = '0';
     }, { once: true });
-    video.addEventListener('error', function () { video.remove(); });
+    video.addEventListener('error', function () { video.style.display = 'none'; });
     shape.appendChild(video);
     var p = video.play();
     if (p && p.catch) p.catch(function () { /* autoplay refused: the still stays */ });
   }
+  if (shape && !reduceMotion && 'IntersectionObserver' in window) {
+    var sio = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      sio.disconnect();
+      startShape();
+    }, { rootMargin: '600px 0px' });
+    sio.observe(shape);
+  }
+
+  /* ---------- Product UI loops: play only while the frame is on screen ---------- */
+  var players = $$('[data-play]');
+  if (players.length && !reduceMotion && 'IntersectionObserver' in window) {
+    var pio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { entry.target.classList.toggle('is-playing', entry.isIntersecting); });
+    }, { threshold: 0.35 });
+    players.forEach(function (el) { pio.observe(el); });
+  }
+
+  /* ---------- Flow diagrams: wires run from each port to the block it feeds ---------- */
+  $$('.flow').forEach(function (flow) {
+    var svg = $('[data-wires]', flow);
+    if (!svg) return;
+    function draw() {
+      var r = flow.getBoundingClientRect();
+      if (!r.width) return;
+      var k = flow.offsetWidth / r.width;
+      svg.setAttribute('viewBox', '0 0 ' + flow.offsetWidth + ' ' + flow.offsetHeight);
+      $$('path', svg).forEach(function (path) {
+        var from = doc.getElementById(path.getAttribute('data-from'));
+        var to = doc.getElementById(path.getAttribute('data-to'));
+        if (!from || !to) return;
+        var fr = from.getBoundingClientRect();
+        var nr = from.closest('.node').getBoundingClientRect();
+        var tr = to.getBoundingClientRect();
+        var head = $('header', to).getBoundingClientRect();
+        var x1 = (nr.right - r.left) * k, y1 = (fr.top + fr.height / 2 - r.top) * k;
+        var x2 = (tr.left - r.left) * k, y2 = (head.top + head.height / 2 - r.top) * k;
+        var dx = Math.max(16, (x2 - x1) * 0.5);
+        path.setAttribute('d', 'M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + ' C' + (x1 + dx).toFixed(1) + ' ' + y1.toFixed(1) + ' ' + (x2 - dx).toFixed(1) + ' ' + y2.toFixed(1) + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1));
+      });
+    }
+    draw();
+    if ('ResizeObserver' in window) new ResizeObserver(draw).observe(flow);
+    window.addEventListener('load', draw);
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(draw);
+  });
 
   /* ---------- Rise on scroll ---------- */
   var revealEls = $$('[data-reveal]');

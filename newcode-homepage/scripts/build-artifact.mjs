@@ -14,10 +14,12 @@ const html = readFileSync(join(root, 'index.html'), 'utf8');
 const css = readFileSync(join(root, 'css/styles.css'), 'utf8').replaceAll('url("../assets/', 'url("assets/');
 const js = readFileSync(join(root, 'js/main.js'), 'utf8');
 
+// Artifact hosts do not serve .mov, so Safari keeps the still frame of the shape there.
 const body = html.slice(html.indexOf('<body>') + '<body>'.length, html.lastIndexOf('</body>'))
-  .replace(/<script src="js\/main\.js" defer><\/script>/, '');
+  .replace(/<script src="js\/main\.js" defer><\/script>/, '')
+  .replace(/ data-mov="[^"]*"/g, '');
 
-const page = `<title>Newcode Homepage Refresh</title>
+const page = `<title>Newcode Homepage Prototype</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
 <style>
