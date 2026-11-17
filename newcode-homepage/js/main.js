@@ -146,6 +146,19 @@
       video.style.opacity = '1';
       var still = $('img', shape);
       if (still) still.style.opacity = '0';
+      /* Once the film runs, offer the control that pauses it. */
+      var band = shape.closest('section');
+      var toggle = band ? $('[data-shape-toggle]', band) : null;
+      if (toggle && toggle.hidden) {
+        toggle.hidden = false;
+        toggle.addEventListener('click', function () {
+          var pause = toggle.getAttribute('aria-pressed') !== 'true';
+          toggle.setAttribute('aria-pressed', String(pause));
+          var label = $('[data-shape-toggle-label]', toggle);
+          if (label) label.textContent = pause ? 'Play the background animation' : 'Pause the background animation';
+          if (pause) { video.pause(); } else { var again = video.play(); if (again && again.catch) again.catch(function () {}); }
+        });
+      }
     }, { once: true });
     video.addEventListener('error', function () { video.style.display = 'none'; });
     shape.appendChild(video);
