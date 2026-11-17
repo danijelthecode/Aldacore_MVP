@@ -1,26 +1,19 @@
-/* Newcode homepage refresh prototype. Quiet motion only: rise on scroll, one count-up, loops inside product frames. */
+/* Newcode homepage prototype. Quiet motion only: rise on scroll, one count-up, loops inside product frames. */
 (function () {
   'use strict';
 
   var doc = document;
   var root = doc.documentElement;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
   var $ = function (sel, ctx) { return (ctx || doc).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || doc).querySelectorAll(sel)); };
 
-  /* ---------- Header: tone over dark bands, CTA after the hero ---------- */
+  /* ---------- Header: the demo button joins the pill once the hero has passed ---------- */
   var header = $('.site-header');
   var hero = $('.hero');
-  var darkBands = $$('[data-header-tone="dark"]');
   function updateHeader() {
-    if (!header) return;
-    var probe = header.getBoundingClientRect().top + 44;
-    var dark = darkBands.some(function (band) {
-      var r = band.getBoundingClientRect();
-      return r.top <= probe && r.bottom >= probe;
-    });
-    header.setAttribute('data-tone', dark ? 'dark' : 'light');
-    if (hero) header.classList.toggle('is-past-hero', hero.getBoundingClientRect().bottom < 80);
+    if (header && hero) header.classList.toggle('is-past-hero', hero.getBoundingClientRect().bottom < 90);
   }
   var ticking = false;
   function onScroll() {
@@ -56,7 +49,7 @@
       if (btn.getAttribute('aria-expanded') === 'true' && Date.now() - openedAt > 400) close(); else open();
     });
     item.addEventListener('mouseenter', open);
-    item.addEventListener('mouseleave', function () { timer = setTimeout(close, 160); });
+    item.addEventListener('mouseleave', function () { timer = setTimeout(close, 180); });
     item.addEventListener('focusout', function (e) { if (!item.contains(e.relatedTarget)) close(); });
     menu.addEventListener('click', function (e) { if (e.target.closest('a')) close(); });
   });
@@ -67,7 +60,7 @@
     if (open) open.focus();
     setMobileMenu(false);
   });
-  doc.addEventListener('click', function (e) { if (!e.target.closest('.nav-pill')) closeMenus(); });
+  doc.addEventListener('click', function (e) { if (!e.target.closest('.nav-links')) closeMenus(); });
 
   /* ---------- Mobile menu ---------- */
   var mobileToggle = $('[data-mobile-toggle]');
@@ -75,7 +68,8 @@
   function setMobileMenu(open) {
     if (!mobileToggle || !mobileMenu) return;
     mobileToggle.setAttribute('aria-expanded', String(open));
-    if (open && header) mobileMenu.style.paddingTop = Math.round(header.getBoundingClientRect().top + 92) + 'px';
+    var bar = $('.navbar');
+    if (open && bar) mobileMenu.style.paddingTop = Math.round(bar.getBoundingClientRect().bottom + 14) + 'px';
     mobileMenu.classList.toggle('is-open', open);
     doc.body.classList.toggle('menu-open', open);
     var label = $('[data-mobile-toggle-label]', mobileToggle);
@@ -86,6 +80,46 @@
     mobileMenu.addEventListener('click', function (e) { if (e.target.closest('a')) setMobileMenu(false); });
     window.addEventListener('resize', function () { if (window.innerWidth > 1023) setMobileMenu(false); });
   }
+
+  /* ---------- Tabs: audiences, and the feature views on the Nova and Aurora cards ---------- */
+  var tabSelectors = {};
+  $$('[data-tabs]').forEach(function (group) {
+    var tabs = $$('[role="tab"]', group);
+    function select(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        var panel = doc.getElementById(t.getAttribute('aria-controls'));
+        if (!panel) return;
+        panel.toggleAttribute('data-off', !on);
+        panel.setAttribute('aria-hidden', String(!on));
+      });
+      if (focus) tab.focus();
+      drawWires();
+    }
+    tabs.forEach(function (tab, i) {
+      tabSelectors[tab.id] = function () { select(tab, false); };
+      tab.addEventListener('click', function () { select(tab, false); });
+      tab.addEventListener('keydown', function (e) {
+        var next = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+        if (e.key === 'Home') next = tabs[0];
+        if (e.key === 'End') next = tabs[tabs.length - 1];
+        if (next) { e.preventDefault(); select(next, true); }
+      });
+    });
+    var first = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
+    if (first) select(first, false);
+  });
+  /* Links elsewhere on the page can open a specific tab before the page scrolls to it. */
+  $$('[data-tab-target]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var pick = tabSelectors[link.getAttribute('data-tab-target')];
+      if (pick) pick();
+    });
+  });
 
   /* ---------- Closing CTA shape: upgrade the still to the looping film when it comes near ---------- */
   var shape = $('[data-shape]');
@@ -111,7 +145,7 @@
     var p = video.play();
     if (p && p.catch) p.catch(function () { /* autoplay refused: the still stays */ });
   }
-  if (shape && !reduceMotion && 'IntersectionObserver' in window) {
+  if (shape && !reduceMotion && hasIO) {
     var sio = new IntersectionObserver(function (entries) {
       if (!entries[0].isIntersecting) return;
       sio.disconnect();
@@ -120,47 +154,58 @@
     sio.observe(shape);
   }
 
-  /* ---------- Product UI loops: play only while the frame is on screen ---------- */
+  /* ---------- Hero product loop: plays only while on screen, with a pause control ---------- */
   var players = $$('[data-play]');
-  if (players.length && !reduceMotion && 'IntersectionObserver' in window) {
+  if (players.length && !reduceMotion && hasIO) {
     var pio = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) { entry.target.classList.toggle('is-playing', entry.isIntersecting); });
     }, { threshold: 0.35 });
     players.forEach(function (el) { pio.observe(el); });
   }
+  $$('[data-pause]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var paused = btn.getAttribute('aria-pressed') !== 'true';
+      btn.setAttribute('aria-pressed', String(paused));
+      btn.parentElement.classList.toggle('is-paused', paused);
+      var label = $('[data-pause-label]', btn);
+      if (label) label.textContent = paused ? 'Play' : 'Pause';
+    });
+  });
 
-  /* ---------- Flow diagrams: wires run from each port to the block it feeds ---------- */
-  $$('.flow').forEach(function (flow) {
-    var svg = $('[data-wires]', flow);
-    if (!svg) return;
-    function draw() {
+  /* ---------- Flow diagrams: wires run from each port to the field or block it feeds ---------- */
+  function drawWires() {
+    $$('[data-wires]').forEach(function (svg) {
+      var flow = svg.parentElement;
       var r = flow.getBoundingClientRect();
-      if (!r.width) return;
+      if (!r.width || !flow.offsetWidth) return;
       var k = flow.offsetWidth / r.width;
       svg.setAttribute('viewBox', '0 0 ' + flow.offsetWidth + ' ' + flow.offsetHeight);
       $$('path', svg).forEach(function (path) {
         var from = doc.getElementById(path.getAttribute('data-from'));
         var to = doc.getElementById(path.getAttribute('data-to'));
         if (!from || !to) return;
+        var isNode = to.classList.contains('node');
+        var node = isNode ? to : to.closest('.node');
+        var anchor = isNode ? $('header', to) : to;
         var fr = from.getBoundingClientRect();
         var nr = from.closest('.node').getBoundingClientRect();
-        var tr = to.getBoundingClientRect();
-        var head = $('header', to).getBoundingClientRect();
+        var tr = node.getBoundingClientRect();
+        var ar = anchor.getBoundingClientRect();
         var x1 = (nr.right - r.left) * k, y1 = (fr.top + fr.height / 2 - r.top) * k;
-        var x2 = (tr.left - r.left) * k, y2 = (head.top + head.height / 2 - r.top) * k;
-        var dx = Math.max(16, (x2 - x1) * 0.5);
+        var x2 = (tr.left - r.left) * k, y2 = (ar.top + ar.height / 2 - r.top) * k;
+        var dx = Math.max(14, (x2 - x1) * 0.5);
         path.setAttribute('d', 'M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + ' C' + (x1 + dx).toFixed(1) + ' ' + y1.toFixed(1) + ' ' + (x2 - dx).toFixed(1) + ' ' + y2.toFixed(1) + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1));
       });
-    }
-    draw();
-    if ('ResizeObserver' in window) new ResizeObserver(draw).observe(flow);
-    window.addEventListener('load', draw);
-    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(draw);
-  });
+    });
+  }
+  drawWires();
+  window.addEventListener('load', drawWires);
+  window.addEventListener('resize', drawWires);
+  if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(drawWires);
 
   /* ---------- Rise on scroll ---------- */
   var revealEls = $$('[data-reveal]');
-  if (revealEls.length && 'IntersectionObserver' in window && !reduceMotion) {
+  if (revealEls.length && hasIO && !reduceMotion) {
     root.classList.add('reveal-on');
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -172,7 +217,7 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- Trusted by: names fill in as the list scrolls through the viewport ---------- */
+  /* ---------- Trusted by: names fill in as the list enters, and are all lit before it is centered ---------- */
   var sweep = $('[data-sweep]');
   var sweepItems = sweep ? $$('[data-sweep-item]', sweep) : [];
   if (sweep && !reduceMotion) sweep.classList.add('is-sweeping');
@@ -180,14 +225,13 @@
     if (!sweep || reduceMotion) return;
     var r = sweep.getBoundingClientRect();
     var vh = window.innerHeight;
-    var start = vh * 0.88, end = vh * 0.3;
-    var progress = (start - r.top) / (start - end + r.height * 0.55);
+    var progress = (vh * 0.94 - r.top) / (r.height + vh * 0.09);
     progress = Math.max(0, Math.min(1, progress));
     var lit = Math.ceil(progress * sweepItems.length);
     sweepItems.forEach(function (item, i) { item.classList.toggle('is-lit', i < lit); });
   }
 
-  /* ---------- How Newcode works: progress rail and active step ---------- */
+  /* ---------- How Newcode works: progress rail, and a one-time build inside each plate ---------- */
   var rail = $('[data-rail]');
   var steps = $$('[data-step]');
   function updateRail() {
@@ -198,14 +242,24 @@
     rail.style.setProperty('--progress', progress.toFixed(4));
     steps.forEach(function (step) {
       var sr = step.getBoundingClientRect();
-      step.classList.toggle('is-active', sr.top < mid && sr.bottom > mid);
       step.classList.toggle('is-done', sr.top < mid);
     });
   }
+  if (steps.length && hasIO && !reduceMotion) {
+    root.classList.add('steps-on');
+    var stepIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.closest('[data-step]').classList.add('has-played');
+        stepIO.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+    steps.forEach(function (step) { var plate = $('.plate', step); if (plate) stepIO.observe(plate); });
+  }
 
-  /* ---------- Count-up, once ---------- */
+  /* ---------- Count-up, once, on confirmed numbers only ---------- */
   var counters = $$('[data-count]');
-  if (counters.length && 'IntersectionObserver' in window && !reduceMotion) {
+  if (counters.length && hasIO && !reduceMotion) {
     var cio = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
@@ -227,33 +281,7 @@
     counters.forEach(function (el) { cio.observe(el); });
   }
 
-  /* ---------- Tabs (Solutions by audience) ---------- */
-  $$('[data-tabs]').forEach(function (group) {
-    var tabs = $$('[role="tab"]', group);
-    var panels = $$('[role="tabpanel"]', group);
-    function select(tab, focus) {
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.setAttribute('aria-selected', String(on));
-        t.tabIndex = on ? 0 : -1;
-      });
-      panels.forEach(function (p) { p.hidden = p.id !== tab.getAttribute('aria-controls'); });
-      if (focus) tab.focus();
-    }
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { select(tab, false); });
-      tab.addEventListener('keydown', function (e) {
-        var next = null;
-        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
-        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
-        if (e.key === 'Home') next = tabs[0];
-        if (e.key === 'End') next = tabs[tabs.length - 1];
-        if (next) { e.preventDefault(); select(next, true); }
-      });
-    });
-  });
-
-  /* ---------- Review notes: list every labeled placeholder and confirm flag ---------- */
+  /* ---------- Prototype notes: list every labeled placeholder and open point ---------- */
   var noteItems = $$('[data-note]');
   var noteList = $('[data-note-list]');
   var countEl = $('[data-ph-count]');
