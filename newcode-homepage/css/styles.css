@@ -1,7 +1,7 @@
 /* Newcode homepage, coded prototype (new direction, Nov 2026).
    Layout concept: 12-column grid, 1280px max width, cream and white bands in turn. Product UI is shown as
    crisp interface cards on quiet photographic plates, never on colored gradients.
-   Deep purple is the accent (buttons, links, numerals) and fills only the closing CTA. Ink fills only the security band. */
+   Deep purple is the accent (buttons, links, numerals) and fills the hero and the closing CTA. Ink fills only the security band. */
 
 /* ---------- Fonts ---------- */
 /* Grain is the Newcode website typeface. It is licensed, so the font file is not bundled here.
@@ -218,6 +218,7 @@ p { text-wrap: pretty; }
 .nav-links { display: flex; align-items: center; gap: clamp(14px, 1.9vw, 28px); font-size: var(--t-small); font-weight: var(--w-medium); }
 .nav-links > li > a, .nav-links > li > button { display: inline-flex; align-items: center; gap: 7px; height: 58px; white-space: nowrap; transition: opacity 0.2s var(--ease); }
 .nav-links > li > a:hover, .nav-links > li > button:hover { opacity: 0.55; }
+.nav-links > li > button[aria-expanded="true"], .nav-links > li > button[aria-expanded="true"]:hover { opacity: 1; color: var(--purple-deep); }
 .nav-links .caret { width: 8px; height: 8px; transition: transform 0.3s var(--ease); }
 .nav-links [aria-expanded="true"] .caret { transform: rotate(180deg); }
 .navbar__cta { max-width: 0; margin-left: calc(var(--nb-gap) * -1); padding-inline: 0; opacity: 0; overflow: hidden; visibility: hidden; transition: max-width 0.45s var(--ease), margin 0.45s var(--ease), padding 0.45s var(--ease), opacity 0.3s var(--ease), visibility 0.45s; }
@@ -239,9 +240,11 @@ p { text-wrap: pretty; }
 .nav-menu__panel .tag { padding: 3px 8px; font-size: 0.6875rem; }
 .nav-menu__foot { grid-column: 1 / -1; border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 8px; }
 .nav-menu__foot a { display: flex; align-items: center; justify-content: space-between; color: var(--purple-deep); }
-.nav-menu__card { align-self: stretch; border-radius: var(--radius-m); background: var(--cream); }
+.nav-menu__card { align-self: start; border-radius: var(--radius-m); background: var(--cream); }
 .nav-menu__card a { height: 100%; align-content: start; gap: 8px; padding: 16px; }
 .nav-menu__card a b { display: block; font-size: 1.0625rem; line-height: 1.25; letter-spacing: -0.012em; }
+.nav-menu__more { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; color: var(--purple-deep); font-size: var(--t-label); }
+.nav-menu__more .arrow { width: 11px; height: 11px; }
 
 .menu-toggle { display: none; align-items: center; gap: 10px; height: 44px; padding: 0 16px; border-radius: 999px; background: var(--cream); color: var(--ink); font-size: var(--t-small); font-weight: var(--w-medium); }
 .menu-toggle__icon { width: 16px; height: 10px; position: relative; }
@@ -331,21 +334,21 @@ body.menu-open { overflow: hidden; }
 .chat__thought .spin { opacity: 0; }
 
 /* Nova window (product preview under the hero) */
-.nova { display: flex; flex-direction: column; width: 68em; border-radius: 1.3em; overflow: hidden; background: var(--white); box-shadow: var(--ui-shadow); }
+.nova { display: flex; flex-direction: column; width: 74em; border-radius: 1.3em; overflow: hidden; background: var(--white); box-shadow: var(--ui-shadow); }
 .nova__bar { display: flex; align-items: center; gap: 1em; height: 3.5em; padding: 0 1.2em; border-bottom: 1px solid var(--ui-line); white-space: nowrap; }
 .nova__bar .wm { width: 6em; height: auto; color: var(--purple-deep); }
 .nova__bar span { font-weight: 500; }
 .nova__bar .sep { width: 1px; height: 1.4em; background: var(--ui-line); }
-.nova__bar .ui-chip { margin-left: auto; }
-.nova__body { display: grid; grid-template-columns: minmax(0, 1fr) 32em; min-height: 33em; }
+.nova__bar .ui-chip { margin-left: 0.4em; }
+.nova__body { display: grid; grid-template-columns: minmax(0, 1fr) 44em; min-height: 27em; }
 .nova__chat { display: flex; flex-direction: column; gap: 1.4em; padding: 1.6em; }
 .chat { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 1.05em; }
 .chat__answer { max-width: 92%; }
-.nova__doc { display: flex; flex-direction: column; gap: 0.8em; padding: 1em 0 0 1em; background: var(--ui-app); border-left: 1px solid var(--ui-line); overflow: hidden; }
+.nova__doc { display: flex; flex-direction: column; gap: 0.8em; padding: 1em calc(var(--bleed, 0px) + 1em) 0 1em; background: var(--ui-app); border-left: 1px solid var(--ui-line); overflow: hidden; }
 .doc__bar { display: flex; align-items: center; gap: 0.6em; font-size: 0.92em; font-weight: 500; white-space: nowrap; }
 .doc__bar svg { color: var(--purple-deep); }
-.doc__sheet { flex: 1; overflow: hidden; background: var(--white); border-radius: 0.3em 0 0 0; box-shadow: 0 0 0 1px var(--ui-line), 0 0.8em 1.8em -1em rgba(36, 28, 59, 0.25); padding: 1.4em 0 0 1.4em; }
-.doc__sheet img { width: 62em; max-width: none; }
+.doc__sheet { flex: 1; overflow: hidden; background: var(--white); border-radius: 0.3em 0.3em 0 0; box-shadow: 0 0 0 1px var(--ui-line), 0 0.8em 1.8em -1em rgba(36, 28, 59, 0.25); padding: 1.3em 1.3em 0; }
+.doc__sheet img { display: block; width: 100%; height: auto; }
 
 /* Product preview sequence: the default state is the finished frame. The loop only runs in view and can be paused. */
 @keyframes ui-in-1 { 0%, 2% { opacity: 0; transform: translateY(0.7em); } 5%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; } }
@@ -472,7 +475,7 @@ body.menu-open { overflow: hidden; }
 .hero {
   --hero-gutter: clamp(20px, 3.3333vw, 60px);
   position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column;
-  min-height: 100vh; min-height: 100svh; background: var(--purple-deep); color: var(--on-dark);
+  min-height: calc(100vh - var(--ribbon-h, 0px)); min-height: calc(100svh - var(--ribbon-h, 0px)); background: var(--purple-deep); color: var(--on-dark);
 }
 .hero__bg { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
 .hero__bg-flip { position: absolute; top: -15.75%; left: 0; width: 114.31%; min-width: 100%; height: 115.75%; transform: scaleY(-1); }
@@ -501,7 +504,7 @@ body.menu-open { overflow: hidden; }
   .hero__logos { padding-bottom: 14vh; }
 }
 @media (min-width: 1024px) {
-  .hero { min-height: max(1000px, 100vh); min-height: max(1000px, 100svh); --hero-cap: calc(0.9 * max(1000px, 100svh) - 200px); }
+  .hero { min-height: calc(max(1000px, 100vh) - var(--ribbon-h, 0px)); min-height: calc(max(1000px, 100svh) - var(--ribbon-h, 0px)); --hero-cap: calc(0.9 * max(1000px, 100svh) - 200px); }
   .hero__spacer { height: 96px; }
   .hero__stage { position: absolute; inset: 0; display: block; }
   .hero__shape { position: absolute; top: 6%; right: -3.7%; margin-right: 0; width: min(50.2%, var(--hero-cap)); }
@@ -514,16 +517,25 @@ body.menu-open { overflow: hidden; }
 }
 
 /* ---------- Product preview under the hero: Nova at work on a plate, never on the purple ---------- */
-.showcase { background: var(--cream); padding-top: clamp(40px, 5vw, 72px); }
-.showcase__plate { aspect-ratio: 16 / 8.1; --ui-k: 1.02; }
-.showcase__plate .nova { position: absolute; right: -4%; top: 9.5%; }
-@media (max-width: 899px) {
-  .showcase__plate { aspect-ratio: 4 / 4.9; --ui-k: 2.95; --ui-min: 10px; }
-  .showcase__plate .nova { width: 32em; right: auto; left: 5%; top: 6%; }
+.showcase { background: var(--cream); padding-top: clamp(28px, 3.6vw, 52px); }
+/* The window runs off the right edge by --bleed. Only empty pane crosses the edge: the document is fitted inside. */
+.showcase__plate { aspect-ratio: 16 / 7.4; --ui-k: 1.02; --ui-min: 10.5px; --bleed: 4cqw; }
+.showcase__plate .nova { position: absolute; right: calc(var(--bleed) * -1); top: 13%; }
+.showcase__caption { margin-top: 14px; font-size: var(--t-label); line-height: 1.5; color: var(--grey); }
+.showcase__caption a { color: var(--purple-deep); text-decoration: underline; text-underline-offset: 3px; }
+/* Tablet and phone: the chat alone, large enough to read, with the photograph's light to its right. */
+@media (max-width: 1023px) {
+  .showcase__plate { aspect-ratio: 16 / 11; --ui-k: 2; --ui-min: 10px; --ui-max: 22px; --bleed: 0px; }
+  .showcase__plate .nova { width: 32em; right: auto; left: 5%; top: 7%; }
   .nova__body { grid-template-columns: minmax(0, 1fr); min-height: 0; }
   .nova__doc { display: none; }
   .nova__chat { padding: 1.3em; }
   .plate__ctrl { min-height: 44px; }
+  .showcase__caption span.wide-only { display: none; }
+}
+@media (max-width: 639px) {
+  .showcase__plate { aspect-ratio: 4 / 4.9; --ui-k: 2.95; --ui-max: 14.5px; }
+  .showcase__plate .nova { top: 6%; }
 }
 
 /* ---------- 2. Trusted by ---------- */
@@ -532,11 +544,13 @@ body.menu-open { overflow: hidden; }
 .trusted__label { grid-column: 1 / span 2; font-size: 1.125rem; font-weight: var(--w-medium); letter-spacing: -0.01em; padding-top: clamp(8px, 1.2vw, 18px); }
 .trusted__body { grid-column: 3 / -1; display: grid; gap: 24px; }
 .trusted__list { font-size: clamp(1.625rem, 0.9rem + 2.7vw, 3.25rem); line-height: 1.17; letter-spacing: -0.032em; color: var(--ink); }
-.trusted__list a { background: linear-gradient(currentColor, currentColor) 0 96% / 0 1px no-repeat; transition: background-size 0.35s var(--ease); }
-.trusted__list a:hover, .trusted__list a:focus-visible { background-size: 100% 1px; }
+.trusted__list a { background: linear-gradient(currentColor, currentColor) 0 96% / 100% 1px no-repeat; transition: color 0.25s var(--ease); }
+.trusted__list a:hover, .trusted__list a:focus-visible { color: var(--purple-deep); }
+.trusted__list.is-sweeping [data-sweep-item] a { background-image: linear-gradient(var(--ink-soft), var(--ink-soft)); }
+.trusted__list.is-sweeping [data-sweep-item].is-lit a { background-image: linear-gradient(currentColor, currentColor); }
 .trusted__list.is-sweeping [data-sweep-item] { color: var(--ink-soft); transition: color 0.6s var(--ease); }
 .trusted__list.is-sweeping [data-sweep-item].is-lit { color: var(--ink); }
-@media (min-width: 720px) { .trusted__list [data-sweep-item]:not(.is-long) { white-space: nowrap; } }
+@media (min-width: 380px) { .trusted__list [data-sweep-item]:not(.is-long) { white-space: nowrap; } }
 @media (max-width: 899px) { .trusted__label, .trusted__body { grid-column: 1 / -1; } .trusted__label { padding-top: 0; } }
 
 /* ---------- 3. How Newcode works ---------- */

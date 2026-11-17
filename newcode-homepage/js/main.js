@@ -12,9 +12,17 @@
   /* ---------- Header: the demo button joins the pill once the hero has passed ---------- */
   var header = $('.site-header');
   var hero = $('.hero');
+  var heroAction = hero ? $('.btn', hero) : null;
   function updateHeader() {
-    if (header && hero) header.classList.toggle('is-past-hero', hero.getBoundingClientRect().bottom < 90);
+    /* The pill's button takes over the moment the hero's own button slides under the pill, so one is always in reach. */
+    var mark = heroAction || hero;
+    if (header && mark) header.classList.toggle('is-past-hero', mark.getBoundingClientRect().bottom < 76);
   }
+  /* The review ribbon sits above the hero. Subtract it so the first screen holds what the live hero holds. */
+  var ribbon = $('.proto-ribbon');
+  function setRibbonHeight() { root.style.setProperty('--ribbon-h', (ribbon ? ribbon.offsetHeight : 0) + 'px'); }
+  setRibbonHeight();
+  window.addEventListener('resize', setRibbonHeight);
   var ticking = false;
   function onScroll() {
     if (ticking) return;
