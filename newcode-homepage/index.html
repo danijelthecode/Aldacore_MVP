@@ -335,11 +335,11 @@
             </div>
           </div>
           <ul class="ui ui-card vig vig-run pop" style="--pd:380ms" aria-hidden="true">
-            <li><i><svg><use href="#u-check"/></svg></i>Retrieved agreement from email</li>
-            <li><i><svg><use href="#u-check"/></svg></i>Fetched Playbook from OneDrive</li>
-            <li><i><svg><use href="#u-check"/></svg></i>Attached PowerPoint presentation</li>
-            <li><i><svg><use href="#u-check"/></svg></i>Scheduled follow-up meeting</li>
-            <li><i><svg><use href="#u-check"/></svg></i>Sent</li>
+            <li><i><img src="assets/icons/outlook.webp" alt="" width="256" height="242" loading="lazy"></i>Retrieved agreement from email</li>
+            <li><i><img src="assets/icons/onedrive.svg" alt="" width="27" height="18" loading="lazy"></i>Fetched Playbook from OneDrive</li>
+            <li><i><img src="assets/icons/powerpoint.png" alt="" width="323" height="277" loading="lazy"></i>Attached PowerPoint presentation</li>
+            <li><i class="is-tick"><svg><use href="#u-check"/></svg></i>Scheduled follow-up meeting</li>
+            <li><i class="is-tick"><svg><use href="#u-check"/></svg></i>Sent</li>
           </ul>
         </figure>
       </li>
@@ -349,9 +349,9 @@
           <p class="how__num" aria-hidden="true">02</p>
           <h3>Contextualize</h3>
           <p>Retrieve information and knowledge intelligently from your connected systems. Our retrieval agent plans, searches, evaluates, and iterates until the context is right, guided by firm-defined taxonomy, labels, and ethical walls.</p>
-          <p class="how__shown">Shown in <a href="#product-nova">Nova</a>: court dates extracted from a scheduling order, next to the calendar entry they feed.</p>
+          <p class="how__shown">Shown in <a href="#product-nova">Nova</a>: court dates extracted from a scheduling order, beside a calendar entry for one of the deadlines.</p>
         </div>
-        <figure class="plate" data-reveal style="--d:80ms" role="img" aria-label="Nova reading Court_Scheduling_Order.docx for the plaintiff and returning a table of court dates and deadlines. Behind it, a calendar entry for the exposure chart, trust authorizations and witness IDs due on 12 August.">
+        <figure class="plate" data-reveal style="--d:80ms" role="img" aria-label="Nova reading Court_Scheduling_Order.docx for the plaintiff and returning a table of court dates and deadlines. Above it, the title and date of a calendar entry for the exposure chart, trust authorizations and witness IDs due on 12 August.">
           <img class="plate__photo" src="assets/plates/travertine.webp" alt="" width="1600" height="1067" loading="lazy">
           <div class="ui ui-doc vig vig-cal pop" aria-hidden="true"><img src="assets/product/doc-calendar-item.webp" alt="" width="1800" height="607" loading="lazy"></div>
           <div class="ui ui-card vig vig-context pop" style="--pd:320ms" aria-hidden="true">
@@ -377,7 +377,7 @@
           <p class="how__num" aria-hidden="true">03</p>
           <h3>Create</h3>
           <p>Create case assessments, conduct discovery, perform analysis and research, draft documents, prepare trial submissions, provide strategic advice, conduct due diligence, support negotiations, and manage deals, all from your contextualized data.</p>
-          <p class="how__shown">Shown: a mutual non-disclosure agreement in redline, beside the documents it sits with.</p>
+          <p class="how__shown">Shown: NDAs arriving through the legal front door and filing into a single intake list.</p>
         </div>
         <figure class="plate" data-reveal style="--d:80ms" role="img" aria-label="A mutual product evaluation non-disclosure agreement with one tracked change, beside a list of documents: a cybersecurity assessment playbook, an M&amp;A due diligence NDA and five further NDAs.">
           <img class="plate__photo" src="assets/plates/paper-sheets.webp" alt="" width="1600" height="1067" loading="lazy">
@@ -405,15 +405,16 @@
           <p class="how__shown">Shown in <a href="#product-aurora">Aurora</a>: guardrails, agent policies and a human review step.</p>
         </div>
         <figure class="plate" data-reveal style="--d:80ms" role="img" aria-label="A guarded flow in Aurora: a Guardrails block and an Agent Policies block set to ethical_walls and confidentiality, wired into a loan agreement agent and a human review step.">
-          <img class="plate__photo" src="assets/plates/walnut-desk.webp" alt="" width="1600" height="1067" loading="lazy">
+          <img class="plate__photo plate__photo--walnut" src="assets/plates/walnut-desk.webp" alt="" width="1600" height="1067" loading="lazy">
           <div class="ui canvas canvas-control pop" aria-hidden="true">
             <svg class="wires" preserveAspectRatio="none" data-wires>
-              <path data-from="fc-pass" data-to="fc-agent-input"/>
-              <path class="is-live" data-from="fc-guarded" data-to="fc-agent-tools"/>
-              <path data-from="fc-fail" data-to="fc-review"/>
+              <path class="w-pass" data-from="fc-pass" data-to="fc-agent-input"/>
+              <path class="w-tools is-live" data-from="fc-guarded" data-to="fc-agent-tools"/>
+              <path class="w-fail" data-from="fc-fail" data-to="fc-review"/>
             </svg>
+            <svg class="wire-loop" viewBox="0 0 148.5 53"><path d="M135.5 0a13 13 0 0 1 0 26H13.5a13.5 13.5 0 0 0 0 27"/></svg>
             <div class="canvas__bar"><span class="ui-btn ui-btn--ghost">Playground</span><span class="ui-btn">Publish</span></div>
-            <div class="node" style="left:1.5em;top:14em;width:16.5em">
+            <div class="node node--guard">
               <header><i><svg><use href="#u-shield"/></svg></i>Guardrails</header>
               <p>Validates input text using LLM-based security guardrails.</p>
               <span class="lbl">Guardrails</span>
@@ -421,7 +422,7 @@
               <span class="port" id="fc-pass">Pass</span>
               <span class="port" id="fc-fail">Fail</span>
             </div>
-            <div class="node" style="left:22em;top:5.5em;width:16em">
+            <div class="node node--policies">
               <header><i><svg><use href="#u-shield"/></svg></i>Agent Policies</header>
               <p>Compliant use of tools</p>
               <div class="seg"><span>Generate</span><span class="is-on">Guard</span></div>
@@ -430,7 +431,7 @@
               <span class="field">confidentiality</span>
               <span class="port" id="fc-guarded">Guarded Tools</span>
             </div>
-            <div class="node" style="left:42em;top:4.5em;width:18em">
+            <div class="node node--agent">
               <header><i><svg><use href="#u-spark"/></svg></i>Loan Agreement Agent</header>
               <p>Produces loan reviews.</p>
               <span class="lbl">Tools</span>
@@ -438,7 +439,7 @@
               <span class="lbl">Input</span>
               <span class="field" id="fc-agent-input">Receiving input</span>
             </div>
-            <div class="node" id="fc-review" style="left:42em;top:25em;width:18em">
+            <div class="node node--review" id="fc-review">
               <header><i><svg><use href="#u-user"/></svg></i>Human Review</header>
               <p>Pause for a human decision and route the action.</p>
               <span class="field">Outputs: Approve, Reject</span>

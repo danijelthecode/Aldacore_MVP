@@ -379,14 +379,17 @@ body.menu-open { overflow: hidden; }
 
 /* Vignettes placed on plates */
 .vig { position: absolute; }
-.vig-cowork { left: 7%; top: 10%; width: 44em; padding: 1.5em 1.5em 1.3em; display: grid; gap: 1em; }
+.vig-cowork { left: 5%; top: 6%; width: 44em; padding: 1.5em 1.5em 1.3em; display: grid; gap: 1em; }
 .vig-cowork > p { font-size: 1.5em; letter-spacing: -0.02em; color: var(--ink-soft); text-align: center; padding: 0.2em 0 0; }
-.vig-run { right: -2%; bottom: 9%; width: 21em; padding: 1.1em 1.2em; display: grid; gap: 0.75em; }
-.vig-run li { display: flex; align-items: center; gap: 0.6em; font-size: 0.94em; white-space: nowrap; }
-.vig-run li i { display: grid; place-items: center; width: 1.5em; height: 1.5em; border-radius: 50%; background: var(--purple-deep); color: var(--white); flex: none; }
-.vig-run li i svg { width: 0.9em; height: 0.9em; }
-.vig-cal { left: 5%; top: 8%; width: 47em; }
-.vig-context { right: 5%; bottom: 8%; width: 36em; padding: 1.3em; display: grid; gap: 0.9em; justify-items: start; }
+.vig-run { right: 5%; bottom: 7%; padding: 0.9em 1.4em 0.9em 0.9em; display: grid; gap: 0.6em; }
+.vig-run li { display: flex; align-items: center; gap: 0.7em; font-size: 0.94em; white-space: nowrap; }
+.vig-run li i { position: relative; display: grid; place-items: center; width: 2em; height: 2em; border-radius: 50%; background: var(--white); box-shadow: 0 0 0 1px var(--ui-line), 0.12em 0.22em 0.5em -0.2em rgba(36, 28, 59, 0.4); flex: none; }
+.vig-run li i img { width: 1.2em; height: 1.2em; object-fit: contain; }
+.vig-run li i svg { width: 1.2em; height: 1.2em; padding: 0.22em; border-radius: 50%; background: var(--grey); color: var(--white); stroke-width: 1.8; }
+.vig-run li + li i::before { content: ""; position: absolute; left: 50%; bottom: calc(100% + 0.17em); width: 1px; height: 0.3em; background: rgba(36, 28, 59, 0.22); }
+.vig-cal { left: 5%; top: 7%; width: 90%; aspect-ratio: 1520 / 196; min-height: 0; border-radius: 0.6em; }
+.vig-cal img { width: 118.42%; margin: -9.21% 0 0 -1.58%; }
+.vig-context { right: 5%; bottom: 7%; width: 36em; padding: 1.3em; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.9em; justify-items: start; }
 .vig-nda { left: 6%; top: 9%; width: 43em; }
 .vig-files { right: 4%; bottom: 8%; width: 24em; padding: 0.5em 0.4em; }
 .vig-files p { padding: 0.5em 0.8em; font-size: 0.88em; color: var(--grey); border-bottom: 1px solid var(--ui-line); }
@@ -592,22 +595,70 @@ body.menu-open { overflow: hidden; }
 .how__step .plate { grid-column: 6 / -1; aspect-ratio: 3 / 2; --ui-k: 1.72; }
 .how__caps { display: grid; gap: 18px; margin-top: clamp(56px, 7vw, 104px); padding-top: 32px; border-top: 1px solid var(--hairline); }
 .how__caps-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
+/* Step plates. From 900px up the UI sits on a 3:2 plate and scales with it. */
+/* The walnut photograph has a lamp base in its top right corner; the frame is set so that corner stays outside. */
+.plate__photo--walnut { object-position: 0 100%; transform: scale(1.36); transform-origin: 0 100%; }
+/* The build inside a plate starts with the plate's own reveal, so a plate is never seen as a bare photograph. */
+.steps-on .how__step .plate.is-in .pop { animation: ui-pop 0.7s var(--ease) both; animation-delay: calc(var(--pd, 0ms) + 160ms); }
+/* Control: the canvas sits whole inside the plate, and the blocks are placed so every wire runs in the open from port to target. */
+.canvas-control { right: 5%; top: 7%; bottom: 7%; width: auto; height: auto; }
+.node--guard { left: 1.6em; top: 14.6em; width: 16.7em; }
+.node--policies { left: 19.9em; top: 4.6em; width: 14.4em; }
+.node--agent { right: 1.6em; top: 10.6em; width: 16.3em; }
+.node--review { right: 1.6em; top: 25.6em; width: 16.3em; }
+.wire-loop { display: none; }
+
+/* Under 900px the step stacks and each plate takes its height from the UI on it, so every card is whole at any width. */
 @media (max-width: 899px) {
   .how__text, .how__step .plate { grid-column: 1 / -1; }
   .how__step { row-gap: 24px; }
-  .how__step .plate { margin-left: clamp(36px, 4vw, 56px); aspect-ratio: 4 / 4.4; --ui-k: 3; --ui-min: 9px; }
-  .vig-cowork { left: 5%; right: 5%; top: 6%; width: auto; }
-  .vig-run { right: 5%; bottom: 6%; width: 20em; }
-  .vig-cal { left: 5%; top: 5%; width: 150%; }
-  .vig-context { left: 5%; right: 5%; bottom: 5%; width: auto; }
-  .vig-nda { left: 5%; top: 5%; width: 130%; }
-  .vig-files { right: 5%; bottom: 5%; width: 22em; }
-  .canvas-control { left: 4%; right: 4%; top: 4%; bottom: 4%; width: auto; height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em 1.6em; align-content: center; padding: 3.6em 1em 1em; }
-  .canvas-control .node { position: static; width: auto !important; font-size: 0.82em; align-self: start; }
-  .canvas-control .node:nth-child(3) { order: 1; }
-  .canvas-control .node:nth-child(5) { order: 2; }
-  .canvas-control .node:nth-child(4) { order: 3; }
-  .canvas-control .node:nth-child(6) { order: 4; }
+  .how__step .plate { margin-left: clamp(36px, 4vw, 56px); aspect-ratio: auto; display: flex; flex-direction: column; align-items: flex-start; padding: max(14px, 5.5%) max(12px, 5%) max(16px, 6%); --ui-k: 2.4; }
+  .how__step .plate > .ui { position: relative; inset: auto; max-width: 100%; }
+  .vig-cowork, .vig-cal, .vig-nda, .canvas-control { width: 100%; }
+  .vig-run, .vig-context, .vig-files { align-self: flex-end; margin-top: 1em; }
+  /* The dates card overlaps only the empty end of the calendar entry's date row */
+  .vig-context { width: min(36em, 70%); margin-top: -1.7em; }
+  /* 720 to 899: all four blocks, two by two. Both source blocks sit left and both targets right, in the same order top to bottom, so no wire crosses another. */
+  .canvas-control { height: 36em; }
+  .node--guard, .node--policies { left: 1.5em; width: 41%; }
+  .node--agent, .node--review { right: 1.5em; width: 41%; }
+  .node--policies { top: 5.2em; }
+  .node--guard { top: 23.4em; }
+  .node--agent { top: 12em; }
+  .node--review { top: 27.6em; }
+}
+/* Under 720px each plate shows one piece of UI, with its text at 10px or more. */
+@media (max-width: 719px) {
+  .how__step .plate { padding: max(12px, 5%) max(10px, 4%) max(14px, 5.5%); --ui-k: 3.5; --ui-min: 11px; }
+  .vig-cal, .vig-files { display: none; }
+  .vig-cowork { padding: 1.2em 0.9em 0.9em; }
+  .vig-cowork .composer { padding: 0.8em; }
+  .vig-cowork .composer__row { flex-wrap: wrap; gap: 0.3em; }
+  .vig-cowork .ui-chip { gap: 0.3em; padding: 0 0.55em; }
+  .vig-cowork .composer__plus, .vig-cowork .ui-send { width: 2.1em; height: 2.1em; }
+  .vig-context { width: 100%; margin-top: 0; padding: 0.9em; }
+  .vig-context .ui-file { gap: 0.55em; padding: 0.45em 0.75em 0.45em 0.45em; }
+  .vig-context .ui-file > i { width: 2em; height: 2em; }
+  .vig-context .ui-file small { font-size: 0.92em; }
+  /* The agreement page alone, trimmed to its text block so it reads as large as the plate allows */
+  .vig-nda { aspect-ratio: 1408 / 1003; min-height: 0; }
+  .vig-nda img { width: 113.64%; margin: -6.82% 0 0 -6.82%; }
+  /* Guardrails and Human Review only, joined by the Fail wire. 580 to 719: side by side. */
+  .canvas-control { height: auto; display: flex; align-items: flex-start; justify-content: space-between; padding: 4.4em 1.2em 1.4em; --ui-k: 2.3; }
+  .canvas-control .node { position: relative; inset: auto; font-size: 1em; }
+  .canvas-control .node p, .canvas-control .node .lbl, .canvas-control .node .field, .canvas-control .node .port, .canvas-control .ui-btn { font-size: 0.96em; }
+  .node--policies, .node--agent, .canvas-control .w-pass, .canvas-control .w-tools { display: none; }
+  .node--guard { width: 19.8em; }
+  .node--review { width: 14.8em; margin-top: 11.4em; }
+}
+/* Under 580px the two blocks stack. The Fail wire leaves the port, passes between the blocks and enters Human Review from its left. */
+@media (max-width: 579px) {
+  .canvas-control { display: grid; grid-template-columns: minmax(0, 1fr) 12.2em 2.6em; grid-template-rows: auto 2.05em auto; padding: 4.3em 1em 1.3em; --ui-k: 3.5; }
+  .canvas-control .wires { display: none; }
+  .node--guard { grid-column: 1 / 3; grid-row: 1; width: auto; }
+  .node--review { grid-column: 2 / 4; grid-row: 3; width: auto; margin-top: 0; }
+  .canvas-control .wire-loop { display: block; grid-column: 2; grid-row: 2; width: 14.85em; height: 5.3em; max-width: none; margin: -1.5em 0 0 -1.35em; overflow: visible; fill: none; stroke: var(--purple-light); stroke-width: 1.6; }
+  .canvas-control .wire-loop path { vector-effect: non-scaling-stroke; }
 }
 
 /* ---------- 4. Product suite ---------- */
