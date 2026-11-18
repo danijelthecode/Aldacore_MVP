@@ -124,8 +124,12 @@
   /* Links elsewhere on the page can open a specific tab before the page scrolls to it. */
   $$('[data-tab-target]').forEach(function (link) {
     link.addEventListener('click', function () {
-      var pick = tabSelectors[link.getAttribute('data-tab-target')];
-      if (pick) pick();
+      var tab = doc.getElementById(link.getAttribute('data-tab-target'));
+      var pick = tab ? tabSelectors[tab.id] : null;
+      if (!pick) return;
+      pick();
+      /* Once the browser has followed the link to the tabs, the chosen tab takes keyboard focus without a second scroll. */
+      window.setTimeout(function () { tab.focus({ preventScroll: true }); }, 0);
     });
   });
 
@@ -489,6 +493,13 @@
       var a = doc.createElement('a');
       a.href = '#' + id;
       a.textContent = el.getAttribute('data-note');
+      /* A note that sits in a hidden tab panel: open its tab first, so the jump lands on something visible. */
+      a.addEventListener('click', function () {
+        var panel = el.closest('[role="tabpanel"]');
+        if (!panel || !panel.hasAttribute('data-off')) return;
+        var tab = $('[role="tab"][aria-controls="' + panel.id + '"]');
+        if (tab && tabSelectors[tab.id]) tabSelectors[tab.id]();
+      });
       li.appendChild(a);
       noteList.appendChild(li);
     });
