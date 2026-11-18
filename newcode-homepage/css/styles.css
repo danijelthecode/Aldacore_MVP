@@ -477,7 +477,7 @@ body.menu-open { overflow: hidden; }
   .hero__lead { margin-top: 24px; }
   .hero__copy .btn { margin-top: 20px; }
   .hero__logos { order: 1; padding-top: 28px; padding-bottom: max(20px, calc(9vh - 46px)); }
-  .shape-toggle { position: relative; right: auto; bottom: auto; flex: none; align-self: flex-end; margin: -45px max(var(--hero-gutter, 20px), env(safe-area-inset-right, 0px)) 1px 0; }
+  .hero .shape-toggle { position: relative; right: auto; bottom: auto; flex: none; align-self: flex-end; margin: -45px max(var(--hero-gutter, 20px), env(safe-area-inset-right, 0px)) 1px 0; }
 }
 /* Tablet: the shape stays in the flow above the copy. The live site floats it here, which lets it run under
    the text on short screens; with the longer headline and the button that would happen on an upright tablet. */
