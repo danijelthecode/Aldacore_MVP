@@ -584,6 +584,34 @@ body.menu-open { overflow: hidden; }
 .node--review { right: 1.6em; top: 25.6em; width: 16.3em; }
 .wire-loop { display: none; }
 
+/* Stacking cards (desktop, windows tall enough to hold a card): each step pins under the header and the next one slides
+   up over it. The covered card eases back (scale and fade, driven by --cover from main.js), so at the end only step 04 shows. */
+@media (min-width: 1100px) and (min-height: 680px) {
+  .how__steps { display: block; --stack-top: 96px; }
+  .how__steps::before { display: none; }
+  .how__step {
+    position: sticky; top: var(--stack-top); margin-bottom: 0;
+    padding: clamp(28px, 2.6vw, 40px); border-radius: var(--radius-xl); background: var(--white);
+    box-shadow: 0 0 0 1px var(--hairline), 0 -24px 60px -36px rgba(36, 28, 59, 0.35);
+    transform-origin: 50% 0; transform: scale(calc(1 - 0.05 * var(--cover, 0)));
+  }
+  /* The last card gets room to reach the top and cover step 03 fully before the stack scrolls away. */
+  /* Spacing sits above each card: a bottom margin would make a pinned card let go early. */
+  .how__step + .how__step { margin-top: 18vh; }
+  /* Room after the last card (inside the list, so the sticky cards stay pinned) for step 04 to settle over step 03. */
+  .how__steps::after { display: block; position: static; content: ""; width: auto; height: calc(var(--stack-top) + 12vh); background: none; }
+  /* Once a card is fully covered it steps out, so when the stack scrolls away only the last card is left. */
+  .how__step { transition: opacity 0.35s var(--ease); }
+  .how__step.is-buried { opacity: 0; }
+  .how__step > * { opacity: calc(1 - 0.55 * var(--cover, 0)); }
+  .how__text { padding-left: 0; }
+  .how__text::before { display: none; }
+  .how__step .how__num { color: var(--purple-deep); }
+}
+@media (min-width: 1100px) and (min-height: 680px) and (prefers-reduced-motion: reduce) {
+  .how__step { transform: none; }
+  .how__step > * { opacity: 1; }
+}
 /* Under 900px the step stacks and each plate takes its height from the UI on it, so every card is whole at any width. */
 /* Below 1100px two columns would shrink the UI under 9px, so the steps stack: text, then a wide plate. */
 @media (max-width: 1099px) {

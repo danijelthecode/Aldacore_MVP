@@ -396,7 +396,22 @@
   /* ---------- How Newcode works: progress rail, and a one-time build inside each plate ---------- */
   var rail = $('[data-rail]');
   var steps = $$('[data-step]');
+  /* Stacking cards: each step's --cover runs 0 to 1 as the next card slides up over it. */
+  function updateStack() {
+    if (!steps.length) return;
+    var stacked = getComputedStyle(steps[0]).position === 'sticky';
+    steps.forEach(function (step, i) {
+      var next = steps[i + 1];
+      if (!stacked || !next) { step.style.removeProperty('--cover'); step.classList.remove('is-buried'); return; }
+      var top = step.getBoundingClientRect().top;
+      var h = step.offsetHeight;
+      var p = (top + h - next.getBoundingClientRect().top) / h;
+      step.style.setProperty('--cover', Math.max(0, Math.min(1, p)).toFixed(3));
+      step.classList.toggle('is-buried', p >= 0.995);
+    });
+  }
   function updateRail() {
+    updateStack();
     if (!rail) return;
     var r = rail.getBoundingClientRect();
     var mid = window.innerHeight * 0.55;
