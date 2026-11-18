@@ -1353,17 +1353,6 @@ a.itile:hover, a.itile:focus-visible { transform: translateY(-2px); box-shadow: 
   .site-footer__offices ul { grid-template-columns: minmax(0, 1fr); }
 }
 
-/* ---------- Prototype notes (review chrome, not part of the design) ---------- */
-.proto-notes { background: var(--lavender); color: var(--ink); padding-block: 48px calc(48px + env(safe-area-inset-bottom, 0px)); border-top: 1px dashed rgba(87, 6, 140, 0.45); font-size: var(--t-small); }
-.proto-notes .wrap { display: grid; gap: 16px; }
-.proto-notes .wrap > * { max-width: 60rem; }
-.proto-notes h2 { font-size: 1.5rem; letter-spacing: -0.02em; }
-.proto-notes ol { display: grid; gap: 8px; padding-left: 1.6em; list-style: decimal; }
-.proto-notes ol a { text-decoration: underline; text-decoration-color: rgba(87, 6, 140, 0.4); text-underline-offset: 3px; }
-.proto-notes__more { display: grid; gap: 8px; padding: 16px 0 0 1.4em; border-top: 1px solid var(--hairline); list-style: disc; color: var(--grey); }
-
-html:not(.js) .js-only { display: none; }
-
 /* ---------- Motion ---------- */
 .reveal-on [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); transition-delay: var(--d, 0ms); }
 .reveal-on [data-reveal].is-in { opacity: 1; transform: none; }

@@ -30,7 +30,7 @@ Any static host works as is (Vercel, Netlify, GitHub Pages, S3): publish this fo
 
 - Copy, customer names, quotes and product descriptions are taken from the live newcode.ai pages as captured on Nov 17, 2026. Copy was changed only where the brief marks it as duplicated or broken (typos, em dashes, UK spellings, the harness story told more than once).
 - Customer logos, portraits, office photos, the film still and the three document images are Newcode's own files from the live site.
-- Anything missing or unconfirmed is a labeled placeholder on the page. The full list is generated at the bottom of the page under "Prototype notes".
+- Anything missing or unconfirmed is labeled in place on the page ("Placeholder" or "To confirm").
 
 ## How the product imagery is made
 
@@ -39,7 +39,7 @@ Two layers, never one generated picture of an interface.
 1. A plate: a generated photograph of a real material or room (`assets/plates/`), with an empty area, one light source from the left, and no text, screens, logos or people.
 2. The product UI on top: an HTML rebuild of screens that newcode.ai shows today, with the same demo content. It lives in `index.html` under the `.ui` class and scales with its plate.
 
-For production, replace each HTML rebuild with a 2x export of the real screen from the product design file, and replace or approve each plate. Both points are listed on the page under "Prototype notes".
+For production, replace each HTML rebuild with a 2x export of the real screen from the product design file, and replace or approve each plate.
 
 ## Typeface
 

@@ -598,30 +598,5 @@
     drift(band);
   });
 
-  /* ---------- Prototype notes: list every labeled placeholder and open point ---------- */
-  var noteItems = $$('[data-note]');
-  var noteList = $('[data-note-list]');
-  var countEl = $('[data-ph-count]');
-  if (countEl && noteItems.length) countEl.textContent = noteItems.length + ' placeholders and open points';
-  if (noteList) {
-    noteItems.forEach(function (el, i) {
-      var id = el.id || ('note-' + (i + 1));
-      el.id = id;
-      var li = doc.createElement('li');
-      var a = doc.createElement('a');
-      a.href = '#' + id;
-      a.textContent = el.getAttribute('data-note');
-      /* A note that sits in a hidden tab panel: open its tab first, so the jump lands on something visible. */
-      a.addEventListener('click', function () {
-        var panel = el.closest('[role="tabpanel"]');
-        if (!panel || !panel.hasAttribute('data-off')) return;
-        var tab = $('[role="tab"][aria-controls="' + panel.id + '"]');
-        if (tab && tabSelectors[tab.id]) tabSelectors[tab.id]();
-      });
-      li.appendChild(a);
-      noteList.appendChild(li);
-    });
-  }
-
   updateHeader(); updateSweep(); updateRail();
 })();
