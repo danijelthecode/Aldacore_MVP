@@ -571,7 +571,8 @@ body.menu-open { overflow: hidden; }
 .wire-loop { display: none; }
 
 /* Under 900px the step stacks and each plate takes its height from the UI on it, so every card is whole at any width. */
-@media (max-width: 899px) {
+/* Below 1100px two columns would shrink the UI under 9px, so the steps stack: text, then a wide plate. */
+@media (max-width: 1099px) {
   .how__text, .how__step .plate { grid-column: 1 / -1; }
   .how__step { row-gap: 24px; }
   .how__step .plate { margin-left: clamp(36px, 4vw, 56px); aspect-ratio: auto; display: flex; flex-direction: column; align-items: flex-start; padding: max(14px, 5.5%) max(12px, 5%) max(16px, 6%); --ui-k: 2.4; }
