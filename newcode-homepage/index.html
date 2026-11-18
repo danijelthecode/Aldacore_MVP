@@ -1044,8 +1044,8 @@
     </div>
 
     <div class="deploy" data-reveal>
-      <h3>Deployment</h3>
-      <ul class="deploy__cards">
+      <div class="security__label"><h3>Deployment</h3><span class="flag">To confirm</span></div>
+      <ul class="deploy__row">
         <li>Newcode cloud on Azure, with a private instance</li>
         <li>Your own cloud</li>
         <li>Fully offline, on-premises</li>
@@ -1054,7 +1054,7 @@
 
     <div class="security__cols">
       <div class="scol" data-reveal>
-        <h3>Data</h3>
+        <div class="security__label"><h3>Data</h3><span class="flag">To confirm</span></div>
         <ul>
           <li>AES-256 encryption at rest</li>
           <li>TLS 1.2+ encryption in transit</li>
@@ -1063,7 +1063,7 @@
         </ul>
       </div>
       <div class="scol" data-reveal style="--d:80ms">
-        <h3>Access</h3>
+        <div class="security__label"><h3>Access</h3><span class="flag">To confirm</span></div>
         <ul>
           <li>SSO and MFA</li>
           <li>Granular permissions</li>
@@ -1074,7 +1074,7 @@
     </div>
 
     <div class="security__notes">
-      <p class="note-line"><span class="flag" data-note="Security: the deployment, data and access statements come from the build brief. The trust center could not be read from the build environment. Check each line against it before launch.">To confirm</span> Statements come from the build brief. Check each against the trust center before launch.</p>
+      <p class="note-line"><span class="flag" data-note="Security: the deployment, data and access statements come from the build brief. One line, on firm policies and guardrails for agents, comes from the Aurora page instead. The trust center could not be read from the build environment. Check each line against it before launch.">To confirm</span> Statements come from the build brief, except the last Access line, which comes from the Aurora page. Check each against the trust center before launch.</p>
       <p class="note-line" data-note="Certifications: no SOC 2 or ISO 27001 certification is confirmed. No badges are shown. Add them only once verified."><span class="ph__tag">Placeholder</span> Certifications appear here once verified. None is confirmed today, so none is shown.</p>
     </div>
   </div>
@@ -1083,25 +1083,24 @@
 <!-- 10. Academy and latest news (two-up) -->
 <section class="band band--white learn" id="academy" aria-label="Academy and latest news">
   <div class="wrap">
-    <div class="learn__top" data-reveal>
-      <header class="section-head">
+    <div class="learn__grid">
+      <div class="academy" data-reveal>
         <p class="eyebrow">Newcode Academy</p>
         <h2>Understand, apply and advance AI in practice</h2>
-        <p>Blending deep technological expertise with real-world practice, the Academy gives legal professionals the skills to explore AI and apply it effectively.</p>
-      </header>
-      <figure class="academy__photo">
-        <img src="assets/people/newcode-ireland-team.webp" width="1200" height="800" loading="lazy" alt="Three Newcode team members smiling outside the Irish office">
-      </figure>
-    </div>
-
-    <div class="learn__grid">
-      <ul class="rows academy__list" data-reveal>
-        <li><a href="https://www.newcode.ai/academy/register" target="_blank" rel="noopener"><b>AI Enablement Programme</b><span>A six-week, profession-aligned training pathway built specifically for legal teams.</span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        <li><a href="https://www.newcode.ai/academy/workshops" target="_blank" rel="noopener"><b>Workshops</b><span>Senior leaders and professionals build the knowledge and practical skills to use AI confidently in their daily work.</span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        <li><a href="https://www.newcode.ai/academy/trainings" target="_blank" rel="noopener"><b>Trainings</b><span>A clear, practical introduction to AI and how it’s used in professional work.</span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        <li><a href="https://www.newcode.ai/academy/phd" target="_blank" rel="noopener"><b>Industrial PhD</b><span>A fully funded industrial PhD in agentic AI, investigating how AI agents behave in real legal environments.</span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        <li><a href="https://www.newcode.ai/academy/handbook" target="_blank" rel="noopener"><b>AI literacy handbook</b><span>The core concepts, the terminology, and how to work with AI confidently, critically and responsibly in daily practice.</span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      </ul>
+        <p class="academy__lead">Blending deep technological expertise with real-world practice, the Academy gives legal professionals the skills to explore AI and apply it effectively.</p>
+        <a class="link-arrow academy__more" href="https://www.newcode.ai/academy" target="_blank" rel="noopener"><span>Explore the Academy</span> <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <figure class="academy__photo">
+          <img src="assets/people/newcode-ireland-team.webp" width="1200" height="800" loading="lazy" alt="Three Newcode team members smiling outside the Irish office">
+          <figcaption>Newcode team members outside the Irish office</figcaption>
+        </figure>
+        <ul class="rows academy__list">
+          <li><a href="https://www.newcode.ai/academy/register" target="_blank" rel="noopener"><b>AI Enablement Programme</b><span>A six-week, profession-aligned training pathway built specifically for legal teams.</span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+          <li><a href="https://www.newcode.ai/academy/workshops" target="_blank" rel="noopener"><b>Workshops</b><span>Senior leaders and professionals build the knowledge and practical skills to use AI confidently in their daily work.<small>Leadership, AI Champions, Designing Agentic AI Workflows</small></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+          <li><a href="https://www.newcode.ai/academy/trainings" target="_blank" rel="noopener"><b>Trainings</b><span>A clear, practical introduction to AI and how it’s used in professional work.<small>AI Literacy 101, Tech-Agnostic, Practice Area Specific</small></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+          <li><a href="https://www.newcode.ai/academy/phd" target="_blank" rel="noopener"><b>Industrial PhD</b><span>A fully funded industrial PhD in agentic AI, investigating how AI agents behave in real legal environments.</span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+          <li><a href="https://www.newcode.ai/academy/handbook" target="_blank" rel="noopener"><b>AI literacy handbook</b><span>The core concepts, the terminology, and how to work with AI confidently, critically and responsibly in daily practice.</span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        </ul>
+      </div>
 
       <div class="news" id="news" data-reveal style="--d:90ms">
         <div class="news__head">
@@ -1109,7 +1108,7 @@
           <a class="link-arrow" href="https://www.newcode.ai/news" target="_blank" rel="noopener"><span>All news</span> <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <ul class="rows news__list">
-          <li><a href="https://www.newcode.ai/news/newcode-announces-technology-alliance-with-imanage" target="_blank" rel="noopener"><time datetime="2026-11-04">November 4, 2026</time><b>Newcode announces technology alliance with iManage</b><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg><em>Legal professionals will be able to securely access and work with iManage content within Newcode.</em></a></li>
+          <li><a href="https://www.newcode.ai/news/newcode-announces-technology-alliance-with-imanage" target="_blank" rel="noopener"><time datetime="2026-11-04">November 4, 2026</time><b>Newcode Announces Technology Alliance with iManage</b><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg><em>Legal professionals will be able to securely access and work with iManage content within Newcode.</em></a></li>
           <li><a href="https://www.newcode.ai/news/introducing-voyager-from-a-billion-documents-to-the-one-that-matters" target="_blank" rel="noopener"><time datetime="2026-11-03">November 3, 2026</time><b>Introducing Voyager</b><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg><em>Find the right document, matter, or precedent with agentic search grounded in your firm’s knowledge.</em></a></li>
           <li><a href="https://www.newcode.ai/news/introducing-configurable-skills" target="_blank" rel="noopener"><time datetime="2026-10-27">October 27, 2026</time><b>Introducing Configurable Skills</b><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg><em>A way for firms to turn their processes and best practices into reusable AI capabilities using natural language.</em></a></li>
         </ul>
@@ -1183,7 +1182,6 @@
             <li><a href="https://www.newcode.ai/news" target="_blank" rel="noopener">News</a></li>
             <li><a href="https://www.newcode.ai/careers" target="_blank" rel="noopener">Careers</a></li>
             <li><a href="https://www.newcode.ai/contact" target="_blank" rel="noopener">Contact</a></li>
-            <li><a href="https://www.linkedin.com/company/newcode-ai/" target="_blank" rel="noopener">LinkedIn</a></li>
           </ul>
         </div>
       </nav>
@@ -1205,6 +1203,7 @@
       <ul>
         <li><a href="https://www.newcode.ai/legal#cookie-policy" target="_blank" rel="noopener">Cookie Policy</a></li>
         <li><a href="https://www.newcode.ai/legal#privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></li>
+        <li><a class="site-footer__social" href="https://www.linkedin.com/company/newcode-ai/" target="_blank" rel="noopener"><span>LinkedIn</span> <svg class="arrow" aria-hidden="true"><use href="#i-out"/></svg></a></li>
       </ul>
     </div>
   </div>
