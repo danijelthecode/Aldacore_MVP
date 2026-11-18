@@ -465,15 +465,18 @@ body.menu-open { overflow: hidden; }
 .hero__logos { --logo-unit: clamp(19px, 6.2vw, 25px); padding-top: 40px; padding-bottom: 9vh; }
 .hero__logos ul { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; gap: calc(0.3 * var(--logo-unit)) clamp(20px, 7vw, 48px); }
 .hero__logos li { display: flex; align-items: center; height: calc(2 * var(--logo-unit)); }
+/* The Reed Smith file has a sliver of empty canvas on its right; pull the next gap in by that much. The file is untouched. */
+.hero__logos img[src$="reed-smith.svg"] { margin-right: calc(-0.139 * var(--u) * var(--logo-unit)); }
 .hero__logos img { width: auto; max-width: none; height: calc(var(--u, 1) * var(--logo-unit)); transform: translateY(calc(var(--dy, 0) * var(--logo-unit))); filter: brightness(0) invert(1); opacity: 0.86; }
 @media (min-width: 560px) {
   .hero__logos { --logo-unit: clamp(24px, 3.9vw, 30px); }
   .hero__logos ul { grid-template-columns: repeat(3, auto); column-gap: 48px; }
 }
 @media (min-width: 900px) {
-  .hero__logos { --logo-unit: clamp(21px, 2.4vw, 42px); }
+  /* The upper bound keeps the largest raster logo at or under its own pixels on 2x screens. */
+  .hero__logos { --logo-unit: clamp(21px, 2.4vw, 37.8px); }
   /* One line, set from the left with a fixed gap between logos (48px on desktop), never stretched across the page. */
-  .hero__logos ul { display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 0 clamp(30px, 4.2vw, 48px); }
+  .hero__logos ul { display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 0 clamp(26px, 3.6vw, 48px); }
   .hero__logos li { flex: none; }
 }
 /* A quiet control to pause the looping shape film (it moves for longer than five seconds beside other content). */
@@ -504,6 +507,9 @@ body.menu-open { overflow: hidden; }
   .hero__lead { margin-top: 60px; font-size: clamp(21.25px, 1.667vw, 30px); }
   .hero__copy .btn { margin-top: 36px; }
   .hero__logos { padding-top: 80px; padding-bottom: 135px; }
+  /* On windows shorter than 900px the row and the copy lift into the first screen, and the shape gives up the same height. */
+  .hero { --fold-lift: clamp(0px, calc(900px - 100svh), 180px); --hero-cap: calc(0.9 * max(1000px, 100svh) - 200px - var(--fold-lift)); }
+  .hero__logos { padding-bottom: calc(135px + var(--fold-lift)); }
 }
 
 /* ---------- Product preview under the hero: Nova at work on a plate, never on the purple ---------- */
