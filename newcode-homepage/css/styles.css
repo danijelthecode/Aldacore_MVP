@@ -672,8 +672,8 @@ body.menu-open { overflow: hidden; }
 .capnet__lines line { stroke: var(--ink); stroke-opacity: 0.7; stroke-width: 1; }
 .capnet__nodes { position: absolute; inset: 0; }
 .cnode { position: absolute; left: var(--x); top: var(--y); padding: 10px 20px; border-radius: 999px; white-space: nowrap; font-size: var(--t-small); line-height: 1.2;
-  transform: translate(calc(-50% + var(--mx, 0) * var(--d) * 14px), calc(-50% + var(--my, 0) * var(--d) * 14px)); transition: transform 0.6s var(--ease); }
-.cnode--g { background: rgba(36, 28, 59, 0.07); color: var(--ink); }
+  transform: translate(calc(-50% + var(--ox, 0px)), calc(-50% + var(--oy, 0px))); }
+.cnode--g { background: color-mix(in srgb, var(--ink) 7%, var(--white)); color: var(--ink); }
 .cnode--p { background: var(--purple-deep); color: var(--white); }
 .cnode--l { background: var(--purple-light); color: var(--ink); }
 .cnode--i { background: var(--ink); color: var(--white); }
@@ -709,7 +709,7 @@ body.menu-open { overflow: hidden; }
   .harness__notes { position: static; display: grid; gap: 12px; }
   .hnote { position: static; transform: none; max-width: none; justify-self: start; }
 }
-@media (prefers-reduced-motion: reduce) { .cnode, .harness__lines, .hnote { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .harness__lines, .hnote { transition: none; } }
 
 /* ---------- 4. Product suite ---------- */
 .suite__lead { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--col-gap); margin-top: clamp(40px, 5vw, 72px); }

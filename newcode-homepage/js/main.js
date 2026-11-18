@@ -304,6 +304,38 @@
     var p = video.play();
     if (p && p.catch) p.catch(function () { /* autoplay refused: the still stays */ });
   }
+  /* Hero shape: quick pointer movement over the hero spins the film faster, resting the pointer on the shape slows it,
+     and it always eases back to normal speed. The shape also leans a little toward the pointer. */
+  (function () {
+    var heroShape = $('.hero [data-shape]');
+    if (!heroShape || !hero || reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
+    var last = null, rate = 1, target = 1, lean = { x: 0, y: 0 }, aim = { x: 0, y: 0 }, running = false;
+    function step() {
+      target += (1 - target) * 0.04;
+      rate += (target - rate) * 0.12;
+      lean.x += (aim.x - lean.x) * 0.06; lean.y += (aim.y - lean.y) * 0.06;
+      var film = $('video', heroShape);
+      if (film && !film.paused) film.playbackRate = Math.max(0.25, Math.min(4, rate));
+      heroShape.style.translate = lean.x.toFixed(1) + 'px ' + lean.y.toFixed(1) + 'px';
+      running = Math.abs(rate - 1) > 0.01 || Math.abs(aim.x - lean.x) > 0.3 || Math.abs(aim.y - lean.y) > 0.3;
+      if (running) window.requestAnimationFrame(step);
+    }
+    function kick() { if (!running) { running = true; window.requestAnimationFrame(step); } }
+    hero.addEventListener('pointermove', function (e) {
+      var now = performance.now();
+      var speed = last ? Math.hypot(e.clientX - last.x, e.clientY - last.y) / Math.max(1, now - last.t) : 0;
+      target = Math.min(4, Math.max(target, 1 + speed * 1.6));
+      last = { x: e.clientX, y: e.clientY, t: now };
+      var box = hero.getBoundingClientRect();
+      aim.x = ((e.clientX - box.left) / box.width - 0.5) * 40; aim.y = ((e.clientY - box.top) / box.height - 0.5) * 30;
+      var b = heroShape.getBoundingClientRect();
+      var onShape = e.clientX > b.left + b.width * 0.15 && e.clientX < b.right - b.width * 0.15 && e.clientY > b.top + b.height * 0.15 && e.clientY < b.bottom - b.height * 0.15;
+      if (onShape && speed < 0.15) target = Math.min(target, 0.4);
+      kick();
+    });
+    hero.addEventListener('pointerleave', function () { last = null; aim.x = 0; aim.y = 0; kick(); });
+  })();
+
   var shapes = $$('[data-shape]');
   if (shapes.length && !reduceMotion && hasIO) {
     var sio = new IntersectionObserver(function (entries) {
@@ -506,29 +538,54 @@
     el.addEventListener('pointerleave', function () { el.style.setProperty('--mx', 0); el.style.setProperty('--my', 0); });
   }
 
-  /* Capability network: lines follow the pills while they move. */
+  /* Capability network: the pills float, lean with the pointer (by depth) and step aside from it; the lines follow every frame. */
   $$('[data-capnet]').forEach(function (net) {
     var svg = $('svg', net);
     var nodes = $$('.cnode', net);
     var pairs = net.getAttribute('data-edges').split(' ').map(function (p) { return p.split('-').map(Number); });
     var lines = pairs.map(function () { var l = doc.createElementNS('http://www.w3.org/2000/svg', 'line'); svg.appendChild(l); return l; });
+    var state = nodes.map(function (n, i) { return { d: parseFloat(n.style.getPropertyValue('--d')) || 1, x: 0, y: 0, phase: i * 1.7 }; });
+    var pointer = null;
+    var visible = false;
     function draw() {
-      var r = net.getBoundingClientRect();
-      var c = nodes.map(function (n) { var b = n.getBoundingClientRect(); return [b.left + b.width / 2 - r.left, b.top + b.height / 2 - r.top]; });
+      var box = net.getBoundingClientRect();
+      var c = nodes.map(function (n) { var b = n.getBoundingClientRect(); return [b.left + b.width / 2 - box.left, b.top + b.height / 2 - box.top]; });
       pairs.forEach(function (p, i) {
-        lines[i].setAttribute('x1', c[p[0]][0]); lines[i].setAttribute('y1', c[p[0]][1]);
-        lines[i].setAttribute('x2', c[p[1]][0]); lines[i].setAttribute('y2', c[p[1]][1]);
+        lines[i].setAttribute('x1', c[p[0]][0].toFixed(1)); lines[i].setAttribute('y1', c[p[0]][1].toFixed(1));
+        lines[i].setAttribute('x2', c[p[1]][0].toFixed(1)); lines[i].setAttribute('y2', c[p[1]][1].toFixed(1));
       });
     }
-    var until = 0;
-    function follow() { draw(); if (performance.now() < until) window.requestAnimationFrame(follow); }
-    function kick() { var run = performance.now() >= until; until = performance.now() + 700; if (run) window.requestAnimationFrame(follow); }
-    net.addEventListener('pointermove', kick);
-    net.addEventListener('pointerleave', kick);
+    function tick(now) {
+      if (!visible) return;
+      var box = net.getBoundingClientRect();
+      var t = now / 1000;
+      nodes.forEach(function (n, i) {
+        var s = state[i];
+        var tx = Math.sin(t * 0.6 + s.phase) * 6 * s.d, ty = Math.cos(t * 0.5 + s.phase) * 5 * s.d; /* idle float */
+        if (pointer) {
+          tx += pointer.nx * 34 * s.d; ty += pointer.ny * 24 * s.d; /* lean toward the pointer, by depth */
+          var dx = box.left + n.offsetLeft - pointer.x, dy = box.top + n.offsetTop - pointer.y;
+          var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          var push = Math.max(0, 1 - dist / 170) * 38; /* step aside when the pointer comes close */
+          tx += dx / dist * push; ty += dy / dist * push;
+        }
+        s.x += (tx - s.x) * 0.08; s.y += (ty - s.y) * 0.08;
+        n.style.setProperty('--ox', s.x.toFixed(1) + 'px'); n.style.setProperty('--oy', s.y.toFixed(1) + 'px');
+      });
+      draw();
+      window.requestAnimationFrame(tick);
+    }
+    if (!reduceMotion && hasIO && window.matchMedia('(hover: hover)').matches) {
+      net.addEventListener('pointermove', function (e) {
+        var box = net.getBoundingClientRect();
+        pointer = { x: e.clientX, y: e.clientY, nx: (e.clientX - box.left) / box.width * 2 - 1, ny: (e.clientY - box.top) / box.height * 2 - 1 };
+      });
+      net.addEventListener('pointerleave', function () { pointer = null; });
+      new IntersectionObserver(function (en) { var was = visible; visible = en[0].isIntersecting; if (visible && !was) window.requestAnimationFrame(tick); }).observe(net);
+    }
     window.addEventListener('resize', draw);
     if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(draw);
     draw();
-    drift(net);
   });
 
   /* Harness notes: each opens its sentence; the section drifts with the pointer. */
