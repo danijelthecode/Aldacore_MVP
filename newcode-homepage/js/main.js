@@ -495,6 +495,50 @@
     });
   });
 
+  /* ---------- Pointer drift: the capability network and the harness move a little with the pointer (--mx, --my from -1 to 1) ---------- */
+  function drift(el) {
+    if (reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
+    el.addEventListener('pointermove', function (e) {
+      var r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 2 - 1).toFixed(3));
+      el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 2 - 1).toFixed(3));
+    });
+    el.addEventListener('pointerleave', function () { el.style.setProperty('--mx', 0); el.style.setProperty('--my', 0); });
+  }
+
+  /* Capability network: lines follow the pills while they move. */
+  $$('[data-capnet]').forEach(function (net) {
+    var svg = $('svg', net);
+    var nodes = $$('.cnode', net);
+    var pairs = net.getAttribute('data-edges').split(' ').map(function (p) { return p.split('-').map(Number); });
+    var lines = pairs.map(function () { var l = doc.createElementNS('http://www.w3.org/2000/svg', 'line'); svg.appendChild(l); return l; });
+    function draw() {
+      var r = net.getBoundingClientRect();
+      var c = nodes.map(function (n) { var b = n.getBoundingClientRect(); return [b.left + b.width / 2 - r.left, b.top + b.height / 2 - r.top]; });
+      pairs.forEach(function (p, i) {
+        lines[i].setAttribute('x1', c[p[0]][0]); lines[i].setAttribute('y1', c[p[0]][1]);
+        lines[i].setAttribute('x2', c[p[1]][0]); lines[i].setAttribute('y2', c[p[1]][1]);
+      });
+    }
+    var until = 0;
+    function follow() { draw(); if (performance.now() < until) window.requestAnimationFrame(follow); }
+    function kick() { var run = performance.now() >= until; until = performance.now() + 700; if (run) window.requestAnimationFrame(follow); }
+    net.addEventListener('pointermove', kick);
+    net.addEventListener('pointerleave', kick);
+    window.addEventListener('resize', draw);
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(draw);
+    draw();
+    drift(net);
+  });
+
+  /* Harness notes: each opens its sentence; the section drifts with the pointer. */
+  $$('[data-harness]').forEach(function (band) {
+    $$('.hnote button', band).forEach(function (btn) {
+      btn.addEventListener('click', function () { btn.setAttribute('aria-expanded', String(btn.getAttribute('aria-expanded') !== 'true')); });
+    });
+    drift(band);
+  });
+
   /* ---------- Prototype notes: list every labeled placeholder and open point ---------- */
   var noteItems = $$('[data-note]');
   var noteList = $('[data-note-list]');
