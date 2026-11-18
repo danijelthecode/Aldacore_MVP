@@ -459,21 +459,21 @@ body.menu-open { overflow: hidden; }
 .hero h1 { font-size: clamp(32px, 5.903vw, 106.25px); line-height: 1.06; margin-bottom: -0.06em; letter-spacing: -0.05em; }
 .hero__lead { margin-top: 32px; max-width: 24.6em; font-size: clamp(17px, 1.667vw, 30px); line-height: 1.375; letter-spacing: -0.04em; color: var(--on-dark); }
 .hero__copy .btn { margin-top: 28px; }
-/* Customer logos, balanced by eye: each logo's height (--u, in row units) is chosen so the NAMES read at the same
-   size and weight, whatever the file's box is; --dy lines up their optical centers. One line from 900px, a grid below.
-   DLA Piper is set as its mark beside its own lettering, because in the firm's stacked logo the name is a fifth of the height. */
+/* Customer logos, balanced by eye. Every logo is the firm's own file, never altered: only its height (--u, in row
+   units) changes, chosen so the NAMES read at the same size whatever the file's box is. DLA Piper's box is therefore
+   taller than the rest, because its name is a fifth of its logo. --dy lines up optical centers. One line from 900px. */
 .hero__logos { --logo-unit: clamp(19px, 6.2vw, 25px); padding-top: 40px; padding-bottom: 9vh; }
-.hero__logos ul { display: grid; grid-template-columns: auto auto; justify-content: space-between; align-items: center; gap: calc(0.42 * var(--logo-unit)) 20px; }
-.hero__logos li { display: flex; align-items: center; height: calc(1.5 * var(--logo-unit)); }
-.hero__lockup { display: inline-flex; align-items: center; gap: calc(0.2 * var(--logo-unit)); }
+.hero__logos ul { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; gap: calc(0.3 * var(--logo-unit)) clamp(20px, 7vw, 48px); }
+.hero__logos li { display: flex; align-items: center; height: calc(2 * var(--logo-unit)); }
 .hero__logos img { width: auto; max-width: none; height: calc(var(--u, 1) * var(--logo-unit)); transform: translateY(calc(var(--dy, 0) * var(--logo-unit))); filter: brightness(0) invert(1); opacity: 0.86; }
 @media (min-width: 560px) {
   .hero__logos { --logo-unit: clamp(24px, 3.9vw, 30px); }
-  .hero__logos ul { grid-template-columns: repeat(3, auto); column-gap: 28px; }
+  .hero__logos ul { grid-template-columns: repeat(3, auto); column-gap: 48px; }
 }
 @media (min-width: 900px) {
   .hero__logos { --logo-unit: clamp(21px, 2.4vw, 42px); }
-  .hero__logos ul { display: flex; flex-wrap: nowrap; justify-content: space-between; gap: 0 24px; }
+  /* One line, set from the left with a fixed gap between logos (48px on desktop), never stretched across the page. */
+  .hero__logos ul { display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 0 clamp(30px, 4.2vw, 48px); }
   .hero__logos li { flex: none; }
 }
 /* A quiet control to pause the looping shape film (it moves for longer than five seconds beside other content). */
@@ -922,10 +922,6 @@ html:not(.js) #product-aurora .pview { background-image: url("../assets/plates/w
 .vcard__who b { font-weight: var(--w-medium); font-size: var(--t-body); color: var(--ink); }
 .vcard__who b + span { margin-bottom: 12px; }
 .vcard .attrib-logo { height: var(--lh, 20px); width: auto; max-width: 100%; margin-top: auto; object-fit: contain; object-position: 0 100%; filter: brightness(0); opacity: 0.6; }
-/* DLA Piper is shown as its mark beside its own lettering, so the name reads at the size of the other marks. */
-.attrib-lockup { display: inline-flex; align-items: center; gap: 5px; }
-.attrib-lockup img { height: var(--lh); width: auto; }
-.vcard .attrib-logo.attrib-lockup { height: auto; }
 .voices__stories { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--col-gap); margin-top: var(--col-gap); }
 .story { display: flex; flex-direction: column; gap: 14px; padding: clamp(18px, 1.8vw, 24px); border-radius: var(--radius-xl); background: var(--white); box-shadow: 0 0 0 1px var(--ink-faint); min-width: 0; scroll-margin-top: 110px; }
 .story h3 { font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.022em; }
