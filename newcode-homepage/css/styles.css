@@ -983,7 +983,9 @@ html:not(.js) #product-aurora .pview { background-image: url("../assets/plates/w
 .spanel__areas .chips li { padding: 8px 12px; font-size: 0.875rem; }
 .spanel__photo { position: relative; margin: 0; border-radius: var(--radius-xl); overflow: hidden; min-height: 360px; background: var(--hairline); }
 .spanel__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.spanel__photo .ph__tag { max-width: calc(100% - 24px); padding: 6px 10px; border-radius: 12px; line-height: 1.3; white-space: normal; text-wrap: balance; }
+/* The stand-in photos carry the same calm label as every other placeholder: a small tag and a plain line. */
+.photo-note { display: inline-flex; align-items: center; gap: 8px; max-width: calc(100% - 24px); padding: 5px 12px 5px 5px; border-radius: 999px; background: var(--white); color: var(--ink); font-size: var(--t-label); line-height: 1.3; box-shadow: var(--shadow-pill); }
+.photo-note .ph__tag { flex: none; }
 /* The five panels share two rows, so the practice areas start at one height on every tab and only the copy above them changes. */
 @supports (grid-template-rows: subgrid) {
   @media (min-width: 720px) {
@@ -1035,6 +1037,8 @@ html:not(.js) #product-aurora .pview { background-image: url("../assets/plates/w
 /* The plate starts level with the first row of tiles, below the group label */
 .integrations__side { grid-column: 1 / span 5; display: grid; gap: 20px; margin-top: calc(var(--t-label) * 1.5 + 12px); }
 .integrations__side .plate { aspect-ratio: 5 / 4.1; --ui-k: 2.45; --ui-min: 12px; background: var(--white); box-shadow: 0 0 0 1px var(--ink-faint); }
+/* On a flat white panel the kit shadow reads as a gray band, so it is lighter here. */
+.integrations__side .plate .ui { --ui-shadow: 0 0 0 1px rgba(36, 28, 59, 0.08), 0.5em 0.9em 2em -1em rgba(36, 28, 59, 0.22); }
 .mcp { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 18px 0 0; border-top: 1px solid var(--hairline); }
 .mcp__num { font-size: 2.25rem; line-height: 1; letter-spacing: -0.04em; color: var(--purple-deep); font-variant-numeric: tabular-nums; }
 .mcp__label { font-size: var(--t-body); }
