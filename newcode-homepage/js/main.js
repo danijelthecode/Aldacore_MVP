@@ -414,12 +414,14 @@
   /* ---------- Trusted by: names fill in as the list enters, and are all lit before it is centered ---------- */
   var sweep = $('[data-sweep]');
   var sweepItems = sweep ? $$('[data-sweep-item]', sweep) : [];
-  if (sweep && !reduceMotion) sweep.classList.add('is-sweeping');
+  var sweepBand = sweep ? sweep.closest('section') : null;
+  if (sweep && !reduceMotion) { sweep.classList.add('is-sweeping'); sweepBand.classList.add('is-pinned'); }
   function updateSweep() {
     if (!sweep || reduceMotion) return;
-    var r = sweep.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var progress = (vh * 0.94 - r.top) / (r.height + vh * 0.09);
+    /* Progress runs from the moment the band pins until it lets go: 0 to 1 over the band's extra height. */
+    var r = sweepBand.getBoundingClientRect();
+    var travel = r.height - window.innerHeight;
+    var progress = travel > 0 ? (-r.top) / (travel * 0.85) : 1;
     progress = Math.max(0, Math.min(1, progress));
     var lit = Math.ceil(progress * sweepItems.length);
     sweepItems.forEach(function (item, i) { item.classList.toggle('is-lit', i < lit); });

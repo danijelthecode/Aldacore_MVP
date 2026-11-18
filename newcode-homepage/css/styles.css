@@ -540,6 +540,11 @@ body.menu-open { overflow: hidden; }
 
 /* ---------- 2. Trusted by ---------- */
 .trusted { padding-top: clamp(40px, 5vw, 72px); }
+/* Pinned sweep: the list holds still in the middle of the screen while the visitor scrolls through the section,
+   each name lights in turn, and the page moves on once all are lit. The section's extra height is the scroll distance. */
+.js .trusted.is-pinned { height: 240vh; padding-block: 0; }
+.js .trusted.is-pinned > .wrap { position: sticky; top: 0; min-height: 100vh; min-height: 100svh; align-content: center; padding-block: 88px 40px; }
+.js .trusted.is-pinned .trusted__list { font-size: clamp(1.625rem, min(0.9rem + 2.7vw, 5.6vh), 3.25rem); }
 .trusted .grid { align-items: start; row-gap: 16px; }
 .trusted__label { grid-column: 1 / span 2; font-size: 1.125rem; font-weight: var(--w-medium); letter-spacing: -0.01em; padding-top: clamp(8px, 1.2vw, 18px); }
 .trusted__body { grid-column: 3 / -1; display: grid; gap: 24px; }
