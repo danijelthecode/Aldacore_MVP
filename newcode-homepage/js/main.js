@@ -466,30 +466,32 @@
     steps.forEach(function (step) { var plate = $('.plate', step); if (plate) stepIO.observe(plate); });
   }
 
-  /* ---------- Count-up, once, on confirmed numbers only. Only the digits run; a prefix or suffix ($, M, +) sits outside the counted element. ---------- */
+  /* ---------- Count-up on confirmed numbers only: it runs each time the row is well inside the screen (upper two thirds),
+     so the visitor sees it. Only the digits run; a prefix or suffix ($, M, +) sits outside the counted element. ---------- */
   var counters = $$('[data-count]');
   if (counters.length && hasIO && !reduceMotion) {
     var cio = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        cio.unobserve(entry.target);
         var el = entry.target;
+        if (!entry.isIntersecting) { el.removeAttribute('data-counted'); return; }
+        if (el.hasAttribute('data-counted')) return;
+        el.setAttribute('data-counted', '');
         var target = parseFloat(el.getAttribute('data-count'));
-        var startTime = null, duration = 1400;
+        var startTime = null, duration = 1600;
         /* Hold the final width while the digits run, so the suffix does not slide. */
+        el.textContent = String(target);
         var size = parseFloat(window.getComputedStyle(el).fontSize);
         if (size) el.style.minWidth = (el.getBoundingClientRect().width / size).toFixed(3) + 'em';
         function frame(t) {
           if (startTime === null) startTime = t;
           var k = Math.min(1, (t - startTime) / duration);
-          var eased = 1 - Math.pow(1 - k, 3);
-          el.textContent = String(Math.round(target * eased));
+          el.textContent = String(Math.round(target * (1 - Math.pow(1 - k, 3))));
           if (k < 1) window.requestAnimationFrame(frame); else el.style.minWidth = '';
         }
         el.textContent = '0';
         window.requestAnimationFrame(frame);
       });
-    }, { threshold: 0.6 });
+    }, { rootMargin: '0px 0px -33% 0px', threshold: 1 });
     counters.forEach(function (el) { cio.observe(el); });
   }
 
