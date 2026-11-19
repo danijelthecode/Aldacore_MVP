@@ -1,0 +1,66 @@
+/* Short version of the homepage (short.html, built by scripts/build-short.py).
+   Loaded after styles.css; only the differences from the full page live here. */
+
+/* How Newcode works: one step at a time, chosen with the tabs, instead of four stacked cards. */
+.is-short .how__tabs { margin-top: clamp(32px, 4vw, 56px); }
+.is-short .how__tabs span { color: var(--purple-deep); margin-right: 2px; }
+.is-short .how__steps { display: block; margin-top: clamp(20px, 2.4vw, 32px); }
+.is-short .how__steps::before, .is-short .how__steps::after { display: none; }
+.is-short .how__text { padding-left: 0; }
+.is-short .how__text::before { display: none; }
+.is-short .how__step .how__num { color: var(--purple-deep); }
+.js .is-short .how__step[data-off] { display: none; }
+.js .is-short .how__step:not([data-off]) { animation: panel-in 0.45s var(--ease) both; }
+@media (min-width: 1100px) and (min-height: 680px) {
+  .is-short .how__step, .is-short .how__step + .how__step { position: static; margin-top: 0; transform: none; box-shadow: 0 0 0 1px var(--hairline); }
+  .is-short .how__step > * { opacity: 1; }
+}
+.is-short .how__chips { margin-top: 16px; }
+
+/* Product suite: the six smaller products as short doors, without their pictures. */
+.is-short .suite__grid .pcard { padding-top: 4px; }
+.is-short .short__cta { margin-top: clamp(40px, 4vw, 56px); }
+
+/* A link to the page that holds what this band leaves out. */
+.is-short .short__more { margin-top: clamp(24px, 3vw, 40px); }
+
+/* Academy: the programmes named in one line. */
+.is-short .academy__progs { margin-top: 16px; color: var(--grey); font-size: var(--t-small); line-height: 1.5; max-width: 34rem; }
+
+/* Customer voices: the Canning quote, then the Rattigan quote beside the Raeder Bing film. */
+.is-short .vq__portrait { aspect-ratio: 1 / 1; }
+.is-short .voices__stage blockquote p { font-size: clamp(1.375rem, 0.95rem + 1.3vw, 2.125rem); }
+.is-short .voices__stories { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+@media (max-width: 899px) { .is-short .voices__stories { grid-template-columns: minmax(0, 1fr); } }
+
+/* Integrations: one row of the systems beside the MCP figure. */
+.is-short .integrations__grid { align-items: center; }
+.is-short .integrations__side { margin-top: 0; }
+.is-short .itiles { display: flex; flex-wrap: wrap; gap: 10px; }
+.is-short .igroup, .is-short .igroup > ul { display: contents; }
+.is-short .igroup__label { display: none; }
+.is-short .itile { grid-template-columns: auto auto; align-items: center; padding: 10px 16px 10px 12px; border-radius: 999px; }
+.is-short .itile__icon { width: 28px; height: 28px; margin: 0; }
+.is-short .itile__icon--wide { width: 84px; }
+.is-short .itile b { grid-column: 2; font-size: var(--t-small); }
+.is-short .itile__icon--wide + b { display: none; }
+
+/* Academy and news: the Academy column reads top to bottom. */
+.is-short .academy { display: block; }
+.is-short .academy__more { display: inline-flex; margin-top: 16px; }
+
+/* Without pictures the six small cards are one even grid. */
+.is-short .suite__grid { grid-template-rows: none; }
+.is-short #product-word { grid-row: auto; }
+/* The Rattigan card stands on its own here, outside the three-card row it was built for. */
+.is-short .voices__stories .vcard { grid-row: auto; grid-template-rows: none; align-content: start; }
+
+/* Fewer things per band, so less air between bands. */
+.is-short { --band-y: clamp(64px, 7vw, 104px); }
+
+/* The tab already carries the step number. */
+.is-short .how__step .how__num { display: none; }
+@media (max-width: 719px) {
+  .is-short .how__tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; border-radius: 22px; }
+  .is-short .vq__portrait { max-width: 260px; }
+}

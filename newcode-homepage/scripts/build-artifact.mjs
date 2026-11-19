@@ -2,7 +2,8 @@
 // skeleton (for example a Claude artifact). Output: dist/artifact/newcode-homepage.html plus a
 // files.json map of every asset the page references.
 //
-//   node scripts/build-artifact.mjs
+//   node scripts/build-artifact.mjs              (index.html)
+//   node scripts/build-artifact.mjs short.html   (the short version)
 //
 // The normal site (index.html + css + js + assets) needs no build step at all.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from 'node:fs';
@@ -10,13 +11,19 @@ import { join, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const html = readFileSync(join(root, 'index.html'), 'utf8');
-const css = readFileSync(join(root, 'css/styles.css'), 'utf8').replaceAll('url("../assets/', 'url("assets/');
+const source = process.argv[2] || 'index.html';
+const name = source === 'index.html' ? 'newcode-homepage' : `newcode-homepage-${source.replace(/\.html$/, '')}`;
+const html = readFileSync(join(root, source), 'utf8');
+// Every stylesheet the page links, in order (the short version adds css/short.css).
+const css = [...html.matchAll(/<link[^>]*href="(css\/[\w.-]+)"[^>]*>/g)]
+  .map(m => readFileSync(join(root, m[1]), 'utf8')).join('\n').replaceAll('url("../assets/', 'url("assets/');
 const js = readFileSync(join(root, 'js/main.js'), 'utf8');
 
 // Artifact hosts do not serve .mov, so Safari keeps the still frame of the shape there.
-const body = html.slice(html.indexOf('<body>') + '<body>'.length, html.lastIndexOf('</body>'))
-  .replace(/<script src="js\/main\.js" defer><\/script>/, '')
+const bodyTag = html.match(/<body([^>]*)>/);
+const bodyClass = (bodyTag[1].match(/class="([^"]*)"/) || [])[1];
+const body = html.slice(bodyTag.index + bodyTag[0].length, html.lastIndexOf('</body>'))
+  .replace(/<script[^>]*src="js\/main\.js"[^>]*><\/script>/, '')
   .replace(/ data-mov="[^"]*"/g, '');
 
 const page = `<title>Newcode Homepage Prototype</title>
@@ -26,7 +33,7 @@ const page = `<title>Newcode Homepage Prototype</title>
 ${css}
 </style>
 <script>document.documentElement.classList.add('js');</script>
-${body.trim()}
+${bodyClass ? `<script>document.body.classList.add(${JSON.stringify(bodyClass)});</script>\n` : ''}${body.trim()}
 <script>
 ${js}
 </script>
@@ -34,7 +41,7 @@ ${js}
 
 const outDir = join(root, 'dist/artifact');
 mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, 'newcode-homepage.html'), page);
+writeFileSync(join(outDir, `${name}.html`), page);
 
 // Only ship assets the page actually references.
 const walk = dir => readdirSync(dir).flatMap(name => {
@@ -46,7 +53,7 @@ for (const file of walk(join(root, 'assets'))) {
   const rel = relative(root, file).split('\\').join('/');
   if (page.includes(rel)) files[rel] = `newcode-homepage/${rel}`;
 }
-writeFileSync(join(outDir, 'files.json'), JSON.stringify(files, null, 2));
+writeFileSync(join(outDir, name === 'newcode-homepage' ? 'files.json' : `files-${name}.json`), JSON.stringify(files, null, 2));
 
 const kb = n => Math.round(n / 1024) + ' KB';
 console.log('page', kb(Buffer.byteLength(page)), '| assets referenced', Object.keys(files).length,
