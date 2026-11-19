@@ -85,3 +85,91 @@
 @media (prefers-reduced-motion: reduce) {
   .js .is-short .how__step:not([data-off]) .pop, .reveal-on .is-short .itiles.is-in li { animation: none; opacity: 1; }
 }
+
+/* ================= Round 2: composition (from the visual evaluation) ================= */
+
+/* Navigation pill: slides away while reading down, returns on the way up; sections stop clear of it. */
+.is-short .site-header > .wrap { transition: transform 0.45s var(--ease), opacity 0.3s var(--ease); }
+.is-short .site-header.is-hidden > .wrap { transform: translateY(-120%); opacity: 0; }
+.is-short main section, .is-short main [id] { scroll-margin-top: 96px; }
+
+/* Hero: a calmer phone composition, the headline higher and larger. */
+@media (max-width: 639px) {
+  .is-short .hero h1 { font-size: clamp(40px, 11.2vw, 46px); }
+  .is-short .hero__shape { width: min(46%, 26svh); }
+}
+
+/* Product preview on white, so it parts from the cream Trusted band below. */
+.is-short .showcase { background: var(--white); }
+
+/* Trusted by: the names as a quiet four-column list on hairlines, at reading size. */
+.is-short .trusted { padding-block: clamp(56px, 6vw, 88px); }
+.is-short .trusted__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 var(--col-gap); font-size: clamp(1rem, 0.85rem + 0.45vw, 1.25rem); line-height: 1.3; letter-spacing: -0.012em; }
+.is-short .trusted__list [data-sweep-item] { padding: 14px 0; border-top: 1px solid var(--hairline); white-space: normal; }
+.is-short .trusted__list [data-sweep-item].is-long:last-child { grid-column: span 2; color: var(--grey); }
+.is-short .trusted__list.is-sweeping [data-sweep-item] { color: color-mix(in srgb, var(--ink) 34%, var(--cream)); }
+.is-short .trusted__list.is-sweeping [data-sweep-item].is-lit { color: var(--ink); }
+@media (max-width: 1023px) { .is-short .trusted__list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .is-short .trusted__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } .is-short .trusted__list [data-sweep-item].is-long:last-child { grid-column: 1 / -1; } }
+
+/* Section openers: heading on the left, the lede on the right on one baseline (the Security pattern). */
+@media (min-width: 1024px) {
+  .is-short main .section-head:has(> p:not(.eyebrow)) { max-width: none; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--col-gap); align-items: end; }
+  .is-short main .section-head > .eyebrow, .is-short main .section-head > h2 { grid-column: 1; }
+  .is-short main .section-head > p:not(.eyebrow) { grid-column: 2; grid-row: 1 / span 3; align-self: end; max-width: 30rem; }
+  .is-short .security .section-head { grid-template-columns: minmax(0, 1fr); }
+  .is-short .security .section-head > p:not(.eyebrow) { grid-column: 1; grid-row: auto; }
+}
+
+/* The dark chapter: numbers then security on the same ink ground, one block. */
+.is-short .proof--dark { background: var(--ink); color: var(--on-dark); padding-bottom: clamp(32px, 3vw, 48px); }
+.is-short .proof--dark .section-head > p:not(.eyebrow), .is-short .proof--dark .stat__src { color: var(--on-dark-soft); }
+.is-short .proof--dark .stat { border-top-color: color-mix(in srgb, var(--white) 22%, transparent); }
+.is-short .proof--dark .stat__num { color: var(--purple-light); }
+.is-short .proof--dark .stat__src a { color: var(--white); }
+.is-short .proof--dark + .security { padding-top: clamp(40px, 4vw, 64px); border-top: 1px solid color-mix(in srgb, var(--white) 12%, transparent); }
+
+/* Products: the six smaller products as a two-column list on hairlines, no card chrome. */
+.is-short .suite__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--col-gap); margin-top: clamp(36px, 4vw, 56px); }
+.is-short .suite__grid .pcard { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; column-gap: 24px; row-gap: 4px; align-items: baseline; padding: 20px 0; border-radius: 0; background: none; box-shadow: none; border-top: 1px solid var(--hairline); }
+.is-short .suite__grid .pcard .tag, .is-short .suite__grid .pcard .pcard__tags { display: none; }
+.is-short .suite__grid .pcard h3 { grid-column: 1; font-size: var(--t-lead); }
+.is-short .suite__grid .pcard .pcard__desc { grid-column: 1; margin: 0; }
+.is-short .suite__grid .pcard .link-arrow { grid-column: 2; grid-row: 1; align-self: baseline; margin: 0; }
+@media (max-width: 719px) { .is-short .suite__grid { grid-template-columns: minmax(0, 1fr); } }
+/* Nova and Aurora: the view tabs read as a control above the picture. */
+.is-short .pcard--large > .pviews { margin-bottom: 14px; }
+.is-short .pcard--large .pview-tab { font-size: 0.875rem; }
+
+/* Tabs that move on by themselves: larger labels and a full-width progress line on a hairline track. */
+.is-short .how__tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; padding: 0; gap: 0; border-radius: 0; background: none; border-bottom: 1px solid var(--hairline); }
+.is-short .how__tabs .pview-tab { min-height: 56px; border-radius: 0; font-size: 0.9375rem; text-align: left; padding: 0 4px; background: none; box-shadow: none; }
+.is-short .how__tabs .pview-tab[aria-selected="true"] { background: none; box-shadow: none; color: var(--ink); }
+.is-short .how__tabs .pview-tab::after { left: 0; right: 0; bottom: -1px; border-radius: 0; }
+.is-short .how__tabs .pview-tab[aria-selected="true"]::after { opacity: 1; transform: scaleX(1); }
+.is-short .is-autoplaying .how__tabs .pview-tab[aria-selected="true"]::after { transform: scaleX(0); }
+@media (max-width: 719px) { .is-short .how__tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* The same progress line under the Nova view tab and the Solutions audience while they step on. */
+.is-short .pview-tab, .is-short .stab { position: relative; }
+.is-short #product-nova .pview-tab::after, .is-short .stab::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 2px; background: var(--purple-deep); transform: scaleX(0); transform-origin: 0 50%; opacity: 0; }
+.is-short .stab::after { left: 4px; right: 4px; bottom: -1px; }
+.is-short .is-autoplaying#product-nova .pview-tab[aria-selected="true"]::after,
+.is-short .is-autoplaying .stab[aria-selected="true"]::after { opacity: 1; animation: tab-fill var(--autoplay, 6s) linear forwards; }
+/* Every audience row shows it can be opened. */
+.is-short .stab .arrow { opacity: 0.35; transform: none; }
+.is-short .stab[aria-selected="true"] .arrow { opacity: 1; }
+
+/* One warm photographic family: people and rooms graded toward the plates. Logos stay as they are. */
+.is-short .vq__portrait img, .is-short .vcard__portrait img, .is-short .spanel__photo img, .is-short .story__film > img { filter: sepia(0.16) saturate(0.88) contrast(0.98); }
+
+/* Integrations: the heading opener above, the systems in one white tray with the MCP figure. */
+.is-short .integrations__grid { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: clamp(32px, 4vw, 48px); padding: clamp(20px, 2.4vw, 32px); border-radius: var(--radius-xl); background: var(--white); box-shadow: 0 0 0 1px var(--ink-faint); }
+.is-short .integrations__side { grid-column: 1; margin: 0 0 20px; }
+.is-short .integrations__side .mcp { border-top: 0; padding-top: 0; }
+.is-short .itiles { grid-column: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+.is-short .itile { box-shadow: none; background: none; border-radius: 0; padding: 16px 4px; border-top: 1px solid var(--hairline); }
+@media (max-width: 719px) { .is-short .itiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.is-short .security .section-head { max-width: 46rem; }
+.is-short .itile { display: flex; align-items: center; gap: 12px; }
+.is-short .itile b { font-size: var(--t-body); }
+.is-short .itile__icon--wide { width: 132px; height: 22px; }

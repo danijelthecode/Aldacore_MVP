@@ -46,7 +46,7 @@
 </div>
 </aside>
 <script>document.documentElement.style.setProperty('--ribbon-h', document.querySelector('.proto-ribbon').offsetHeight + 'px');</script>
-<header class="site-header">
+<header class="site-header" data-autohide="">
 <div class="wrap">
 <div class="navbar">
 <a aria-label="Newcode, back to top" class="navbar__logo" href="#top">
@@ -192,19 +192,19 @@
 </div>
 <div aria-hidden="true" class="hero__spacer"></div>
 <div aria-hidden="true" class="hero__stage">
-<div class="hero__shape" data-mov="assets/hero/brandmark.mov" data-shape="" data-webm="assets/hero/brandmark.webm">
+<div class="hero__shape" data-lean="16" data-max-rate="2" data-mov="assets/hero/brandmark.mov" data-shape="" data-webm="assets/hero/brandmark.webm">
 <img alt="" fetchpriority="high" height="900" src="assets/hero/brandmark-poster.webp" width="900"/>
 </div>
 </div>
 <div class="hero__copy">
-<h1 id="hero-title">AI for forward-<br/>thinking law firms</h1>
+<h1 id="hero-title">AI for forward‑thinking<br/>law firms</h1>
 <p class="hero__lead">Connect your firm’s knowledge, workflows and systems in one intelligent, centralized legal workspace.</p>
 <a class="btn btn--light" href="https://www.newcode.ai/contact" rel="noopener" target="_blank">Book a demo <svg aria-hidden="true" class="arrow"><use href="#i-arrow"></use></svg></a>
 </div>
 <div class="hero__logos">
 <ul aria-label="Customers include" role="list">
 <li><img alt="Kirkland &amp; Ellis" height="13" src="assets/logos/kirkland-ellis.svg" style="--u:0.51;--dy:-0.011" width="153"/></li>
-<li><img alt="DLA Piper" height="159" src="assets/logos/dla-piper.webp" style="--u:2.1;--dy:-0.45" width="273"/></li>
+<li><img alt="DLA Piper" height="159" src="assets/logos/dla-piper.webp" style="--u:1.8;--dy:-0.45" width="273"/></li>
 <li><img alt="Reed Smith" height="18" src="assets/logos/reed-smith.svg" style="--u:0.68;--dy:-0.037" width="90"/></li>
 <li><img alt="Dickinson Wright" height="204" src="assets/logos/dickinson-wright.webp" style="--u:1.46;--dy:0.102" width="931"/></li>
 <li><img alt="Wolters Kluwer" height="97" src="assets/logos/wolters-kluwer.webp" style="--u:0.875;--dy:-0.075" width="599"/></li>
@@ -263,24 +263,24 @@
 <h2 class="trusted__label" id="trusted-title">Trusted by</h2>
 <div class="trusted__body">
 <p class="trusted__list" data-sweep="free">
-<span data-sweep-item="">Kirkland &amp; Ellis,</span>
-<span data-sweep-item=""><a href="#voice-canning">DLA Piper</a>,</span>
-<span data-sweep-item="">Reed Smith,</span>
-<span data-sweep-item="">Dickinson Wright,</span>
-<span data-sweep-item="">Wolters Kluwer,</span>
-<span data-sweep-item=""><a href="#voice-rattigan">Robinson + Cole</a>,</span>
-<span data-sweep-item="">The Bar of Ireland,</span>
-<span data-sweep-item="">Wiersholm,</span>
-<span data-sweep-item="">Haavind,</span>
-<span data-sweep-item="">Awilhelmsen,</span>
-<span data-sweep-item=""><a href="#story-raeder-bing">Ræder Bing</a>,</span>
-<span data-sweep-item="">Simonsen Vogt Wiig,</span>
-<span data-sweep-item="">Ekko Advokatfirma,</span>
-<span data-sweep-item="">Helton,</span>
-<span class="is-long" data-sweep-item="">Statsforvalterens Fellestjenester,</span>
-<span data-sweep-item="">Helsetilsynet,</span>
-<span data-sweep-item="">Meteorologisk institutt,</span>
-<span class="is-long" data-sweep-item="">and 100+ law firms and enterprises.</span>
+<span data-sweep-item="">Kirkland &amp; Ellis</span>
+<span data-sweep-item=""><a href="#voice-canning">DLA Piper</a></span>
+<span data-sweep-item="">Reed Smith</span>
+<span data-sweep-item="">Dickinson Wright</span>
+<span data-sweep-item="">Wolters Kluwer</span>
+<span data-sweep-item=""><a href="#voice-rattigan">Robinson + Cole</a></span>
+<span data-sweep-item="">The Bar of Ireland</span>
+<span data-sweep-item="">Wiersholm</span>
+<span data-sweep-item="">Haavind</span>
+<span data-sweep-item="">Awilhelmsen</span>
+<span data-sweep-item=""><a href="#story-raeder-bing">Ræder Bing</a></span>
+<span data-sweep-item="">Simonsen Vogt Wiig</span>
+<span data-sweep-item="">Ekko Advokatfirma</span>
+<span data-sweep-item="">Helton</span>
+<span class="is-long" data-sweep-item="">Statsforvalterens Fellestjenester</span>
+<span data-sweep-item="">Helsetilsynet</span>
+<span data-sweep-item="">Meteorologisk institutt</span>
+<span class="is-long" data-sweep-item="">and 100+ law firms and enterprises</span>
 </p>
 </div>
 </div>
@@ -438,8 +438,12 @@
 <p>Start in the workspace, build your firm’s own workflows, and keep working in the tools you already use.</p>
 </header>
 <div class="suite__lead">
-<article class="pcard pcard--large" data-reveal="" data-tabs="" id="product-nova">
-<div class="plate">
+<article class="pcard pcard--large" data-autoplay="6000" data-reveal="" data-tabs="" id="product-nova">
+<div aria-label="Nova features" class="pviews" role="tablist">
+<button aria-controls="nova-view-matrix" aria-selected="true" class="pview-tab" id="nova-tab-matrix" role="tab" type="button">Matrix Review</button>
+<button aria-controls="nova-view-research" aria-selected="false" class="pview-tab" id="nova-tab-research" role="tab" tabindex="-1" type="button">Legal Research</button>
+<button aria-controls="nova-view-kb" aria-selected="false" class="pview-tab" id="nova-tab-kb" role="tab" tabindex="-1" type="button">Knowledge Base</button>
+</div><div class="plate">
 <img alt="" class="plate__photo" height="752" loading="lazy" src="assets/plates/meeting-room.webp" width="1344"/>
 <p aria-level="4" class="pview__label" role="heading">Matrix Review</p>
 <div aria-labelledby="nova-tab-matrix" class="pview" id="nova-view-matrix" role="tabpanel">
@@ -486,11 +490,7 @@
 </div>
 </div>
 <div class="pcard__body">
-<div aria-label="Nova features" class="pviews" role="tablist">
-<button aria-controls="nova-view-matrix" aria-selected="true" class="pview-tab" id="nova-tab-matrix" role="tab" type="button">Matrix Review</button>
-<button aria-controls="nova-view-research" aria-selected="false" class="pview-tab" id="nova-tab-research" role="tab" tabindex="-1" type="button">Legal Research</button>
-<button aria-controls="nova-view-kb" aria-selected="false" class="pview-tab" id="nova-tab-kb" role="tab" tabindex="-1" type="button">Knowledge Base</button>
-</div>
+
 <header class="pcard__head">
 <p class="tag">Workspace</p>
 <h3>Nova</h3>
@@ -505,7 +505,11 @@
 </div>
 </article>
 <article class="pcard pcard--large" data-reveal="" data-tabs="" id="product-aurora" style="--d:90ms">
-<div class="plate">
+<div aria-label="Aurora features" class="pviews" role="tablist">
+<button aria-controls="aurora-view-build" aria-selected="true" class="pview-tab" id="aurora-tab-build" role="tab" type="button">Drag and Drop</button>
+<button aria-controls="aurora-view-agent" aria-selected="false" class="pview-tab" id="aurora-tab-agent" role="tab" tabindex="-1" type="button">Configure Agent</button>
+<button aria-controls="aurora-view-publish" aria-selected="false" class="pview-tab" id="aurora-tab-publish" role="tab" tabindex="-1" type="button">Publish</button>
+</div><div class="plate">
 <img alt="" class="plate__photo" height="752" loading="lazy" src="assets/plates/window-desk.webp" width="1344"/>
 <p aria-level="4" class="pview__label" role="heading">Drag and Drop</p>
 <div aria-labelledby="aurora-tab-build" class="pview" id="aurora-view-build" role="tabpanel">
@@ -587,11 +591,7 @@
 </div>
 </div>
 <div class="pcard__body">
-<div aria-label="Aurora features" class="pviews" role="tablist">
-<button aria-controls="aurora-view-build" aria-selected="true" class="pview-tab" id="aurora-tab-build" role="tab" type="button">Drag and Drop</button>
-<button aria-controls="aurora-view-agent" aria-selected="false" class="pview-tab" id="aurora-tab-agent" role="tab" tabindex="-1" type="button">Configure Agent</button>
-<button aria-controls="aurora-view-publish" aria-selected="false" class="pview-tab" id="aurora-tab-publish" role="tab" tabindex="-1" type="button">Publish</button>
-</div>
+
 <header class="pcard__head">
 <p class="tag">Build</p>
 <h3>Aurora</h3>
@@ -657,7 +657,7 @@
 
 
 <!-- 5. Proof numbers -->
-<section aria-labelledby="proof-title" class="band band--white proof" id="proof">
+<section aria-labelledby="proof-title" class="band proof proof--dark on-dark" id="proof">
 <div class="wrap">
 <header class="section-head" data-reveal="">
 <h2 id="proof-title">Newcode in numbers</h2>
@@ -665,22 +665,64 @@
 </header>
 <div class="proof__grid">
 <div class="stat" data-reveal="">
-<p class="stat__num"><span data-count="475">475</span></p>
+<p class="stat__num"><span data-count="475" data-count-once="">475</span></p>
 <p class="stat__label">legal professionals in Ireland’s first AI Enablement Programme</p>
 <p class="stat__src">Across 30 firms. Source: <a href="https://www.newcode.ai/news/newcode-rolls-out-ai-enablement-programme" rel="noopener" target="_blank">Newcode news, September 8, 2026</a></p>
 </div>
 <div class="stat" data-reveal="" style="--d:80ms">
-<p class="stat__num">$<span data-count="20">20</span>M</p>
+<p class="stat__num">$<span data-count="20" data-count-once="">20</span>M</p>
 <p class="stat__label">total funding after the Series A round </p>
 <p class="stat__src">Source: <a href="https://www.newcode.ai/news/newcode-raises-series-a" rel="noopener" target="_blank">Newcode news, August 24, 2026</a></p>
 </div>
 <div class="stat" data-reveal="" style="--d:160ms">
-<p class="stat__num"><span data-count="60">60</span>+</p>
+<p class="stat__num"><span data-count="60" data-count-once="">60</span>+</p>
 <p class="stat__label">engineers, PhDs, lawyers and domain experts</p>
 <p class="stat__src">Source: <a href="https://www.newcode.ai/company" rel="noopener" target="_blank">newcode.ai, Company</a></p>
 </div>
 </div>
 
+</div>
+</section><section aria-labelledby="security-title" class="band security on-dark" id="security">
+<div class="wrap">
+<div class="security__head" data-reveal="">
+<header class="section-head">
+<h2 id="security-title">Security and deployment</h2>
+<p>Trust is fundamental to legal work. Security, privacy and responsible governance shape every part of our product.</p>
+</header>
+<a class="btn btn--light" href="https://trust.newcode.ai/" rel="noopener" target="_blank">Visit the trust center <svg aria-hidden="true" class="arrow"><use href="#i-arrow"></use></svg></a>
+</div>
+<div class="deploy" data-reveal="">
+<div class="security__label"><h3>Deployment</h3></div>
+<ul class="deploy__row">
+<li>Newcode cloud on Azure, with a private instance</li>
+<li>Your own cloud</li>
+<li>Fully offline, on-premises</li>
+</ul>
+</div>
+<div class="security__cols">
+<div class="scol" data-reveal="">
+<div class="security__label"><h3>Data</h3></div>
+<ul>
+<li>AES-256 encryption at rest</li>
+<li>TLS 1.2+ encryption in transit</li>
+<li>EU data in the EU, US data in the US</li>
+<li>No training on customer data</li>
+</ul>
+</div>
+<div class="scol" data-reveal="" style="--d:80ms">
+<div class="security__label"><h3>Access</h3></div>
+<ul>
+<li>SSO and MFA</li>
+<li>Granular permissions</li>
+<li>Ethical walls</li>
+<li>Firm policies and guardrails for agents</li>
+</ul>
+</div>
+</div>
+<div class="security__notes">
+
+
+</div>
 </div>
 </section>
 <!-- 6. Customer voices: people, not text -->
@@ -729,7 +771,7 @@
 <h2 id="solutions-title">Built to power every practice area that defines legal work</h2>
 <p>Newcode enables teams to deliver faster, practice-aligned outputs that elevate pace and quality across every discipline.</p>
 </header>
-<div class="solutions__body" data-reveal="" data-tabs="" id="solutions-tabs">
+<div class="solutions__body" data-autoplay="6500" data-reveal="" data-tabs="" id="solutions-tabs">
 <div aria-label="Solutions by audience" aria-orientation="vertical" class="solutions__tabs" role="tablist">
 <button aria-controls="panel-law-firms" aria-selected="true" class="stab" id="tab-law-firms" role="tab" type="button">Law firms <svg aria-hidden="true" class="arrow"><use href="#i-arrow"></use></svg></button>
 <button aria-controls="panel-in-house" aria-selected="false" class="stab" id="tab-in-house" role="tab" tabindex="-1" type="button">In-house legal teams <svg aria-hidden="true" class="arrow"><use href="#i-arrow"></use></svg></button>
@@ -846,49 +888,7 @@
 </div>
 </section>
 <!-- 9. Security and deployment: the only ink band -->
-<section aria-labelledby="security-title" class="band security on-dark" id="security">
-<div class="wrap">
-<div class="security__head" data-reveal="">
-<header class="section-head">
-<h2 id="security-title">Security and deployment</h2>
-<p>Trust is fundamental to legal work. Security, privacy and responsible governance shape every part of our product.</p>
-</header>
-<a class="btn btn--light" href="https://trust.newcode.ai/" rel="noopener" target="_blank">Visit the trust center <svg aria-hidden="true" class="arrow"><use href="#i-arrow"></use></svg></a>
-</div>
-<div class="deploy" data-reveal="">
-<div class="security__label"><h3>Deployment</h3></div>
-<ul class="deploy__row">
-<li>Newcode cloud on Azure, with a private instance</li>
-<li>Your own cloud</li>
-<li>Fully offline, on-premises</li>
-</ul>
-</div>
-<div class="security__cols">
-<div class="scol" data-reveal="">
-<div class="security__label"><h3>Data</h3></div>
-<ul>
-<li>AES-256 encryption at rest</li>
-<li>TLS 1.2+ encryption in transit</li>
-<li>EU data in the EU, US data in the US</li>
-<li>No training on customer data</li>
-</ul>
-</div>
-<div class="scol" data-reveal="" style="--d:80ms">
-<div class="security__label"><h3>Access</h3></div>
-<ul>
-<li>SSO and MFA</li>
-<li>Granular permissions</li>
-<li>Ethical walls</li>
-<li>Firm policies and guardrails for agents</li>
-</ul>
-</div>
-</div>
-<div class="security__notes">
 
-
-</div>
-</div>
-</section>
 <!-- 10. Academy and latest news (two-up) -->
 <section aria-label="Academy and latest news" class="band band--white learn" id="academy">
 <div class="wrap">

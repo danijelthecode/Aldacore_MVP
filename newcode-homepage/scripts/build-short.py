@@ -144,6 +144,40 @@ one('.academy__lead', academy).insert_after(frag(
 # ---- News: the three headlines, the summaries stay on the posts ----
 drop('#news .news__list em', count=3)
 
+# ---- Hero: the promise reads as one phrase, the shape follows the pointer more calmly ----
+h1 = one('#hero-title')
+assert h1.decode_contents() == 'AI for forward-<br/>thinking law firms', h1.decode_contents()
+h1.clear()
+h1.append(frag('AI for forward‑thinking<br/>law firms'))
+shape = one('.hero [data-shape]')
+shape['data-lean'] = '16'
+shape['data-max-rate'] = '2'
+dla = one('.hero__logos img[alt="DLA Piper"]')
+dla['style'] = dla['style'].replace('--u:2.1', '--u:1.8')  # size only, to match the other marks' weight
+one('.site-header')['data-autohide'] = ''
+
+# ---- Trusted by: the names as a quiet list in columns, still lighting one by one ----
+for t in soup.select('#trusted [data-sweep-item]'):
+    # names wrapped in a link carry their comma after the link
+    if t.contents and isinstance(t.contents[-1], str):
+        t.contents[-1].replace_with(t.contents[-1].rstrip().rstrip(',.'))
+assert not any(t.get_text().strip().endswith(',') for t in soup.select('#trusted [data-sweep-item]'))
+
+# ---- One dark chapter in the middle: the numbers, then security, on the ink ground ----
+proof, security = one('#proof'), one('#security')
+proof['class'] = [c for c in proof['class'] if c != 'band--white'] + ['proof--dark', 'on-dark']
+proof.insert_after(security.extract())
+for el in proof.select('[data-count]'):
+    el['data-count-once'] = ''
+
+# ---- Nova and Aurora: the view tabs above the picture; Nova steps through its views ----
+for card in suite.select('.pcard--large'):
+    one('.plate', card).insert_before(one('.pviews', card).extract())
+one('#product-nova')['data-autoplay'] = '6000'
+
+# ---- Solutions: the audiences step through on their own until someone picks one ----
+one('#solutions-tabs')['data-autoplay'] = '6500'
+
 # ---- Labels and their wrappers, everywhere ----
 for el in soup.select('.note-line, .flag, .ph__tag, .photo-note, .plate__note'):
     el.decompose()

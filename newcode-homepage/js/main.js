@@ -17,7 +17,15 @@
     /* The pill's button takes over once the hero's own button has left the screen, so one is always in reach and never two. */
     var mark = heroAction || hero;
     if (header && mark) header.classList.toggle('is-past-hero', mark.getBoundingClientRect().bottom < 0);
+    /* data-autohide: past the hero the pill slides away while scrolling down and returns on the way up. */
+    if (header && header.hasAttribute('data-autohide')) {
+      var y = window.scrollY;
+      header.classList.toggle('is-hidden', header.classList.contains('is-past-hero') && y > lastY + 2 && !header.contains(doc.activeElement));
+      if (y < lastY - 2) header.classList.remove('is-hidden');
+      lastY = y;
+    }
   }
+  var lastY = window.scrollY;
   /* The review ribbon sits above the hero. Subtract it so the first screen holds what the live hero holds. */
   var ribbon = $('.proto-ribbon');
   function setRibbonHeight() { root.style.setProperty('--ribbon-h', (ribbon ? ribbon.offsetHeight : 0) + 'px'); }
@@ -340,12 +348,15 @@
     var heroShape = $('.hero [data-shape]');
     if (!heroShape || !hero || reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
     var last = null, rate = 1, target = 1, lean = { x: 0, y: 0 }, aim = { x: 0, y: 0 }, running = false;
+    /* data-lean (px) and data-max-rate tune how far the shape follows the pointer and how fast the film may spin. */
+    var leanMax = parseFloat(heroShape.getAttribute('data-lean')) || 40;
+    var maxRate = parseFloat(heroShape.getAttribute('data-max-rate')) || 4;
     function step() {
       target += (1 - target) * 0.04;
       rate += (target - rate) * 0.12;
       lean.x += (aim.x - lean.x) * 0.06; lean.y += (aim.y - lean.y) * 0.06;
       var film = $('video', heroShape);
-      if (film && !film.paused) film.playbackRate = Math.max(0.25, Math.min(4, rate));
+      if (film && !film.paused) film.playbackRate = Math.max(0.25, Math.min(maxRate, rate));
       heroShape.style.translate = lean.x.toFixed(1) + 'px ' + lean.y.toFixed(1) + 'px';
       running = Math.abs(rate - 1) > 0.01 || Math.abs(aim.x - lean.x) > 0.3 || Math.abs(aim.y - lean.y) > 0.3;
       if (running) window.requestAnimationFrame(step);
@@ -357,7 +368,7 @@
       target = Math.min(4, Math.max(target, 1 + speed * 1.6));
       last = { x: e.clientX, y: e.clientY, t: now };
       var box = hero.getBoundingClientRect();
-      aim.x = ((e.clientX - box.left) / box.width - 0.5) * 40; aim.y = ((e.clientY - box.top) / box.height - 0.5) * 30;
+      aim.x = ((e.clientX - box.left) / box.width - 0.5) * leanMax; aim.y = ((e.clientY - box.top) / box.height - 0.5) * leanMax * 0.75;
       var b = heroShape.getBoundingClientRect();
       var onShape = e.clientX > b.left + b.width * 0.15 && e.clientX < b.right - b.width * 0.15 && e.clientY > b.top + b.height * 0.15 && e.clientY < b.bottom - b.height * 0.15;
       if (onShape && speed < 0.15) target = Math.min(target, 0.4);
@@ -514,7 +525,7 @@
     var cio = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         var el = entry.target;
-        if (!entry.isIntersecting) { el.removeAttribute('data-counted'); return; }
+        if (!entry.isIntersecting) { if (!el.hasAttribute('data-count-once')) el.removeAttribute('data-counted'); return; }
         if (el.hasAttribute('data-counted')) return;
         el.setAttribute('data-counted', '');
         var target = parseFloat(el.getAttribute('data-count'));
