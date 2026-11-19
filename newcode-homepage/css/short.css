@@ -15,7 +15,6 @@
   .is-short .how__step, .is-short .how__step + .how__step { position: static; margin-top: 0; transform: none; box-shadow: 0 0 0 1px var(--hairline); }
   .is-short .how__step > * { opacity: 1; }
 }
-.is-short .how__chips { margin-top: 16px; }
 
 /* Product suite: the six smaller products as short doors, without their pictures. */
 .is-short .suite__grid .pcard { padding-top: 4px; }

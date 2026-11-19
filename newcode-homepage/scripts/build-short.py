@@ -76,11 +76,8 @@ tabs = ''.join(
     f'<span aria-hidden="true">0{i}</span> {n}</button>' for i, n in enumerate(names, 1))
 steps.insert_before(frag(f'<div class="pviews how__tabs" role="tablist" aria-label="How Newcode works, step by step">{tabs}</div>'))
 one('.wrap', how)['data-tabs'] = ''
-# The capability network becomes one row of the same twelve capabilities.
-capnet = one('.capnet', how)
-caps = [li.get_text() for li in capnet.select('.cnode')]
-assert len(caps) == 12
-capnet.replace_with(frag('<ul class="chips chips--quiet how__chips">' + ''.join(f'<li>{c}</li>' for c in caps) + '</ul>'))
+# The capability network goes: twelve pills read as a feature list. The Platform overview card in the suite links to the page that carries them.
+drop('.how__caps', how, 1)
 
 # ---- Product suite: every product stays; Nova and Aurora show one view, the six others are short doors ----
 suite = one('#products')
