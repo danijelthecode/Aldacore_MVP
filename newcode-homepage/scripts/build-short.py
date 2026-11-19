@@ -73,7 +73,7 @@ tabs = ''.join(
     f'<span aria-hidden="true">0{i}</span> {n}</button>' for i, n in enumerate(names, 1))
 steps.insert_before(frag(f'<div class="pviews how__tabs" role="tablist" aria-label="How Newcode works, step by step">{tabs}</div>'))
 one('.wrap', how)['data-tabs'] = ''
-one('.wrap', how)['data-autoplay'] = '7000'
+one('.wrap', how)['data-autoplay'] = '10000'
 # The capability network goes: twelve pills read as a feature list. The Platform overview card in the suite links to the page that carries them.
 drop('.how__caps', how, 1)
 
@@ -173,10 +173,8 @@ for el in proof.select('[data-count]'):
 # ---- Nova and Aurora: the view tabs above the picture; Nova steps through its views ----
 for card in suite.select('.pcard--large'):
     one('.plate', card).insert_before(one('.pviews', card).extract())
-one('#product-nova')['data-autoplay'] = '6000'
 
 # ---- Solutions: the audiences step through on their own until someone picks one ----
-one('#solutions-tabs')['data-autoplay'] = '6500'
 
 # ---- Labels and their wrappers, everywhere ----
 for el in soup.select('.note-line, .flag, .ph__tag, .photo-note, .plate__note'):

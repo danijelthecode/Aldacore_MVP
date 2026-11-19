@@ -544,7 +544,7 @@
         window.requestAnimationFrame(frame);
       });
     }, { rootMargin: '0px 0px -33% 0px', threshold: 1 });
-    counters.forEach(function (el) { cio.observe(el); });
+    counters.forEach(function (el) { el.textContent = '0'; cio.observe(el); });
   }
 
   /* ---------- Customer film: the still becomes a player on request. Nothing loads or plays before the click. ---------- */

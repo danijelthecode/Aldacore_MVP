@@ -173,3 +173,16 @@
 .is-short .itile { display: flex; align-items: center; gap: 12px; }
 .is-short .itile b { font-size: var(--t-body); }
 .is-short .itile__icon--wide { width: 132px; height: 22px; }
+
+/* ================= Round 3: confirmed faults ================= */
+/* The Nova window sits whole inside its plate. */
+.is-short .showcase__plate { --bleed: -3cqw; }
+/* The Rattigan quote fills its card beside the film. */
+@media (min-width: 900px) { .is-short .voices__stories .vcard blockquote p { font-size: clamp(1.375rem, 0.6rem + 1.25vw, 1.875rem); line-height: 1.25; } }
+/* Trusted by: unlit names read as names, not as disabled text; the 100+ line gets its own row. */
+.is-short .trusted__list.is-sweeping [data-sweep-item] { color: color-mix(in srgb, var(--ink) 52%, var(--cream)); }
+.is-short .trusted__list [data-sweep-item].is-long:last-child { grid-column: 1 / -1; }
+/* Numbers and security: two chapters of the same dark block, with room between them. */
+.is-short .proof--dark { padding-bottom: clamp(56px, 6vw, 96px); }
+.is-short .proof--dark + .security { padding-top: clamp(56px, 6vw, 96px); border-top-color: color-mix(in srgb, var(--white) 18%, transparent); }
+.is-short .deploy__row li { flex: 1 1 0; }
