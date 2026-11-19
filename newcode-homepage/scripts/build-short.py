@@ -39,6 +39,8 @@ notes = []
 for el in soup.select('[data-note]'):
     notes.append(' '.join(el['data-note'].split()))
 for el in soup.select('.note-line'):
+    if el.has_attr('data-note') or el.select_one('[data-note]'):
+        continue  # already listed from its data-note
     text = ' '.join(el.get_text(' ').split())
     if text and text not in notes:
         notes.append(text)
@@ -148,7 +150,7 @@ assert progs[:4] == ['AI Enablement Programme', 'Workshops', 'Trainings', 'Indus
 drop('.academy__photo', academy, 1)
 drop('.academy__list', academy, 1)
 one('.academy__lead', academy).insert_after(frag(
-    f'<p class="academy__progs">Programmes: {progs[0]}, {progs[1]}, {progs[2]} and an {progs[3]}.</p>'))
+    '<ul class="chips chips--quiet academy__progs" aria-label="Academy programs">' + ''.join(f'<li>{n}</li>' for n in progs[:4]) + '</ul>'))
 
 # ---- News: the three headlines, the summaries stay on the posts ----
 drop('#news .news__list em', count=3)

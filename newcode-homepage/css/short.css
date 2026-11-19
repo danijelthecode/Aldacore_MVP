@@ -25,12 +25,12 @@
 .is-short .short__more { margin-top: clamp(24px, 3vw, 40px); }
 
 /* Academy: the programmes named in one line. */
-.is-short .academy__progs { margin-top: 16px; color: var(--grey); font-size: var(--t-small); line-height: 1.5; max-width: 34rem; }
+.is-short .academy__progs { margin-top: 20px; }
 
 /* Customer voices: the Canning quote, then the Rattigan quote beside the Raeder Bing film. */
 .is-short .vq__portrait { aspect-ratio: 1 / 1; }
 .is-short .voices__stage blockquote p { font-size: clamp(1.375rem, 0.95rem + 1.3vw, 2.125rem); }
-.is-short .voices__stories { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+.is-short .voices__stories { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: stretch; }
 @media (max-width: 899px) { .is-short .voices__stories { grid-template-columns: minmax(0, 1fr); } }
 
 /* Integrations: one row of the systems beside the MCP figure. */
@@ -41,7 +41,9 @@
 .is-short .igroup__label { display: none; }
 .is-short .itile { grid-template-columns: auto auto; align-items: center; padding: 10px 16px 10px 12px; border-radius: 999px; }
 .is-short .itile__icon { width: 28px; height: 28px; margin: 0; }
-.is-short .itile__icon--wide { width: 84px; }
+.is-short .itile__icon--wide { width: 105px; }
+/* The whole Wolters Kluwer logo, scaled only. */
+.is-short .itile__icon--wide img { aspect-ratio: auto; object-fit: contain; }
 .is-short .itile b { grid-column: 2; font-size: var(--t-small); }
 .is-short .itile__icon--wide + b { display: none; }
 
@@ -54,12 +56,16 @@
 .is-short #product-word { grid-row: auto; }
 /* The Rattigan card stands on its own here, outside the three-card row it was built for. */
 .is-short .voices__stories .vcard { grid-row: auto; grid-template-rows: none; align-content: start; }
+@media (min-width: 900px) { .is-short .voices__stories .vcard blockquote p { font-size: clamp(1.25rem, 0.7rem + 0.9vw, 1.625rem); line-height: 1.3; letter-spacing: -0.02em; } }
 
 /* Fewer things per band, so less air between bands. */
 .is-short { --band-y: clamp(64px, 7vw, 104px); }
 
 /* The tab already carries the step number. */
 .is-short .how__step .how__num { display: none; }
+@media (max-width: 1023px), (pointer: coarse) {
+  .is-short .how__tabs { grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; }
+}
 @media (max-width: 719px) {
   .is-short .how__tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; border-radius: 22px; }
   .is-short .vq__portrait { max-width: 260px; }

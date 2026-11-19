@@ -26,7 +26,7 @@ const body = html.slice(bodyTag.index + bodyTag[0].length, html.lastIndexOf('</b
   .replace(/<script[^>]*src="js\/main\.js"[^>]*><\/script>/, '')
   .replace(/ data-mov="[^"]*"/g, '');
 
-const page = `<title>Newcode Homepage Prototype</title>
+const page = `<title>${source === 'index.html' ? 'Newcode Homepage Prototype' : 'Newcode Homepage Short'}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
 <style>
