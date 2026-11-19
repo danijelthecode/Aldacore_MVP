@@ -1,6 +1,6 @@
-/* nc-apple: one scroll engine (rAF, reads scrollY directly, writes transform / opacity / clip-path only) drives every
-   scroll moment, so pinned stages and their contents move together. Time-based events (the Nova answer, the carousel)
-   run on their own clocks. Everything rests on readable static content under reduced motion. */
+/* nc-bright: one scroll engine (rAF, reads scrollY directly, writes transform / opacity / clip-path only) drives every
+   scroll moment, so pinned stages and their contents move together. Nothing runs on a timer: the visitor's scroll
+   or click sets every pace. Everything rests on readable static content under reduced motion. */
 (function () {
   'use strict';
 
@@ -17,22 +17,20 @@
   var hiddenTab = document.hidden;
   function playV(v) { if (v.getAttribute('src')) { var p = v.play(); if (p) p.catch(function () {}); } }
 
-  /* ---------- Nav: phone sheet, theme and current section ---------- */
+  /* ---------- Nav: one fixed bar, phone sheet ---------- */
   var nav = $('[data-nav]'), toggle = $('[data-toggle]'), sheet = $('[data-sheet]');
-  var sub = $('[data-sub]'), subToggle = $('[data-sub-toggle]'), subList = $('#sub-links');
-  var navLinks = $$('.sub__links a'), themed = $$('main > section, footer');
   function setMenu(open) {
     toggle.setAttribute('aria-expanded', String(open));
     sheet.hidden = !open;
     nav.classList.toggle('is-open', open);
     document.body.classList.toggle('is-locked', open);
-    ['main', 'footer', '.skip', '.nav__logo', '.nav__cta', '[data-sub]'].forEach(function (s) { $(s).inert = open; });
+    ['main', 'footer', '.skip', '.nav__logo', '.nav__cta'].forEach(function (s) { $(s).inert = open; });
     if (open) sheet.querySelector('a').focus();
   }
   toggle.addEventListener('click', function () { setMenu(toggle.getAttribute('aria-expanded') !== 'true'); });
   sheet.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
   document.addEventListener('keydown', function (e) {
-    if (sheet.hidden) { if (e.key === 'Escape' && subList.classList.contains('is-open')) { setSub(false); subToggle.focus(); } return; }
+    if (sheet.hidden) return;
     if (e.key === 'Escape') { setMenu(false); toggle.focus(); return; }
     if (e.key !== 'Tab') return;
     // keep Tab inside the open menu: the toggle and the sheet's links
@@ -40,10 +38,7 @@
     var n = i < 0 ? 0 : (i + (e.shiftKey ? -1 : 1) + ring.length) % ring.length;
     e.preventDefault(); ring[n].focus();
   });
-  matchMedia('(min-width: 901px)').addEventListener('change', function (m) { if (m.matches) { setMenu(false); setSub(false); } });
-  function setSub(open) { subToggle.setAttribute('aria-expanded', String(open)); subList.classList.toggle('is-open', open); }
-  subToggle.addEventListener('click', function () { setSub(subToggle.getAttribute('aria-expanded') !== 'true'); });
-  subList.addEventListener('click', function (e) { if (e.target.closest('a')) setSub(false); });
+  matchMedia('(min-width: 901px)').addEventListener('change', function (m) { if (m.matches) setMenu(false); });
 
   /* ---------- Scroll engine ---------- */
   var scenes = [], last = -1, dirty = true;
@@ -51,7 +46,6 @@
   function measure() {
     vw = innerWidth; vh = innerHeight;
     scenes.forEach(function (s) { if (s.measure) s.measure(); });
-    themed.forEach(function (el) { el._top = docTop(el); el._bot = el._top + el.offsetHeight; });
     dirty = true;
   }
   function tick() {
@@ -60,12 +54,7 @@
     if (y === last && !dirty) return;
     last = y; dirty = false;
     for (var i = 0; i < scenes.length; i++) scenes[i].update(y);
-    var probe = y + 52, theme = 'dark', cur = '';   // the bar's bottom edge decides its colour
-    for (var k = 0; k < themed.length; k++) if (probe >= themed[k]._top && probe < themed[k]._bot) { theme = themed[k].dataset.theme; cur = themed[k].id; }
-    var subOn = y > vh * 0.5;   // the sub-nav arrives once the hero copy has gone
-    if (subOn !== sub.classList.contains('is-on')) { sub.classList.toggle('is-on', subOn); if (!subOn) setSub(false); }
-    sub.classList.toggle('is-light', theme === 'light');
-    navLinks.forEach(function (a) { if (a.dataset.sec === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+    nav.classList.toggle('is-light', y > 4);   // the cream bar turns translucent once the page moves
   }
 
   /* ---------- 1. The film: four shots as one loop ---------- */
@@ -119,7 +108,7 @@
     if (!userPaused && !allowVideo) { allowVideo = true; shot = -1; filmUpdate(true); }
     filmSync();
   });
-  document.addEventListener('visibilitychange', function () { hiddenTab = document.hidden; filmSync(); hlSync(); closeSync(); });
+  document.addEventListener('visibilitychange', function () { hiddenTab = document.hidden; filmSync(); closeSync(); });
   filmUpdate(true); filmSync();
   function filmAwayNow(v) { if (v !== filmAway) { filmAway = v; filmSync(); } }
 
@@ -128,14 +117,11 @@
   var rhead = $('[data-rhead]'), rwin = $('[data-rwin]'), nova = $('[data-nova]', rwin), composer = $('[data-composer]', nova);
   var parts = {}; $$('[data-k]', nova).forEach(function (p) { parts[p.dataset.k] = p; });
   var R = { top: 0, h: 1, fin: null };
-  // Each beat of the answer has its own scroll point, so the window is finished well before the stage unpins
-  // and can never be left half done. CSS transitions smooth each step.
-  var SEQ = [['user', 0.36], ['thought', 0.42], ['answer', 0.53], ['file', 0.58], ['doc', 0.62]];
-  function beats(p) {
-    composer.classList.toggle('is-sent', p >= 0.36);
-    SEQ.forEach(function (s) { parts[s[0]].classList.toggle('on', p >= s[1]); });
-    parts.thought.classList.toggle('done', p >= 0.51);
-  }
+  // Nova arrives already answered: the top-down wipe reveals the finished exchange, so no scroll stop shows a half-built
+  // or empty window
+  Object.keys(parts).forEach(function (k) { parts[k].classList.add('on'); });
+  parts.thought.classList.add('done');
+  composer.classList.add('is-sent');
   scenes.push({
     measure: function () {
       var sh = stage.offsetHeight;   // the sticky stage's own height: steady while the phone toolbar moves
@@ -152,33 +138,32 @@
       var left = Math.round((vw - w) / 2), y0 = Math.round(top + Math.max(0, (sh - top - bottom - h) / 2));
       rwin.style.transform = 'translate(' + left + 'px,' + y0 + 'px)';
       R.fin = { t: y0, l: left, r: vw - left - w, b: sh - y0 - h, rad: phone() ? 18 : 24 };
+      // the film starts inset on the cream page (Legora-bright from the first frame), matching the CSS fallback
+      var hs = phone() ? 12 : 24; R.start = { t: 52 + hs / 3, l: hs, r: hs, b: hs, rad: phone() ? 18 : 28 };
       dirty = true;
     },
     update: function (y) {
       var p = clamp((y - R.top) / R.h, 0, 1);
       if (reduced || !R.fin) { filmAwayNow(y > R.top + R.h + vh); return; }
-      var c = 1 - ramp(p, 0, 0.1);
+      var c = 1 - ramp(p, 0.06, 0.16);   // the headline holds for the first wheel notch
       outs.forEach(function (el) { el.style.opacity = c; el.style.transform = 'translateY(' + (-(1 - c) * 40).toFixed(1) + 'px)'; el.style.visibility = c < 0.02 ? 'hidden' : ''; });
-      var e = ease(ramp(p, 0.0, 0.26)), f = R.fin, st = frame.style;
-      frame.style.willChange = p > 0 && p < 0.32 ? 'clip-path' : '';
-      st.setProperty('--it', (e * f.t).toFixed(1) + 'px');
-      st.setProperty('--ib', (e * f.b).toFixed(1) + 'px');
-      st.setProperty('--il', (e * f.l).toFixed(1) + 'px');
-      st.setProperty('--ir', (e * f.r).toFixed(1) + 'px');
-      st.setProperty('--irad', (e * f.rad).toFixed(1) + 'px');
+      var e = ease(ramp(p, 0.06, 0.36)), f = R.fin, s0 = R.start, st = frame.style;
+      frame.style.willChange = p > 0.04 && p < 0.4 ? 'clip-path' : '';
+      [['--it', 't'], ['--ib', 'b'], ['--il', 'l'], ['--ir', 'r'], ['--irad', 'rad']].forEach(function (k) {
+        st.setProperty(k[0], (s0[k[1]] + e * (f[k[1]] - s0[k[1]])).toFixed(1) + 'px');
+      });
       shade.style.opacity = (1 - e * 0.7).toFixed(3);
       dim.style.opacity = (e * 0.3).toFixed(3);
-      var h = easeOut(ramp(p, 0.1, 0.27));
+      var h = easeOut(ramp(p, 0.26, 0.4));   // the heading waits until the frame has cleared its space
       rhead.style.opacity = h; rhead.style.transform = 'translateY(' + ((1 - h) * 30).toFixed(1) + 'px)';
-      var n = easeOut(ramp(p, 0.26, 0.38));
-      nova.style.clipPath = 'inset(' + ((1 - n) * 100).toFixed(2) + '% 0 0 0 round ' + f.rad + 'px)';
+      var n = easeOut(ramp(p, 0.30, 0.44));
+      // top-down, in story order: the bar and the question first, the composer last
+      nova.style.clipPath = 'inset(0 0 ' + ((1 - n) * 100).toFixed(2) + '% 0 round ' + f.rad + 'px)';
       nova.style.transform = 'translateY(' + ((1 - n) * 40).toFixed(1) + 'px)';
       // the film plays inside the frame until Nova covers it, then rests
       filmAwayNow(n >= 1 || y > R.top + R.h + vh);
-      beats(p);
     }
   });
-  if (reduced) { Object.keys(parts).forEach(function (k) { parts[k].classList.add('on'); }); parts.thought.classList.add('done'); }
 
   /* ---------- Reveals: fire once ---------- */
   var rio = new IntersectionObserver(function (es) {
@@ -187,36 +172,20 @@
   $$('[data-reveal]').forEach(function (el) { if (reduced) el.classList.add('is-in'); else rio.observe(el); });
 
   /* ---------- 5. Highlights carousel ---------- */
-  var track = $('[data-track]'), cards = $$('.hl__card', track), dots = $$('[data-dots] button'), hlBtn = $('[data-hl-toggle]');
-  var DUR = 6.5, idx = 0, el = 0, hlPaused = reduced, hlSeen = false, hlRaf = 0, hlLast = 0, progScroll = 0;
+  var track = $('[data-track]'), cards = $$('.hl__card', track), dots = $$('[data-dots] button');
+  var idx = 0, progScroll = 0;
   function cardLeft(i) { return cards[i].offsetLeft - (track.clientWidth - cards[i].offsetWidth) / 2; }
   function setActive(i, scroll) {
-    idx = (i + cards.length) % cards.length; el = 0;
+    idx = (i + cards.length) % cards.length;
     cards.forEach(function (c, j) { c.classList.toggle('is-on', reduced || j === idx); });
-    dots.forEach(function (d, j) { if (j === idx) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); d.querySelector('i').style.removeProperty('--fill'); });
+    dots.forEach(function (d, j) { if (j === idx) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); d.querySelector('i').style.setProperty('--fill', j === idx ? 1 : 0); });
     if (scroll) { progScroll = performance.now(); track.scrollTo({ left: cardLeft(idx), behavior: reduced ? 'auto' : 'smooth' }); }
-    paint();
   }
-  function paint() { dots[idx].querySelector('i').style.setProperty('--fill', reduced ? 1 : (el / DUR).toFixed(4)); }
-  function hlFrame(now) {
-    hlRaf = requestAnimationFrame(hlFrame);
-    el += clamp((now - hlLast) / 1000, 0, 0.1); hlLast = now;
-    if (el >= DUR) setActive(idx + 1, true); else paint();
-  }
-  function hlRunning() { return !hlPaused && hlSeen && !hiddenTab; }
-  function hlSync() {
-    hlBtn.setAttribute('aria-pressed', String(hlPaused));
-    hlBtn.setAttribute('aria-label', hlPaused ? 'Play' : 'Pause');
-    if (hlRunning()) { if (!hlRaf) { hlLast = performance.now(); hlRaf = requestAnimationFrame(hlFrame); } }
-    else { cancelAnimationFrame(hlRaf); hlRaf = 0; }
-  }
-  hlBtn.addEventListener('click', function () { hlPaused = !hlPaused; hlSync(); });
   dots.forEach(function (d, j) { d.addEventListener('click', function () { setActive(j, true); }); });
   [['[data-hl-prev]', -1], ['[data-hl-next]', 1]].forEach(function (b) {
-    $(b[0]).addEventListener('click', function () { hlPaused = true; hlSync(); setActive(idx + b[1], true); });
+    $(b[0]).addEventListener('click', function () { setActive(idx + b[1], true); });
   });
-  // a swipe or trackpad scroll is the user taking over: follow it and pause
-  track.addEventListener('pointerdown', function () { hlPaused = true; hlSync(); }, { passive: true });
+  // a swipe or trackpad scroll: follow it
   var st0 = 0;
   track.addEventListener('scroll', function () {
     clearTimeout(st0);
@@ -224,39 +193,44 @@
       if (performance.now() - progScroll < 900) return;   // our own smooth scroll
       var x = track.scrollLeft, best = 0, bd = 1e9;
       cards.forEach(function (c, j) { var d = Math.abs(cardLeft(j) - x); if (d < bd) { bd = d; best = j; } });
-      if (best !== idx) { setActive(best, false); hlPaused = true; hlSync(); }
+      if (best !== idx) setActive(best, false);
     }, 120);
   }, { passive: true });
-  new IntersectionObserver(function (es) { hlSeen = es[0].intersectionRatio >= 0.5; hlSync(); }, { threshold: [0, 0.5] }).observe(track);
-  setActive(0, false); hlSync();
+  // the first card plays its build when the carousel is half on screen
+  setActive(0, false);
+  if (!reduced) {
+    cards[0].classList.remove('is-on');
+    new IntersectionObserver(function (es, o) { if (es[0].intersectionRatio >= 0.5) { setActive(idx, false); o.disconnect(); } }, { threshold: [0, 0.5] }).observe(track);
+  }
 
   /* ---------- 6. How Newcode works: pinned steps, each panel wipes up over the last ---------- */
   var how = $('[data-how]'), texts = $$('.how__t', how), views = $$('.how__v', how), rail = $$('.how__rail li', how);
   var H = { top: 0, h: 1 }, howStage = $('.how__stage', how);
-  // Phone: no pin. Each panel plays its sequence once, when it is actually seen.
-  var hio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-done'); hio.unobserve(e.target); } }); }, { threshold: 0.45 });
   scenes.push({
     measure: function () { H.top = docTop(how); H.h = how.offsetHeight - howStage.offsetHeight; },
     update: function (y) {
       if (reduced || phone()) {
         if (!H.flat) {
           H.flat = true;
-          views.forEach(function (v) { v.style.clipPath = ''; v.style.transform = ''; v.style.removeProperty('--k'); if (!reduced) hio.observe(v); });
+          views.forEach(function (v) { v.style.clipPath = ''; v.style.transform = ''; v.style.removeProperty('--k'); });
           texts.forEach(function (tx) { tx.style.opacity = ''; tx.style.transform = ''; });
         }
+        // phone: each panel builds as it travels from the bottom of the screen to the middle
+        if (!reduced) views.forEach(function (v) { var r = v.getBoundingClientRect(); v.style.setProperty('--k', ramp(vh - r.top, vh * 0.15, vh * 0.75).toFixed(3)); });
         return;
       }
-      if (H.flat) { H.flat = false; views.forEach(function (v) { hio.unobserve(v); }); }
-      // four steps, one 130vh slice each: the panel's rows build over the slice, the next step hands off over its last fifth
+      H.flat = false;
+      // four steps, one ~95vh slice each: the panel's rows build over the slice. The texts swap back to back in short
+      // fades (out T i+0.84 to i+0.90, next in i+0.90 to i+0.96, ~50px each), so the column is blank for only a few px
       var T = clamp((y - H.top) / H.h, 0, 1) * 4, cur = Math.min(3, Math.floor(T + 0.08));
       texts.forEach(function (tx, i) {
-        var fin = i === 0 ? 1 : easeOut(ramp(T, i - 0.16, i + 0.02));
-        var fout = i === 3 ? 1 : 1 - ramp(T, i + 0.70, i + 0.86);
+        var fin = i === 0 ? 1 : easeOut(ramp(T, i - 0.10, i - 0.04));
+        var fout = i === 3 ? 1 : 1 - ramp(T, i + 0.84, i + 0.90);
         tx.style.opacity = Math.min(fin, fout).toFixed(3);
         tx.style.transform = 'translateY(' + ((1 - fin) * 24 - (1 - fout) * 24).toFixed(1) + 'px)';
       });
       views.forEach(function (v, i) {
-        if (i) { var w = ease(ramp(T, i - 0.16, i + 0.10)); v.style.clipPath = 'inset(' + ((1 - w) * 100).toFixed(2) + '% 0 0 0 round var(--r))'; }
+        if (i) { var w = ease(ramp(T, i - 0.16, i + 0.10)); v.style.clipPath = 'inset(' + ((1 - w) * 100).toFixed(2) + '% 0 0 0)'; }
         // the panel being covered sinks back a little, so the next one reads as arriving in front of it
         var under = i < 3 ? ease(ramp(T, i + 0.84, i + 1.10)) : 0;
         v.style.transform = under ? 'scale(' + (1 - under * 0.06).toFixed(4) + ')' : '';
@@ -266,36 +240,15 @@
     }
   });
 
-  /* ---------- 7. A closer look: tabs ---------- */
-  var tabs = $$('.look__list [role="tab"]');
-  function selectTab(tab, focus) {
-    tabs.forEach(function (b) {
-      var on = b === tab;
-      b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1;
-      document.getElementById(b.getAttribute('aria-controls')).hidden = !on;
-    });
-    if (focus) tab.focus();
-    if (phone()) { var l = tab.parentNode; l.scrollTo({ left: tab.offsetLeft - l.clientWidth / 2 + tab.offsetWidth / 2, behavior: reduced ? 'auto' : 'smooth' }); }
-  }
-  tabs.forEach(function (b, i) {
-    b.addEventListener('click', function () { selectTab(b, false); });
-    b.addEventListener('keydown', function (e) {
-      var n = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
-      if (e.key === 'Home') n = -i; if (e.key === 'End') n = tabs.length - 1 - i;
-      if (n === undefined) return;
-      e.preventDefault(); selectTab(tabs[(i + n + tabs.length) % tabs.length], true);
-    });
-  });
-
   /* ---------- 8. Customer film: lands full width as you arrive, plays on request, pauses off screen ---------- */
   var grow = $('[data-grow]'), storyBtn = $('[data-story-play]');
   var G = { top: 0 };
   scenes.push({
     measure: function () { G.top = docTop(grow); },
     update: function (y) {
-      if (reduced || phone()) { grow.style.removeProperty('--gx'); return; }
+      if (reduced || phone()) { grow.style.removeProperty('--gs'); return; }
       var q = ease(ramp(y + vh - G.top, vh * 0.1, vh * 0.85));
-      grow.style.setProperty('--gx', ((1 - q) * 7).toFixed(3) + '%');
+      grow.style.setProperty('--gs', (0.86 + q * 0.14).toFixed(4));
     }
   });
   storyBtn.addEventListener('click', function () {
@@ -318,22 +271,9 @@
   aud.addEventListener('scroll', audPaddles, { passive: true });
   scenes.push({ measure: audPaddles, update: function () {} });
 
-  /* ---------- 11. Closing scene: pinned; the frame opens to full bleed, the line arrives and holds ---------- */
-  var close = $('[data-close]'), cframe = $('[data-closeframe]'), ccopy = $('[data-closecopy]'), cv = $('video', close), cBtn = $('[data-close-toggle]');
-  var C = { top: 0, h: 1 }, cSeen = false, cPaused = reduced, closeStage = $('.close__stage');
-  scenes.push({
-    measure: function () { C.top = docTop(close); C.h = close.offsetHeight - closeStage.offsetHeight; },
-    update: function (y) {
-      if (reduced) return;
-      var p = clamp((y - C.top) / C.h, 0, 1), q = 1 - ease(ramp(p, 0, 0.45));
-      var ins = phone() ? 16 : Math.max(vw * 0.0625, (vw - 1260) / 2);
-      cframe.style.setProperty('--ct', (q * (phone() ? 60 : 72)).toFixed(1) + 'px');
-      cframe.style.setProperty('--cl', (q * ins).toFixed(1) + 'px');
-      cframe.style.setProperty('--crad', (q * 28).toFixed(1) + 'px');
-      var k = easeOut(ramp(p, 0.30, 0.50));
-      ccopy.style.opacity = k; ccopy.style.transform = 'translateY(' + ((1 - k) * 30).toFixed(1) + 'px)';
-    }
-  });
+  /* ---------- 11. Closing card: its film tile plays while half of it is on screen ---------- */
+  var cframe = $('[data-closeframe]'), cv = $('video', cframe), cBtn = $('[data-close-toggle]');
+  var cSeen = false, cPaused = reduced;
   function closeSync() {
     var run = cSeen && !cPaused && !hiddenTab;
     cBtn.setAttribute('aria-pressed', String(cPaused));
@@ -341,7 +281,7 @@
     if (run) { if (!cv.getAttribute('src')) cv.src = cv.dataset.src; playV(cv); } else cv.pause();
   }
   cBtn.addEventListener('click', function () { cPaused = !cPaused; closeSync(); });
-  new IntersectionObserver(function (es) { cSeen = es[0].intersectionRatio >= 0.5; closeSync(); }, { threshold: [0, 0.5] }).observe($('.close__stage'));
+  new IntersectionObserver(function (es) { cSeen = es[0].intersectionRatio >= 0.5; closeSync(); }, { threshold: [0, 0.5] }).observe(cframe);
   closeSync();
 
   /* ---------- Footer: columns fold away on phone ---------- */
