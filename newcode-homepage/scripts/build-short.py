@@ -50,11 +50,8 @@ one('title').string = 'Newcode | AI for forward-thinking law firms (short versio
 one('link[href="css/styles.css"]').insert_after(frag('<link rel="stylesheet" href="css/short.css">'))
 one('body')['class'] = ['is-short']
 
-# ---- Trusted by: a still list, no pinned scroll ----
-for el in soup.select('[data-sweep], [data-sweep-item]'):
-    del el['data-sweep']
-    if el.has_attr('data-sweep-item'):
-        del el['data-sweep-item']
+# ---- Trusted by: the names still light up one by one, but the page no longer holds still for it ----
+one('#trusted [data-sweep]')['data-sweep'] = 'free'
 for a in one('#trusted').select('a[href="#voice-brecke"], a[href="#story-bar-of-ireland"]'):
     a.unwrap()
 
@@ -76,20 +73,13 @@ tabs = ''.join(
     f'<span aria-hidden="true">0{i}</span> {n}</button>' for i, n in enumerate(names, 1))
 steps.insert_before(frag(f'<div class="pviews how__tabs" role="tablist" aria-label="How Newcode works, step by step">{tabs}</div>'))
 one('.wrap', how)['data-tabs'] = ''
+one('.wrap', how)['data-autoplay'] = '7000'
 # The capability network goes: twelve pills read as a feature list. The Platform overview card in the suite links to the page that carries them.
 drop('.how__caps', how, 1)
 
 # ---- Product suite: every product stays; Nova and Aurora show one view, the six others are short doors ----
 suite = one('#products')
-for card in suite.select('.pcard--large'):
-    del card['data-tabs']
-    drop('.pviews', card, 1)
-    for extra in card.select('.pview')[1:]:
-        extra.decompose()
-    for label in card.select('.pview__label'):
-        label.decompose()
-    first = one('.pview', card)
-    del first['role'], first['aria-labelledby']
+# Nova and Aurora keep their three feature views: the tabs cost no height.
 for card in suite.select('.suite__grid .pcard'):
     for el in card.select('.plate, .pcard__meta, .ph'):
         el.decompose()
@@ -138,6 +128,8 @@ word.decompose()
 # Logos and names only: which product uses each system is still to be confirmed (see the notes file).
 for el in integ.select('.itile > span:not(.itile__icon), .itile .tag'):
     el.decompose()
+for i, li in enumerate(integ.select('.itiles li')):
+    li['style'] = f'--i:{i}'
 notes.append('Integrations: the Word tile is left out of the short version until a Word icon is available.')
 
 # ---- Academy: one line naming the programmes, the photo and list stay on newcode.ai ----

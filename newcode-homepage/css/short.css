@@ -69,3 +69,19 @@
   .is-short .how__tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; border-radius: 22px; }
   .is-short .vq__portrait { max-width: 260px; }
 }
+
+/* How tabs move on by themselves: a thin line fills under the current tab, then the next step comes in. */
+.is-short .how__tabs .pview-tab { position: relative; overflow: hidden; }
+.is-short .how__tabs .pview-tab::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 2px; border-radius: 2px; background: var(--purple-deep); transform: scaleX(0); transform-origin: 0 50%; opacity: 0; }
+.is-short .is-autoplaying .how__tabs .pview-tab[aria-selected="true"]::after { opacity: 1; animation: tab-fill var(--autoplay, 7s) linear forwards; }
+@keyframes tab-fill { to { transform: scaleX(1); } }
+/* Each step's product cards build in again whenever the step is shown. */
+.js .is-short .how__step:not([data-off]) .pop { animation: ui-pop 0.7s var(--ease) both; animation-delay: calc(var(--pd, 0ms) + 180ms); }
+
+/* Integrations: the systems arrive one after another. */
+.reveal-on .is-short .itiles li { opacity: 0; }
+.reveal-on .is-short .itiles.is-in li { animation: ui-pop 0.55s var(--ease) both; animation-delay: calc(var(--i, 0) * 70ms + 120ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .is-short .how__step:not([data-off]) .pop, .reveal-on .is-short .itiles.is-in li { animation: none; opacity: 1; }
+}

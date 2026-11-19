@@ -262,32 +262,32 @@
 <div class="wrap grid">
 <h2 class="trusted__label" id="trusted-title">Trusted by</h2>
 <div class="trusted__body">
-<p class="trusted__list">
-<span>Kirkland &amp; Ellis,</span>
-<span><a href="#voice-canning">DLA Piper</a>,</span>
-<span>Reed Smith,</span>
-<span>Dickinson Wright,</span>
-<span>Wolters Kluwer,</span>
-<span><a href="#voice-rattigan">Robinson + Cole</a>,</span>
-<span>The Bar of Ireland,</span>
-<span>Wiersholm,</span>
-<span>Haavind,</span>
-<span>Awilhelmsen,</span>
-<span><a href="#story-raeder-bing">Ræder Bing</a>,</span>
-<span>Simonsen Vogt Wiig,</span>
-<span>Ekko Advokatfirma,</span>
-<span>Helton,</span>
-<span class="is-long">Statsforvalterens Fellestjenester,</span>
-<span>Helsetilsynet,</span>
-<span>Meteorologisk institutt,</span>
-<span class="is-long">and 100+ law firms and enterprises.</span>
+<p class="trusted__list" data-sweep="free">
+<span data-sweep-item="">Kirkland &amp; Ellis,</span>
+<span data-sweep-item=""><a href="#voice-canning">DLA Piper</a>,</span>
+<span data-sweep-item="">Reed Smith,</span>
+<span data-sweep-item="">Dickinson Wright,</span>
+<span data-sweep-item="">Wolters Kluwer,</span>
+<span data-sweep-item=""><a href="#voice-rattigan">Robinson + Cole</a>,</span>
+<span data-sweep-item="">The Bar of Ireland,</span>
+<span data-sweep-item="">Wiersholm,</span>
+<span data-sweep-item="">Haavind,</span>
+<span data-sweep-item="">Awilhelmsen,</span>
+<span data-sweep-item=""><a href="#story-raeder-bing">Ræder Bing</a>,</span>
+<span data-sweep-item="">Simonsen Vogt Wiig,</span>
+<span data-sweep-item="">Ekko Advokatfirma,</span>
+<span data-sweep-item="">Helton,</span>
+<span class="is-long" data-sweep-item="">Statsforvalterens Fellestjenester,</span>
+<span data-sweep-item="">Helsetilsynet,</span>
+<span data-sweep-item="">Meteorologisk institutt,</span>
+<span class="is-long" data-sweep-item="">and 100+ law firms and enterprises.</span>
 </p>
 </div>
 </div>
 </section>
 <!-- 3. How Newcode works: the harness, told once -->
 <section aria-labelledby="how-title" class="band band--white how" id="how">
-<div class="wrap" data-tabs="">
+<div class="wrap" data-autoplay="7000" data-tabs="">
 <header class="section-head" data-reveal="">
 <p class="eyebrow">The configurable AI harness for the legal industry</p>
 <h2 id="how-title">How Newcode works</h2>
@@ -438,11 +438,11 @@
 <p>Start in the workspace, build your firm’s own workflows, and keep working in the tools you already use.</p>
 </header>
 <div class="suite__lead">
-<article class="pcard pcard--large" data-reveal="" id="product-nova">
+<article class="pcard pcard--large" data-reveal="" data-tabs="" id="product-nova">
 <div class="plate">
 <img alt="" class="plate__photo" height="752" loading="lazy" src="assets/plates/meeting-room.webp" width="1344"/>
-
-<div class="pview" id="nova-view-matrix">
+<p aria-level="4" class="pview__label" role="heading">Matrix Review</p>
+<div aria-labelledby="nova-tab-matrix" class="pview" id="nova-view-matrix" role="tabpanel">
 <div aria-label="A matrix review of a lease portfolio in Nova: one row per agreement, with columns for the parties and their role and the effective date." class="ui ui-card vig vig-matrix" role="img">
 <table aria-hidden="true" class="ui-table">
 <thead><tr><th></th><th>Name</th><th>Parties and Role</th><th>Effective Date</th></tr></thead>
@@ -458,13 +458,39 @@
 </table>
 </div>
 </div>
-
-
-
-
+<p aria-level="4" class="pview__label" role="heading">Legal Research</p>
+<div aria-labelledby="nova-tab-research" class="pview" id="nova-view-research" role="tabpanel">
+<div aria-label="A Legal Research prompt in the Nova composer, asking for recent personal-injury judgments under the Civil Liability Act 1961." class="ui ui-card vig vig-research" role="img">
+<p aria-hidden="true">Conduct a search for recent personal-injury judgments where the court applied the Civil Liability Act 1961, focusing particularly on Section 34 (contributory negligence) or other liability-apportionment provisions.</p>
+<p aria-hidden="true">Begin by reviewing High Court and Court of Appeal decisions from 2024 to 2025, then verify the findings using the Courts Service database, the Irish Statute Book, and authoritative commentary to confirm how the Act was interpreted and applied.</p>
+<div aria-hidden="true" class="composer__row">
+<span class="composer__plus"><svg><use href="#u-plus"></use></svg></span>
+<span class="ui-chip ui-chip--on"><svg><use href="#u-search"></use></svg>Legal Research</span>
+<span class="ui-chip"><svg><use href="#u-clip"></use></svg>Insert</span>
+<span class="ui-chip">Filters</span>
+<span class="ui-chip"><svg><use href="#u-books"></use></svg>Library</span>
+</div>
+</div>
+</div>
+<p aria-level="4" class="pview__label" role="heading">Knowledge Base</p>
+<div aria-labelledby="nova-tab-kb" class="pview" id="nova-view-kb" role="tabpanel">
+<div aria-label="The Ask Newcode composer with a saved Tax Expert Persona attached to it from the knowledge base." class="ui ui-card vig vig-kb" role="img">
+<div aria-hidden="true" class="ui-file"><i><svg><use href="#u-books"></use></svg></i><span><b>Tax Expert Persona</b><small>Knowledge Base</small></span></div>
+<p aria-hidden="true">Ask Newcode</p>
+<div aria-hidden="true" class="composer__row">
+<span class="composer__plus"><svg><use href="#u-plus"></use></svg></span>
+<span class="ui-chip"><svg><use href="#u-clip"></use></svg>Insert</span>
+<span class="ui-chip ui-chip--on"><svg><use href="#u-books"></use></svg>Library</span>
+</div>
+</div>
+</div>
 </div>
 <div class="pcard__body">
-
+<div aria-label="Nova features" class="pviews" role="tablist">
+<button aria-controls="nova-view-matrix" aria-selected="true" class="pview-tab" id="nova-tab-matrix" role="tab" type="button">Matrix Review</button>
+<button aria-controls="nova-view-research" aria-selected="false" class="pview-tab" id="nova-tab-research" role="tab" tabindex="-1" type="button">Legal Research</button>
+<button aria-controls="nova-view-kb" aria-selected="false" class="pview-tab" id="nova-tab-kb" role="tab" tabindex="-1" type="button">Knowledge Base</button>
+</div>
 <header class="pcard__head">
 <p class="tag">Workspace</p>
 <h3>Nova</h3>
@@ -478,11 +504,11 @@
 <a class="link-arrow" href="https://www.newcode.ai/products/nova" rel="noopener" target="_blank"><span>Explore Nova</span> <svg aria-hidden="true" class="arrow"><use href="#i-arrow"></use></svg></a>
 </div>
 </article>
-<article class="pcard pcard--large" data-reveal="" id="product-aurora" style="--d:90ms">
+<article class="pcard pcard--large" data-reveal="" data-tabs="" id="product-aurora" style="--d:90ms">
 <div class="plate">
 <img alt="" class="plate__photo" height="752" loading="lazy" src="assets/plates/window-desk.webp" width="1344"/>
-
-<div class="pview" id="aurora-view-build">
+<p aria-level="4" class="pview__label" role="heading">Drag and Drop</p>
+<div aria-labelledby="aurora-tab-build" class="pview" id="aurora-view-build" role="tabpanel">
 <div aria-label="Aurora blocks being dragged onto the canvas, with Drag and Drop marked against them: a Type Convert block lifted from its place and a Prompt Template block over its drop target." class="ui canvas canvas-aurora" role="img">
 <div aria-hidden="true" class="held held--a">
 <i class="held__slot"></i>
@@ -512,13 +538,60 @@
 </div>
 </div>
 </div>
-
-
-
-
+<p aria-level="4" class="pview__label" role="heading">Configure Agent</p>
+<div aria-labelledby="aurora-tab-agent" class="pview" id="aurora-view-agent" role="tabpanel">
+<div aria-label="The Configure Agent panel in Aurora, with agent name, instructions and capabilities, beside the list of available agents being placed on a flow." class="ui ui-card vig vig-agentcfg" role="img">
+<h5 aria-hidden="true">Configure Agent</h5>
+<p aria-hidden="true" class="ui-muted">Set up your automation agent settings</p>
+<span aria-hidden="true" class="lbl">Agent Name</span>
+<span aria-hidden="true" class="field">e.g. lead-qualification-agent</span>
+<span aria-hidden="true" class="lbl">Instructions</span>
+<span aria-hidden="true" class="field">Describe what this agent should do and how it should behave...</span>
+<span aria-hidden="true" class="lbl">Capabilities</span>
+<span aria-hidden="true" class="cap"><i class="ui-toggle"></i>Knowledge &amp; Reasoning</span>
+<span aria-hidden="true" class="cap"><i class="ui-toggle"></i>Data Access</span>
+</div>
+<div aria-hidden="true" class="ui ui-card vig vig-agents">
+<p>Available</p>
+<ul>
+<li><svg><use href="#u-user"></use></svg>Data Agent</li>
+<li><svg><use href="#u-spark"></use></svg>Process Agent</li>
+<li><svg><use href="#u-up"></use></svg>Output Agent</li>
+<li class="ui-muted"><svg><use href="#u-plus"></use></svg>Add Agent</li>
+</ul>
+</div>
+<div aria-hidden="true" class="ui vig vig-agentdrag">
+<svg class="cur" viewbox="0 0 24 24"><path d="M4.5 3.2 20 9.6l-6.6 2.4-2.4 6.8z"></path></svg>
+<span class="ui-card"><i><svg><use href="#u-spark"></use></svg></i>Process Agent</span>
+</div>
+</div>
+<p aria-level="4" class="pview__label" role="heading">Publish</p>
+<div aria-labelledby="aurora-tab-publish" class="pview" id="aurora-view-publish" role="tabpanel">
+<div aria-label="The Publish menu open over a finished flow in Aurora, offering Nova, API access, Export and MCP Server." class="ui canvas canvas-publish" role="img">
+<div aria-hidden="true" class="canvas__top"><span class="ui-btn ui-btn--ghost"><svg viewbox="0 0 16 16"><path d="M5.5 3.8v8.4L12 8z"></path></svg>Playground</span><span class="ui-btn">Publish<svg viewbox="0 0 16 16"><path d="M4.5 6.5 8 10l3.5-3.5"></path></svg></span></div>
+<div aria-hidden="true" class="node node--loan">
+<header><i><svg><use href="#u-spark"></use></svg></i>Loan Agreement Agent</header>
+<span class="field">Produces loan reviews.</span>
+</div>
+<div aria-hidden="true" class="node node--review">
+<header><i><svg><use href="#u-user"></use></svg></i>Human Review</header>
+</div>
+</div>
+<ul aria-hidden="true" class="ui ui-card vig vig-publish">
+<li><svg><use href="#u-spark"></use></svg>Nova</li>
+<li><svg><use href="#u-code"></use></svg>API access</li>
+<li><svg><use href="#u-export"></use></svg>Export</li>
+<li><svg><use href="#u-swap"></use></svg>MCP Server</li>
+</ul>
+<svg aria-hidden="true" class="ui cur vig vig-pubcur" viewbox="0 0 24 24"><path d="M4.5 3.2 20 9.6l-6.6 2.4-2.4 6.8z"></path></svg>
+</div>
 </div>
 <div class="pcard__body">
-
+<div aria-label="Aurora features" class="pviews" role="tablist">
+<button aria-controls="aurora-view-build" aria-selected="true" class="pview-tab" id="aurora-tab-build" role="tab" type="button">Drag and Drop</button>
+<button aria-controls="aurora-view-agent" aria-selected="false" class="pview-tab" id="aurora-tab-agent" role="tab" tabindex="-1" type="button">Configure Agent</button>
+<button aria-controls="aurora-view-publish" aria-selected="false" class="pview-tab" id="aurora-tab-publish" role="tab" tabindex="-1" type="button">Publish</button>
+</div>
 <header class="pcard__head">
 <p class="tag">Build</p>
 <h3>Aurora</h3>
@@ -741,30 +814,30 @@
 <div aria-labelledby="igroup-documents" class="igroup" role="group">
 <h3 class="eyebrow igroup__label" id="igroup-documents">Documents</h3>
 <ul>
-<li><a class="itile" href="https://www.newcode.ai/news/newcode-announces-technology-alliance-with-imanage" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="40" loading="lazy" src="assets/icons/imanage.svg" width="40"/></span><b>iManage</b></a></li>
-<li><a class="itile" href="https://www.newcode.ai/products/search" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="250" loading="lazy" src="assets/icons/sharepoint.webp" width="256"/></span><b>SharePoint</b></a></li>
-<li><a class="itile" href="https://www.newcode.ai/products/search" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="40" loading="lazy" src="assets/icons/onedrive.svg" width="40"/></span><b>OneDrive</b></a></li>
+<li style="--i:0"><a class="itile" href="https://www.newcode.ai/news/newcode-announces-technology-alliance-with-imanage" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="40" loading="lazy" src="assets/icons/imanage.svg" width="40"/></span><b>iManage</b></a></li>
+<li style="--i:1"><a class="itile" href="https://www.newcode.ai/products/search" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="250" loading="lazy" src="assets/icons/sharepoint.webp" width="256"/></span><b>SharePoint</b></a></li>
+<li style="--i:2"><a class="itile" href="https://www.newcode.ai/products/search" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="40" loading="lazy" src="assets/icons/onedrive.svg" width="40"/></span><b>OneDrive</b></a></li>
 </ul>
 </div>
 <div aria-labelledby="igroup-email" class="igroup igroup--2" role="group">
 <h3 class="eyebrow igroup__label" id="igroup-email">Email and collaboration</h3>
 <ul>
-<li><a class="itile" href="https://www.newcode.ai/products/outlook-add-in" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="242" loading="lazy" src="assets/icons/outlook.webp" width="256"/></span><b>Outlook</b></a></li>
-<li><a class="itile" href="https://www.newcode.ai/products/cowork" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="256" loading="lazy" src="assets/icons/teams.webp" width="242"/></span><b>Teams</b></a></li>
+<li style="--i:3"><a class="itile" href="https://www.newcode.ai/products/outlook-add-in" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="242" loading="lazy" src="assets/icons/outlook.webp" width="256"/></span><b>Outlook</b></a></li>
+<li style="--i:4"><a class="itile" href="https://www.newcode.ai/products/cowork" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="256" loading="lazy" src="assets/icons/teams.webp" width="242"/></span><b>Teams</b></a></li>
 </ul>
 </div>
 <div aria-labelledby="igroup-research" class="igroup igroup--1" role="group">
 <h3 class="eyebrow igroup__label" id="igroup-research">Research</h3>
 <ul>
-<li><a class="itile" href="https://www.newcode.ai/products/nova" rel="noopener" target="_blank"><span class="itile__icon itile__icon--wide"><img alt="" height="97" loading="lazy" src="assets/logos/wolters-kluwer.webp" width="599"/></span><b>Wolters Kluwer CCH</b></a></li>
+<li style="--i:5"><a class="itile" href="https://www.newcode.ai/products/nova" rel="noopener" target="_blank"><span class="itile__icon itile__icon--wide"><img alt="" height="97" loading="lazy" src="assets/logos/wolters-kluwer.webp" width="599"/></span><b>Wolters Kluwer CCH</b></a></li>
 </ul>
 </div>
 <div aria-labelledby="igroup-drafting" class="igroup" role="group">
 <h3 class="eyebrow igroup__label" id="igroup-drafting">Office files</h3>
 <ul>
 
-<li><a class="itile" href="https://www.newcode.ai/products/cowork" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="284" loading="lazy" src="assets/icons/excel.png" width="319"/></span><b>Excel</b></a></li>
-<li><a class="itile" href="https://www.newcode.ai/products/cowork" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="277" loading="lazy" src="assets/icons/powerpoint.png" width="323"/></span><b>PowerPoint</b></a></li>
+<li style="--i:6"><a class="itile" href="https://www.newcode.ai/products/cowork" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="284" loading="lazy" src="assets/icons/excel.png" width="319"/></span><b>Excel</b></a></li>
+<li style="--i:7"><a class="itile" href="https://www.newcode.ai/products/cowork" rel="noopener" target="_blank"><span class="itile__icon"><img alt="" height="277" loading="lazy" src="assets/icons/powerpoint.png" width="323"/></span><b>PowerPoint</b></a></li>
 </ul>
 </div>
 </div>

@@ -121,6 +121,36 @@
     var first = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
     if (first) select(first, false);
   });
+  /* data-autoplay="ms": the tabs move on by themselves while the group is on screen, hold while the
+     pointer or focus is inside, and stop for good once the visitor picks a tab. */
+  $$('[data-tabs][data-autoplay]').forEach(function (group) {
+    if (reduceMotion || !hasIO) return;
+    var tabs = $$('[role="tab"]', group);
+    var ms = parseInt(group.getAttribute('data-autoplay'), 10) || 6000;
+    var timer = null, inView = false, held = false, stopped = false;
+    group.style.setProperty('--autoplay', ms + 'ms');
+    function arm() {
+      clearTimeout(timer);
+      var on = inView && !held && !stopped;
+      group.classList.toggle('is-autoplaying', on);
+      if (!on) return;
+      timer = setTimeout(function () {
+        var i = 0;
+        tabs.forEach(function (t, k) { if (t.getAttribute('aria-selected') === 'true') i = k; });
+        tabSelectors[tabs[(i + 1) % tabs.length].id]();
+        group.classList.remove('is-autoplaying');
+        void group.offsetWidth; /* restart the progress line on the new tab */
+        arm();
+      }, ms);
+    }
+    function stop() { stopped = true; arm(); }
+    tabs.forEach(function (t) { t.addEventListener('click', stop); t.addEventListener('keydown', stop); });
+    group.addEventListener('pointerenter', function () { held = true; arm(); });
+    group.addEventListener('pointerleave', function () { held = false; arm(); });
+    group.addEventListener('focusin', function () { held = true; arm(); });
+    group.addEventListener('focusout', function (e) { if (!group.contains(e.relatedTarget)) { held = false; arm(); } });
+    new IntersectionObserver(function (e) { inView = e[0].isIntersecting; arm(); }, { threshold: 0.35 }).observe(group);
+  });
   /* Links elsewhere on the page can open a specific tab before the page scrolls to it. */
   $$('[data-tab-target]').forEach(function (link) {
     link.addEventListener('click', function () {
@@ -415,13 +445,22 @@
   var sweep = $('[data-sweep]');
   var sweepItems = sweep ? $$('[data-sweep-item]', sweep) : [];
   var sweepBand = sweep ? sweep.closest('section') : null;
-  if (sweep && !reduceMotion) { sweep.classList.add('is-sweeping'); sweepBand.classList.add('is-pinned'); }
+  /* data-sweep="free": the names light as the list scrolls past, without holding the page. */
+  var sweepPinned = sweep && sweep.getAttribute('data-sweep') !== 'free';
+  if (sweep && !reduceMotion) { sweep.classList.add('is-sweeping'); if (sweepPinned) sweepBand.classList.add('is-pinned'); }
   function updateSweep() {
     if (!sweep || reduceMotion) return;
-    /* Progress runs from the moment the band pins until it lets go: 0 to 1 over the band's extra height. */
-    var r = sweepBand.getBoundingClientRect();
-    var travel = r.height - window.innerHeight;
-    var progress = travel > 0 ? (-r.top) / (travel * 0.85) : 1;
+    var progress;
+    if (sweepPinned) {
+      /* Progress runs from the moment the band pins until it lets go: 0 to 1 over the band's extra height. */
+      var r = sweepBand.getBoundingClientRect();
+      var travel = r.height - window.innerHeight;
+      progress = travel > 0 ? (-r.top) / (travel * 0.85) : 1;
+    } else {
+      /* From the list's top at 85% of the screen to 40%: all lit before it reaches the middle. */
+      var vh = window.innerHeight;
+      progress = (vh * 0.85 - sweep.getBoundingClientRect().top) / (vh * 0.45);
+    }
     progress = Math.max(0, Math.min(1, progress));
     var lit = Math.ceil(progress * sweepItems.length);
     sweepItems.forEach(function (item, i) { item.classList.toggle('is-lit', i < lit); });
